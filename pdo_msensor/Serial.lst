@@ -1,0 +1,169 @@
+C51 COMPILER V9.60.0.0   SERIAL                                                            10/14/2021 23:05:15 PAGE 1   
+
+
+C51 COMPILER V9.60.0.0, COMPILATION OF MODULE SERIAL
+OBJECT MODULE PLACED IN .\output\Serial.obj
+COMPILER INVOKED BY: C:\Keil_v5\C51\BIN\C51.EXE library\Serial.c OPTIMIZE(8,SPEED) BROWSE INCDIR(.\library;..\LSM9DS1_ne
+                    -w sensor MCU program) DEFINE(Custom,library) DEBUG OBJECTEXTEND PRINT(.\Serial.lst) TABS(2) OBJECT(.\output\Serial.obj)
+
+line level    source
+
+   1          /******************************************************************************/
+   2          /*                                                                            */
+   3          /*       SERIAL.C:  Interrupt Controlled Serial Interface                     */
+   4          /*                                                                            */
+   5          /******************************************************************************/
+   6          
+   7          #include <AT89X52.h>
+   8          #include <INTRINS.H>                 /* special function register 8052       */
+   9          
+  10          #define  OLEN  32                      /* size of serial transmission buffer   */
+  11          unsigned char  ostart;                /* transmission buffer start index      */
+  12          unsigned char  oend;                  /* transmission buffer end index        */
+  13          idata    char  outbuf[OLEN];          /* storage for transmission buffer      */
+  14          
+  15          #define  ILEN  16                      /* size of serial receiving buffer      */
+  16          unsigned char  istart;                /* receiving buffer start index         */
+  17          unsigned char  iend;                  /* receiving buffer end index           */
+  18          idata    char  inbuf[ILEN];           /* storage for receiving buffer         */
+  19          
+  20          bit   CheckCommandFlag;
+  21          
+  22          static bit   sendfull;                /* flag: marks transmit buffer full     */
+  23          static bit   sendactive;              /* flag: marks transmitter active       */ 
+  24          /******************************************************************************/
+  25          /*       delay funtion                                                        */
+  26          /******************************************************************************/
+  27          void delay(unsigned int end_count)     //15000 ~0.1sec
+  28          {unsigned int start_count;
+  29   1      for(start_count=0; start_count<end_count; start_count++)   _nop_ ();  
+  30   1      }
+  31          /******************************************************************************/
+  32          /*       putbuf:  write a character to SBUF or transmission buffer            */
+  33          /******************************************************************************/
+  34          static void putbuf (unsigned char c)  {
+  35   1        if (!sendfull)  {                   /* transmit only if buffer not full     */
+  36   2          ES = 0;                           /* disable serial interrupt             */      
+  37   2          if (!sendactive)  {  /* if transmitter not active:           */
+  38   3            sendactive = 1;                 /* transfer the first character direct  */
+  39   3          TI = 0; 
+  40   3            SBUF = c;                       /* to SBUF to start transmission        */
+  41   3         
+  42   3          }
+  43   2          else  {                           /* otherwize:                           */
+  44   3            outbuf[oend++ & (OLEN-1)] = c;  /* transfer char to transmission buffer */
+  45   3            if (((oend ^ ostart) & (OLEN-1)) == 0)  sendfull = 1;
+  46   3          }                                 /* set flag if buffer is full           */
+  47   2        ES = 1;                           /* enable serial interrupt              */      
+  48   2        }
+  49   1      }
+  50          
+  51          /******************************************************************************/
+  52          /*       putchar:  interrupt controlled putchar function                      */
+  53          /******************************************************************************/
+  54          char putchar (unsigned char c)  {
+C51 COMPILER V9.60.0.0   SERIAL                                                            10/14/2021 23:05:15 PAGE 2   
+
+  55   1        
+  56   1        while (sendfull)  {                 /* wait for transmission buffer empty   */
+  57   2      
+  58   2        }
+  59   1        putbuf (c);                         /* send character                       */
+  60   1        return (c);                         /* return character: ANSI requirement   */
+  61   1      }
+  62          
+  63          /******************************************************************************/
+  64          /*         putline:  write char line to transmission buffer for SBUF          */
+  65          /* Example:                                   */
+  66          /*                                            */
+  67          /* char ARRAY[]="ABCDE";                            */
+  68          /* putline(ARRAY,5);     "5" is variable for datacount (A to E are 5 letters) */
+  69          /*                                        */
+  70          /******************************************************************************/
+  71          void putline (char idata Dataline[], unsigned char DataCount)  {
+  72   1         unsigned char index=0;
+  73   1         while(DataCount!=0) 
+  74   1         {
+  75   2         putchar(Dataline[index++]);
+  76   2         DataCount--;
+  77   2         }
+  78   1      }
+  79          
+  80          /******************************************************************************/
+  81          /*       GetSerialCount()                                                     */
+  82          /******************************************************************************/
+  83          unsigned char GetSerialCount() {
+  84   1             
+  85   1           return (iend);                         
+  86   1      }
+  87          
+  88          /******************************************************************************/
+  89          /*      GetCommnadByte()                                                     */
+  90          /******************************************************************************/
+  91          unsigned char GetCommandByte(unsigned char index) {
+  92   1             
+  93   1           return (inbuf[index]);                         
+  94   1      }
+  95          
+  96          /******************************************************************************/
+  97          /*       serial:  serial receiver / transmitter interrupt                     */
+  98          /*   require global variable: static bit   CheckCommand                       */
+  99          /******************************************************************************/
+ 100          void serial (void) interrupt 4 using 2  { /* use registerbank 2 for interrupt */
+ 101   1      
+ 102   1         if (RI)  {                          /* if receiver interrupt               */
+ 103   2      
+ 104   2          ES=0; //disabel interrupt
+ 105   2      
+ 106   2           if (istart != ILEN) 
+ 107   2          {
+ 108   3            inbuf[istart++] = SBUF; 
+ 109   3           if (inbuf[istart-1]==0x0A){
+ 110   4            if (inbuf[istart-2]==0x0D){ 
+ 111   5               CheckCommandFlag=1;              //Set CheckCommandFlg, if the ending chars are received 
+ 112   5               iend=istart;
+ 113   5             istart=0;} }
+ 114   3          } /* read character */
+ 115   2           else
+ 116   2          {
+C51 COMPILER V9.60.0.0   SERIAL                                                            10/14/2021 23:05:15 PAGE 3   
+
+ 117   3          istart =0;
+ 118   3          }/* Reset Overflow */                                                             
+ 119   2           
+ 120   2      
+ 121   2        RI=0;    /* clear interrupt request flag        */
+ 122   2      
+ 123   2        ES=1;  //enable interrupt
+ 124   2         
+ 125   2        }//Revised Stronger Version
+ 126   1        
+ 127   1        if (TI)  {                         /* if transmitter interrupt              */
+ 128   2      
+ 129   2          TI = 0;                          /* clear interrupt request flag          */
+ 130   2          if (ostart != oend)  {           /* if characters in buffer and           */
+ 131   3              SBUF = outbuf[ostart++ & (OLEN-1)];        /* transmit character      */
+ 132   3              sendfull = 0;                /* clear 'sendfull' flag                 */ 
+ 133   3          }
+ 134   2          else sendactive = 0;             /* if all transmitted clear 'sendactive' */
+ 135   2        }
+ 136   1      
+ 137   1      } 
+ 138          
+ 139          
+ 140          
+ 141          
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    233    ----
+   CONSTANT SIZE    =   ----    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =      4       4
+   IDATA SIZE       =     48    ----
+   BIT SIZE         =      3    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)

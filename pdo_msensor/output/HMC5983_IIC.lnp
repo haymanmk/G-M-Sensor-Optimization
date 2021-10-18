@@ -1,0 +1,9 @@
+".\output\HMC5983_IIC.obj",
+".\output\STARTUP.obj",
+".\output\AT24C512.obj",
+".\output\IIC_Address.obj",
+".\output\IIC_Function.obj",
+".\output\Serial.obj",
+".\output\LSM9DS1_calibration.obj" 
+TO ".\output\HMC5983_IIC" 
+PRINT(".\HMC5983_IIC.m51") RAMSIZE(256) 

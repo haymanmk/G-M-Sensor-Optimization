@@ -1,0 +1,819 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Project:</h2>
+D:\Work\Garmin_PE_Support\2009_GARMIN_PE_Coil\Keil Code for Coil\HMC_5983_Online\HMC5983_IIC.uvproj
+Project File Date:  05/16/2016
+
+<h2>Output:</h2>
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(69): warning C206: 'OutChar': missing function-prototype
+HMC5983_IIC.C(69): error C267: 'OutChar': requires ANSI-style prototype
+HMC5983_IIC.C(69): error C202: 'Endx1': undefined identifier
+HMC5983_IIC.C(69): error C202: 'Endx2': undefined identifier
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(71): error C141: syntax error near 'I2cByteWrite2'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(71): warning C206: 'I2cByteWrite2': missing function-prototype
+HMC5983_IIC.C(71): error C267: 'I2cByteWrite2': requires ANSI-style prototype
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+EXT_FUNCTION.H(26): error C127: 'I2cInit': invalid storage class
+EXT_FUNCTION.H(26): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(27): error C127: 'I2cStart': invalid storage class
+EXT_FUNCTION.H(27): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(28): error C127: 'I2cStop': invalid storage class
+EXT_FUNCTION.H(28): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(29): error C127: '_I2cSentByte': invalid storage class
+EXT_FUNCTION.H(29): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(30): error C127: 'I2cReceiveByte': invalid storage class
+EXT_FUNCTION.H(30): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(31): error C127: 'SendAcknowledge': invalid storage class
+EXT_FUNCTION.H(31): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(32): error C127: '_I2cByteWrite2': invalid storage class
+EXT_FUNCTION.H(32): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(33): error C127: '_I2cReadTrm2': invalid storage class
+EXT_FUNCTION.H(33): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(34): error C127: '_I2cReadTrm1': invalid storage class
+EXT_FUNCTION.H(34): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(35): error C127: '_I2cByteRead': invalid storage class
+EXT_FUNCTION.H(35): error C141: syntax error near 'extern'
+EXT_FUNCTION.H(36): error C127: '_I2cReadXYZ': invalid storage class
+EXT_FUNCTION.H(36): error C141: syntax error near 'extern'
+HMC5983_IIC.C(8): error C127: '_I2cROutXYZ': invalid storage class
+HMC5983_IIC.C(8): error C141: syntax error near 'unsigned'
+HMC5983_IIC.C(8): error C136: 'incount': 'void' on variable
+HMC5983_IIC.C(8): error C127: 'incount': invalid storage class
+HMC5983_IIC.C(9): error C132: 'inline': not in formal parameter list
+HMC5983_IIC.C(10): error C244: 'Ending': can't initialize, bad type or class
+HMC5983_IIC.C(10): error C132: 'Ending': not in formal parameter list
+HMC5983_IIC.C(11): error C132: 'ReadCommandFlag': not in formal parameter list
+HMC5983_IIC.C(13): error C132: 'OneByte': not in formal parameter list
+HMC5983_IIC.C(16): error C132: 'TrmBuf': not in formal parameter list
+HMC5983_IIC.C(17): error C132: 'Rx3': not in formal parameter list
+HMC5983_IIC.C(19): error C244: 'MODE': can't initialize, bad type or class
+HMC5983_IIC.C(19): error C132: 'MODE': not in formal parameter list
+HMC5983_IIC.C(26): error C132: 'serial_init': not in formal parameter list
+HMC5983_IIC.C(27): error C132: 'timer0_init': not in formal parameter list
+HMC5983_IIC.C(28): error C132: 'Initial_board': not in formal parameter list
+HMC5983_IIC.C(29): error C132: 'Initial_relay': not in formal parameter list
+HMC5983_IIC.C(35): error C132: 'ReadCommand': not in formal parameter list
+HMC5983_IIC.C(43): error C132: 'main': not in formal parameter list
+HMC5983_IIC.C(43): error C141: syntax error near '{'
+HMC5983_IIC.C(44): error C136: 'i': 'void' on variable
+HMC5983_IIC.C(44): error C132: 'i': not in formal parameter list
+HMC5983_IIC.C(45): error C132: 'iRx3': not in formal parameter list
+HMC5983_IIC.C(46): error C132: 'carry': not in formal parameter list
+HMC5983_IIC.C(48): error C132: 'Initial_board': not in formal parameter list
+HMC5983_IIC.C(49): error C132: 'Initial_relay': not in formal parameter list
+HMC5983_IIC.C(51): error C244: 'P1_7': can't initialize, bad type or class
+HMC5983_IIC.C(51): error C132: 'P1_7': not in formal parameter list
+HMC5983_IIC.C(51): error C141: syntax error near '10000'
+HMC5983_IIC.C(51): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(51): error C244: 'P1_7': can't initialize, bad type or class
+HMC5983_IIC.C(51): error C132: 'P1_7': not in formal parameter list
+HMC5983_IIC.C(51): error C141: syntax error near '10000'
+HMC5983_IIC.C(51): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(52): error C244: 'P3_7': can't initialize, bad type or class
+HMC5983_IIC.C(52): error C132: 'P3_7': not in formal parameter list
+HMC5983_IIC.C(52): error C141: syntax error near '10000'
+HMC5983_IIC.C(52): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(52): error C244: 'P3_7': can't initialize, bad type or class
+HMC5983_IIC.C(52): error C132: 'P3_7': not in formal parameter list
+HMC5983_IIC.C(52): error C141: syntax error near '10000'
+HMC5983_IIC.C(52): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(53): error C244: 'P3_7': can't initialize, bad type or class
+HMC5983_IIC.C(53): error C132: 'P3_7': not in formal parameter list
+HMC5983_IIC.C(53): error C141: syntax error near '10000'
+HMC5983_IIC.C(53): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(53): error C244: 'P3_7': can't initialize, bad type or class
+HMC5983_IIC.C(53): error C132: 'P3_7': not in formal parameter list
+HMC5983_IIC.C(53): error C141: syntax error near '10000'
+HMC5983_IIC.C(53): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(54): error C244: 'P0_7': can't initialize, bad type or class
+HMC5983_IIC.C(54): error C132: 'P0_7': not in formal parameter list
+HMC5983_IIC.C(54): error C141: syntax error near '10000'
+HMC5983_IIC.C(54): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(54): error C244: 'P0_7': can't initialize, bad type or class
+HMC5983_IIC.C(54): error C132: 'P0_7': not in formal parameter list
+HMC5983_IIC.C(54): error C141: syntax error near '10000'
+HMC5983_IIC.C(54): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(55): error C244: 'P0_7': can't initialize, bad type or class
+HMC5983_IIC.C(55): error C132: 'P0_7': not in formal parameter list
+HMC5983_IIC.C(55): error C141: syntax error near '10000'
+HMC5983_IIC.C(55): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(55): error C244: 'P0_7': can't initialize, bad type or class
+HMC5983_IIC.C(55): error C132: 'P0_7': not in formal parameter list
+HMC5983_IIC.C(55): error C141: syntax error near '10000'
+HMC5983_IIC.C(55): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(56): error C244: 'P0_7': can't initialize, bad type or class
+HMC5983_IIC.C(56): error C132: 'P0_7': not in formal parameter list
+HMC5983_IIC.C(56): error C141: syntax error near '10000'
+HMC5983_IIC.C(56): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(56): error C244: 'P0_7': can't initialize, bad type or class
+HMC5983_IIC.C(56): error C132: 'P0_7': not in formal parameter list
+HMC5983_IIC.C(56): error C141: syntax error near '10000'
+HMC5983_IIC.C(56): error C132: 'delay': not in formal parameter list
+HMC5983_IIC.C(59): error C141: syntax error near '<string>'
+HMC5983_IIC.C(59): error C132: 'putline': not in formal parameter list
+HMC5983_IIC.C(59): error C141: syntax error near '2'
+HMC5983_IIC.C(59): error C132: '_putline': not in formal parameter list
+HMC5983_IIC.C(62): error C141: syntax error near 'while'
+HMC5983_IIC.C(62): error C141: syntax error near '1'
+HMC5983_IIC.C(66): error C141: syntax error near '==', expected ')'
+HMC5983_IIC.C(68): error C231: 'P0_6': redefinition
+HMC5983_IIC.C(68): error C231: 'P0_6': redefinition
+HMC5983_IIC.C(68): error C141: syntax error near ';'
+HMC5983_IIC.C(69): error C141: syntax error near '<string>'
+HMC5983_IIC.C(69): error C231: '_putline': redefinition
+HMC5983_IIC.C(69): error C141: syntax error near '2'
+HMC5983_IIC.C(69): error C231: '_putline': redefinition
+HMC5983_IIC.C(71): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(72): error C141: syntax error near '1000'
+HMC5983_IIC.C(72): error C231: '_delay': redefinition
+HMC5983_IIC.C(73): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(74): error C141: syntax error near '1000'
+HMC5983_IIC.C(74): error C231: '_delay': redefinition
+HMC5983_IIC.C(75): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(76): error C141: syntax error near '1000'
+HMC5983_IIC.C(76): error C231: '_delay': redefinition
+HMC5983_IIC.C(79): error C141: syntax error near 'while'
+HMC5983_IIC.C(79): error C141: syntax error near '1'
+HMC5983_IIC.C(81): error C231: 'P3_7': redefinition
+HMC5983_IIC.C(81): error C231: 'P3_7': redefinition
+HMC5983_IIC.C(83): error C141: syntax error near '<string>'
+HMC5983_IIC.C(83): error C231: '_putline': redefinition
+HMC5983_IIC.C(84): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(85): error C141: syntax error near '[', expected ')'
+HMC5983_IIC.C(86): error C141: syntax error near '10'
+HMC5983_IIC.C(86): error C231: '_delay': redefinition
+HMC5983_IIC.C(87): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(88): error C141: syntax error near '[', expected ')'
+HMC5983_IIC.C(89): error C141: syntax error near '10'
+HMC5983_IIC.C(89): error C231: '_delay': redefinition
+HMC5983_IIC.C(92): error C141: syntax error near '<string>'
+HMC5983_IIC.C(92): error C231: '_putline': redefinition
+HMC5983_IIC.C(93): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(94): error C141: syntax error near 'if'
+HMC5983_IIC.C(94): error C136: invalid dimension size: [0]
+HMC5983_IIC.C(94): error C141: syntax error near '==', expected ')'
+HMC5983_IIC.C(96): error C141: syntax error near '}'
+HMC5983_IIC.C(98): error C279: 'TrmBuf': multiple initialization
+HMC5983_IIC.C(99): error C279: 'carry': multiple initialization
+HMC5983_IIC.C(99): error C141: syntax error near '}'
+HMC5983_IIC.C(101): error C141: syntax error near '0x3C'
+HMC5983_IIC.C(102): error C141: syntax error near 'if'
+HMC5983_IIC.C(102): error C136: invalid dimension size: [0]
+HMC5983_IIC.C(102): error C141: syntax error near '==', expected ')'
+HMC5983_IIC.C(102): error C129: missing ';' before '=='
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(85): warning C206: 'OutChar': missing function-prototype
+HMC5983_IIC.C(85): error C267: 'OutChar': requires ANSI-style prototype
+HMC5983_IIC.C(159): error C141: syntax error near 'I2cByteWrite2'
+HMC5983_IIC.C(358): error C141: syntax error near 'MODE'
+HMC5983_IIC.C(366): error C141: syntax error near 'MODE'
+HMC5983_IIC.C(373): error C141: syntax error near 'MODE'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(159): error C141: syntax error near 'I2cByteWrite2'
+HMC5983_IIC.C(358): error C141: syntax error near 'MODE'
+HMC5983_IIC.C(366): error C141: syntax error near 'MODE'
+HMC5983_IIC.C(373): error C141: syntax error near 'MODE'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(358): error C141: syntax error near 'MODE'
+HMC5983_IIC.C(366): error C141: syntax error near 'MODE'
+HMC5983_IIC.C(373): error C141: syntax error near 'MODE'
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?COM_COMMAND?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  GETSERIALCOUNT
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  CHECKCOMMANDFLAG
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _GETCOMMANDBYTE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 001BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0024H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 002DH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0036H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 003FH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0048H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0051H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 005AH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0063H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 006CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0075H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 007EH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0089H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0094H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00AAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00B5H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00BEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00C5H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00CEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00D5H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00DEH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00E5H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00F2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 00F9H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0109H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0110H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0117H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0127H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 012EH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0139H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0140H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 015DH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0191H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0198H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 01A8H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 01B3H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 01BAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 01D7H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 020BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0212H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0222H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 023DH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0248H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0251H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0258H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0261H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0268H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0271H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0278H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02A3H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02AAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02BAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02C1H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02C8H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02D8H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02DFH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02EAH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 02F1H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 030EH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0342H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0349H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0359H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0364H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 036BH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0388H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 03BCH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 03C3H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 03D3H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 03E7H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CBYTEWRITE2
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 03F0H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 03F7H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0402H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 040DH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0418H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0423H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0434H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _DELAY
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 043DH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CHECKCOMMANDFLAG
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0458H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0576H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0581H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 058CH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 0597H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 05A2H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _PUTLINE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 05ADH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  GETSERIALCOUNT
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 06A0H
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _GETCOMMANDBYTE
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 06ADH
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  CHECKCOMMANDFLAG
+    MODULE:  HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 06BBH
+Program Size: data=46.0 xdata=0 code=1793
+creating hex file from "HMC5983_IIC"...
+"HMC5983_IIC" - 0 Error(s), 96 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(10): warning C206: '_nop_': missing function-prototype
+IIC_FUNCTION.C(10): error C264: intrinsic '_nop_': declaration/activation error
+IIC_FUNCTION.C(16): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(17): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(22): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(23): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(25): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(27): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(32): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(34): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(36): error C202: 'ISDA': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(10): warning C206: '_nop_': missing function-prototype
+IIC_FUNCTION.C(10): error C264: intrinsic '_nop_': declaration/activation error
+IIC_FUNCTION.C(16): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(17): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(22): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(23): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(25): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(27): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(32): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(34): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(36): error C202: 'ISDA': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(10): warning C206: '_nop_': missing function-prototype
+IIC_FUNCTION.C(10): error C264: intrinsic '_nop_': declaration/activation error
+IIC_FUNCTION.C(16): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(17): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(22): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(23): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(25): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(27): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(32): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(34): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(36): error C202: 'ISDA': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(17): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(18): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(23): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(24): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(26): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(28): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(33): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(35): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(37): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(47): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(49): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(51): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(53): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(56): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(58): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(60): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(62): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(78): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(82): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(84): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(94): error C202: 'ISDA': undefined identifier
+IIC_FUNCTION.C(95): error C202: 'ISCL': undefined identifier
+IIC_FUNCTION.C(97): error C202: 'ISCL': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(130): warning C206: 'delay': missing function-prototype
+IIC_FUNCTION.C(130): error C267: 'delay': requires ANSI-style prototype
+IIC_FUNCTION.C(141): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(153): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(187): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(191): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(195): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(199): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(203): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(207): error C202: 'TrmBuf': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(143): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(155): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(189): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(193): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(197): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(201): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(205): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(209): error C202: 'TrmBuf': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(143): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(155): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(189): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(193): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(197): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(201): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(205): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(209): error C202: 'TrmBuf': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+IIC_FUNCTION.C(143): error C202: 'TrmBuf': undefined identifier
+IIC_FUNCTION.C(155): error C202: 'TrmBuf': undefined identifier
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+compiling Serial.c...
+linking...
+*** ERROR L104: MULTIPLE PUBLIC DEFINITIONS
+    SYMBOL:  TRMBUF
+    MODULE:  IIC_Function.obj (IIC_FUNCTION)
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?COM_COMMAND?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CINIT?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CREADTRM1?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CBYTEREAD?IIC_FUNCTION
+Program Size: data=118.5 xdata=0 code=2339
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+compiling Serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?COM_COMMAND?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CINIT?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CREADTRM1?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CBYTEREAD?IIC_FUNCTION
+Program Size: data=110.5 xdata=0 code=2339
+creating hex file from "HMC5983_IIC"...
+"HMC5983_IIC" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+compiling Serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?COM_COMMAND?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CINIT?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CREADTRM1?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CBYTEREAD?IIC_FUNCTION
+Program Size: data=110.5 xdata=0 code=2339
+creating hex file from "HMC5983_IIC"...
+"HMC5983_IIC" - 0 Error(s), 5 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+HMC5983_IIC.C(64): warning C206: 'COM_Command': missing function-prototype
+HMC5983_IIC.C(269): error C231: 'COM_Command': redefinition
+HMC5983_IIC.C(403): error C231: 'COM_Command': redefinition
+compiling IIC_Function.c...
+compiling Serial.c...
+Target not created
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+compiling Serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CINIT?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CREADTRM1?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CBYTEREAD?IIC_FUNCTION
+Program Size: data=109.5 xdata=0 code=2348
+creating hex file from "HMC5983_IIC"...
+"HMC5983_IIC" - 0 Error(s), 4 Warning(s).
+Build target 'Target 1'
+assembling STARTUP.A51...
+compiling HMC5983_IIC.c...
+compiling IIC_Function.c...
+compiling Serial.c...
+linking...
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2CINIT?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CREADTRM1?IIC_FUNCTION
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_I2CBYTEREAD?IIC_FUNCTION
+Program Size: data=109.5 xdata=0 code=2357
+creating hex file from "HMC5983_IIC"...
+"HMC5983_IIC" - 0 Error(s), 4 Warning(s).

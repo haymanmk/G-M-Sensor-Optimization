@@ -1,0 +1,3563 @@
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                    10/18/2021  10:43:41  PAGE 1
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0, INVOKED BY:
+C:\KEIL_V5\C51\BIN\BL51.EXE .\output\HMC5983_IIC.obj, .\output\STARTUP.obj, .\output\AT24C512.obj, .\output\IIC_Address.
+>> obj, .\output\IIC_Function.obj, .\output\Serial.obj, .\output\LSM9DS1_calibration.obj TO .\output\HMC5983_IIC PRINT (
+>> .\HMC5983_IIC.m51) RAMSIZE (256)
+
+
+MEMORY MODEL: SMALL WITH FLOATING POINT ARITHMETIC
+
+
+INPUT MODULES INCLUDED:
+  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+  .\output\STARTUP.obj (?C_STARTUP)
+  .\output\AT24C512.obj (AT24C512)
+  .\output\IIC_Address.obj (IIC_ADDRESS)
+  .\output\IIC_Function.obj (IIC_FUNCTION)
+  .\output\Serial.obj (SERIAL)
+  .\output\LSM9DS1_calibration.obj (LSM9DS1_CALIBRATION)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPADD)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPMUL)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPDIV)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPCMP)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FCAST)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?CASTF)
+  C:\KEIL_V5\C51\LIB\C51FPS.LIB (?C?FPGETOPN)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C_INIT)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CLDOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CSTOPTR)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?IMUL)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LNEG)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LLDIDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LLDIDATA0)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?LSTIDATA)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?OFFXADD)
+  C:\KEIL_V5\C51\LIB\C51S.LIB (?C?CCASE)
+
+
+LINK MAP OF MODULE:  .\output\HMC5983_IIC (HMC5983_IIC)
+
+
+            TYPE    BASE      LENGTH    RELOCATION   SEGMENT NAME
+            -----------------------------------------------------
+
+            * * * * * * *   D A T A   M E M O R Y   * * * * * * *
+            REG     0000H     0008H     ABSOLUTE     "REG BANK 0"
+            DATA    0008H     0004H     UNIT         ?DT?SERIAL
+            IDATA   000CH     0004H     UNIT         _IDATA_GROUP_
+            REG     0010H     0008H     ABSOLUTE     "REG BANK 2"
+            IDATA   0018H     0001H     UNIT         ?ID?AT24C512
+                    0019H     0007H                  *** GAP ***
+            BIT     0020H.0   0000H.4   UNIT         ?BI?HMC5983_IIC
+            BIT     0020H.4   0000H.3   UNIT         ?BI?SERIAL
+            BIT     0020H.7   0000H.3   UNIT         _BIT_GROUP_
+                    0021H.2   0000H.6                *** GAP ***
+            DATA    0022H     0033H     UNIT         ?DT?IIC_FUNCTION
+            DATA    0055H     0020H     UNIT         ?DT?_CALIBRATIONCACULATE?IIC_FUNCTION
+            IDATA   0075H     0033H     UNIT         ?ID?HMC5983_IIC
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 2
+
+
+            IDATA   00A8H     0030H     UNIT         ?ID?SERIAL
+            IDATA   00D8H     0001H     UNIT         ?STACK
+
+            * * * * * * *   C O D E   M E M O R Y   * * * * * * *
+            CODE    0000H     0003H     ABSOLUTE     
+                    0003H     0008H                  *** GAP ***
+            CODE    000BH     0003H     ABSOLUTE     
+                    000EH     0015H                  *** GAP ***
+            CODE    0023H     0003H     ABSOLUTE     
+                    0026H     07DAH                  *** GAP ***
+            CODE    0800H     04C7H     UNIT         ?C?LIB_CODE
+            CODE    0CC7H     0461H     UNIT         ?PR?MAIN?HMC5983_IIC
+            CODE    1128H     0214H     UNIT         ?PR?_BYTE_TO_FLOAT?LSM9DS1_CALIBRATION
+            CODE    133CH     01EAH     UNIT         ?PR?COM_COMMAND?HMC5983_IIC
+            CODE    1526H     01DFH     UNIT         ?PR?CHECKSENSORCORRECT?HMC5983_IIC
+            CODE    1705H     01BBH     UNIT         ?PR?_CALIBRATIONCACULATE?IIC_FUNCTION
+            CODE    18C0H     00F5H     UNIT         ?CO?HMC5983_IIC
+            CODE    19B5H     00EFH     UNIT         ?PR?READXYZDATASEQUENTIALLY?HMC5983_IIC
+            CODE    1AA4H     00D4H     UNIT         ?PR?_I2C_M_DATA?IIC_FUNCTION
+            CODE    1B78H     00BBH     UNIT         ?PR?SETI2CPARAMETERS?IIC_ADDRESS
+            CODE    1C33H     00B6H     UNIT         ?PR?_I2C_ACC_DATA?IIC_FUNCTION
+            CODE    1CE9H     00B3H     UNIT         ?PR?INITIAL_REGISTER?HMC5983_IIC
+            CODE    1D9CH     00B1H     UNIT         ?PR?_I2C_GYRO_DATA?IIC_FUNCTION
+            CODE    1E4DH     008CH     UNIT         ?C_C51STARTUP
+            CODE    1ED9H     0087H     UNIT         ?PR?_RELAYCONTROL_1?HMC5983_IIC
+            CODE    1F60H     007BH     UNIT         ?PR?_RELAYCONTROL_2?HMC5983_IIC
+            CODE    1FDBH     0071H     UNIT         ?PR?SERIAL?SERIAL
+            CODE    204CH     006BH     UNIT         ?PR?_STRINGCOMPARE?HMC5983_IIC
+            CODE    20B7H     0064H     UNIT         ?PR?_CONTROLALERTLIGHT?HMC5983_IIC
+            CODE    211BH     0061H     UNIT         ?PR?_I2C_BYTEWRITE?IIC_FUNCTION
+            CODE    217CH     005FH     UNIT         ?PR?_LOWERRESOLUTION2MATCHOLDSENSOR?IIC_FUNCTION
+            CODE    21DBH     005BH     UNIT         ?PR?_I2C_T_DATA?IIC_FUNCTION
+            CODE    2236H     0051H     UNIT         ?PR?_SIGNINVERTOR2SCOMPLEMENT?IIC_FUNCTION
+            CODE    2287H     0050H     UNIT         ?PR?_CHANGEMEASUREMENTMODE?HMC5983_IIC
+            CODE    22D7H     004FH     UNIT         ?PR?_WRITE_GAIN_AND_OFFSET_MATRIX?LSM9DS1_CALIBRATION
+            CODE    2326H     004BH     UNIT         ?PR?_POWER_OF_10?LSM9DS1_CALIBRATION
+            CODE    2371H     0049H     UNIT         ?PR?_READ_GAIN_AND_OFFSET_MATRIX?LSM9DS1_CALIBRATION
+            CODE    23BAH     0048H     UNIT         ?PR?_SETREADINGOUTPUTMODE?HMC5983_IIC
+            CODE    2402H     0046H     UNIT         ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+            CODE    2448H     0045H     UNIT         ?C_INITSEG
+            CODE    248DH     003FH     UNIT         ?PR?_I2C_SENTBYTE_EEPROM?IIC_FUNCTION
+            CODE    24CCH     003DH     UNIT         ?PR?_I2CREADMULTIBYTES?IIC_FUNCTION
+            CODE    2509H     0039H     UNIT         ?PR?SETREADINGTEMPMODE?HMC5983_IIC
+            CODE    2542H     0038H     UNIT         ?PR?_CHECKARRAYEQUAL?HMC5983_IIC
+            CODE    257AH     0035H     UNIT         ?PR?_READ?AT24C512
+            CODE    25AFH     002AH     UNIT         ?PR?READCOMMAND?HMC5983_IIC
+            CODE    25D9H     0029H     UNIT         ?PR?_PUTBUF?SERIAL
+            CODE    2602H     0028H     UNIT         ?PR?_READSENSORID?HMC5983_IIC
+            CODE    262AH     0028H     UNIT         ?PR?_PUTLINE?SERIAL
+            CODE    2652H     0027H     UNIT         ?PR?I2C_RECEIVEBYTE?IIC_FUNCTION
+            CODE    2679H     0027H     UNIT         ?PR?I2C_RECEIVEBYTE_EEPROM?IIC_FUNCTION
+            CODE    26A0H     0026H     UNIT         ?PR?_SETREADINGACCOUTPUTMODE?HMC5983_IIC
+            CODE    26C6H     0026H     UNIT         ?PR?_WRITE?AT24C512
+            CODE    26ECH     0026H     UNIT         ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+            CODE    2712H     0025H     UNIT         ?PR?_SETREADINGGYROOUTPUTMODE?HMC5983_IIC
+            CODE    2737H     0015H     UNIT         ?PR?TIMER0_INIT?HMC5983_IIC
+            CODE    274CH     0015H     UNIT         ?PR?I2C_WAIT?IIC_FUNCTION
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 3
+
+
+            CODE    2761H     0013H     UNIT         ?PR?_DELAY?SERIAL
+            CODE    2774H     0012H     UNIT         ?PR?I2C_START_EEPROM?IIC_FUNCTION
+            CODE    2786H     0010H     UNIT         ?PR?_TWOBYTES2INT?IIC_FUNCTION
+            CODE    2796H     000EH     UNIT         ?PR?SENDACKNOWLEDGE?IIC_FUNCTION
+            CODE    27A4H     000EH     UNIT         ?PR?SENDACKNOWLEDGE_EEPROM?IIC_FUNCTION
+            CODE    27B2H     000EH     UNIT         ?CO?IIC_FUNCTION
+            CODE    27C0H     000DH     UNIT         ?PR?I2C_START?IIC_FUNCTION
+            CODE    27CDH     000DH     UNIT         ?PR?I2C_STOP_EEPROM?IIC_FUNCTION
+            CODE    27DAH     000CH     UNIT         ?PR?SERIAL_INIT?HMC5983_IIC
+            CODE    27E6H     000BH     UNIT         ?PR?TIMER0_ISR?HMC5983_IIC
+            CODE    27F1H     000BH     UNIT         ?PR?EOL?HMC5983_IIC
+            CODE    27FCH     000AH     UNIT         ?PR?INITIAL_BOARD?HMC5983_IIC
+            CODE    2806H     000AH     UNIT         ?PR?_PUTCHAR?SERIAL
+            CODE    2810H     0009H     UNIT         ?PR?INITIAL_RELAY?HMC5983_IIC
+            CODE    2819H     0008H     UNIT         ?CO?IIC_ADDRESS
+            CODE    2821H     0008H     UNIT         ?PR?I2C_STOP?IIC_FUNCTION
+            CODE    2829H     0007H     UNIT         ?PR?_GETCOMMANDBYTE?SERIAL
+            CODE    2830H     0005H     UNIT         ?PR?I2C_INIT?IIC_FUNCTION
+            CODE    2835H     0005H     UNIT         ?PR?I2C_INIT_EEPROM?IIC_FUNCTION
+            CODE    283AH     0003H     UNIT         ?PR?GETSERIALCOUNT?SERIAL
+
+
+
+OVERLAY MAP OF MODULE:   .\output\HMC5983_IIC (HMC5983_IIC)
+
+
+SEGMENT                                             BIT_GROUP          DATA_GROUP          IDATA_GROUP
+  +--> CALLED SEGMENT                            START    LENGTH     START    LENGTH     START    LENGTH
+--------------------------------------------------------------------------------------------------------
+?C_C51STARTUP                                    -----    -----      -----    -----      -----    -----
+  +--> ?PR?MAIN?HMC5983_IIC
+  +--> ?C_INITSEG
+
+?PR?MAIN?HMC5983_IIC                             -----    -----      0000H    0008H      -----    -----
+  +--> ?PR?INITIAL_BOARD?HMC5983_IIC
+  +--> ?PR?INITIAL_RELAY?HMC5983_IIC
+  +--> ?PR?_DELAY?SERIAL
+  +--> ?PR?CHECKSENSORCORRECT?HMC5983_IIC
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?SETI2CPARAMETERS?IIC_ADDRESS
+  +--> ?PR?INITIAL_REGISTER?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+  +--> ?PR?COM_COMMAND?HMC5983_IIC
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?_I2C_BYTEWRITE?IIC_FUNCTION
+  +--> ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+  +--> ?PR?_I2C_M_DATA?IIC_FUNCTION
+  +--> ?PR?_I2C_GYRO_DATA?IIC_FUNCTION
+  +--> ?PR?_I2C_ACC_DATA?IIC_FUNCTION
+
+?PR?INITIAL_BOARD?HMC5983_IIC                    -----    -----      -----    -----      -----    -----
+  +--> ?PR?SERIAL_INIT?HMC5983_IIC
+
+?PR?CHECKSENSORCORRECT?HMC5983_IIC               -----    -----      000AH    000AH      -----    -----
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_I2CREADMULTIBYTES?IIC_FUNCTION
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 4
+
+
+  +--> ?PR?_CHECKARRAYEQUAL?HMC5983_IIC
+  +--> ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+
+?PR?_I2CREADMULTIBYTES?IIC_FUNCTION              -----    -----      0014H    0007H      -----    -----
+  +--> ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+
+?PR?_I2C_BYTEREAD?IIC_FUNCTION                   -----    -----      -----    -----      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+  +--> ?PR?I2C_RECEIVEBYTE?IIC_FUNCTION
+  +--> ?PR?SENDACKNOWLEDGE?IIC_FUNCTION
+  +--> ?PR?I2C_STOP?IIC_FUNCTION
+
+?PR?I2C_START?IIC_FUNCTION                       -----    -----      -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?_I2C_SENTBYTE?IIC_FUNCTION                   0021H.1  0000H.1    -----    -----      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?I2C_RECEIVEBYTE?IIC_FUNCTION                 -----    -----      -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?SENDACKNOWLEDGE?IIC_FUNCTION                 0021H.1  0000H.1    -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?I2C_STOP?IIC_FUNCTION                        -----    -----      -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?_CHECKARRAYEQUAL?HMC5983_IIC                 -----    -----      0014H    0004H      -----    -----
+
+?PR?SETI2CPARAMETERS?IIC_ADDRESS                 -----    -----      -----    -----      -----    -----
+  +--> ?CO?IIC_ADDRESS
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+
+?PR?_STRINGCOMPARE?HMC5983_IIC                   -----    -----      0016H    000AH      -----    -----
+  +--> ?CO?HMC5983_IIC
+
+?PR?INITIAL_REGISTER?HMC5983_IIC                 -----    -----      -----    -----      -----    -----
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?_I2C_BYTEWRITE?IIC_FUNCTION
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?_I2C_BYTEWRITE?IIC_FUNCTION                  0020H.7  0000H.1    000BH    0003H      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+  +--> ?PR?I2C_STOP?IIC_FUNCTION
+  +--> ?PR?_DELAY?SERIAL
+
+?PR?_PUTLINE?SERIAL                              -----    -----      000CH    0004H      -----    -----
+  +--> ?PR?_PUTCHAR?SERIAL
+
+?PR?_PUTCHAR?SERIAL                              -----    -----      -----    -----      -----    -----
+  +--> ?PR?_PUTBUF?SERIAL
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 5
+
+
+?PR?EOL?HMC5983_IIC                              -----    -----      -----    -----      -----    -----
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+
+?PR?COM_COMMAND?HMC5983_IIC                      -----    -----      0008H    0002H      000CH    0004H
+  +--> ?PR?READCOMMAND?HMC5983_IIC
+  +--> ?PR?_CHANGEMEASUREMENTMODE?HMC5983_IIC
+  +--> ?PR?READXYZDATASEQUENTIALLY?HMC5983_IIC
+  +--> ?PR?SETREADINGTEMPMODE?HMC5983_IIC
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+  +--> ?PR?_I2C_BYTEWRITE?IIC_FUNCTION
+  +--> ?PR?_RELAYCONTROL_1?HMC5983_IIC
+  +--> ?PR?_RELAYCONTROL_2?HMC5983_IIC
+  +--> ?PR?_SETREADINGACCOUTPUTMODE?HMC5983_IIC
+  +--> ?PR?_CONTROLALERTLIGHT?HMC5983_IIC
+  +--> ?PR?_SETREADINGOUTPUTMODE?HMC5983_IIC
+  +--> ?PR?_SETREADINGGYROOUTPUTMODE?HMC5983...
+  +--> ?PR?CHECKSENSORCORRECT?HMC5983_IIC
+  +--> ?PR?SETI2CPARAMETERS?IIC_ADDRESS
+  +--> ?PR?_READSENSORID?HMC5983_IIC
+  +--> ?PR?_BYTE_TO_FLOAT?LSM9DS1_CALIBRATION
+  +--> ?PR?_WRITE_GAIN_AND_OFFSET_MATRIX?LSM...
+  +--> ?PR?_READ_GAIN_AND_OFFSET_MATRIX?LSM9...
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?READCOMMAND?HMC5983_IIC                      -----    -----      000AH    0001H      -----    -----
+  +--> ?PR?GETSERIALCOUNT?SERIAL
+  +--> ?PR?_GETCOMMANDBYTE?SERIAL
+
+?PR?_CHANGEMEASUREMENTMODE?HMC5983_IIC           -----    -----      000AH    0001H      -----    -----
+  +--> ?PR?_I2C_BYTEWRITE?IIC_FUNCTION
+
+?PR?READXYZDATASEQUENTIALLY?HMC5983_IIC          -----    -----      -----    -----      -----    -----
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?_I2C_M_DATA?IIC_FUNCTION
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?_DELAY?SERIAL
+
+?PR?_I2C_M_DATA?IIC_FUNCTION                     0020H.7  0000H.2    000AH    0001H      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+  +--> ?CO?IIC_FUNCTION
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?I2C_RECEIVEBYTE?IIC_FUNCTION
+  +--> ?PR?SENDACKNOWLEDGE?IIC_FUNCTION
+  +--> ?PR?_LOWERRESOLUTION2MATCHOLDSENSOR?I...
+  +--> ?PR?_SIGNINVERTOR2SCOMPLEMENT?IIC_FUN...
+  +--> ?PR?I2C_STOP?IIC_FUNCTION
+  +--> ?PR?_PUTLINE?SERIAL
+
+?PR?_LOWERRESOLUTION2MATCHOLDSENSOR?I...         -----    -----      000BH    000BH      -----    -----
+  +--> ?PR?_TWOBYTES2INT?IIC_FUNCTION
+  +--> ?CO?IIC_FUNCTION
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 6
+
+
+
+?PR?SETREADINGTEMPMODE?HMC5983_IIC               -----    -----      000AH    0001H      -----    -----
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+  +--> ?PR?_I2C_T_DATA?IIC_FUNCTION
+
+?PR?_I2C_T_DATA?IIC_FUNCTION                     -----    -----      000BH    0001H      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+  +--> ?CO?IIC_FUNCTION
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?I2C_RECEIVEBYTE?IIC_FUNCTION
+  +--> ?PR?SENDACKNOWLEDGE?IIC_FUNCTION
+  +--> ?PR?I2C_STOP?IIC_FUNCTION
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?CO?HMC5983_IIC
+
+?PR?_RELAYCONTROL_1?HMC5983_IIC                  -----    -----      000AH    0001H      -----    -----
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?_RELAYCONTROL_2?HMC5983_IIC                  -----    -----      -----    -----      -----    -----
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?_CONTROLALERTLIGHT?HMC5983_IIC               -----    -----      -----    -----      -----    -----
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?_SETREADINGOUTPUTMODE?HMC5983_IIC            -----    -----      000AH    0001H      -----    -----
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?_READSENSORID?HMC5983_IIC                    -----    -----      000AH    0001H      -----    -----
+  +--> ?PR?_I2C_BYTEREAD?IIC_FUNCTION
+  +--> ?CO?HMC5983_IIC
+  +--> ?PR?_PUTLINE?SERIAL
+  +--> ?PR?_PUTCHAR?SERIAL
+  +--> ?PR?EOL?HMC5983_IIC
+
+?PR?_BYTE_TO_FLOAT?LSM9DS1_CALIBRATION           -----    -----      000AH    000DH      -----    -----
+  +--> ?PR?_POWER_OF_10?LSM9DS1_CALIBRATION
+
+?PR?_WRITE_GAIN_AND_OFFSET_MATRIX?LSM...         -----    -----      000AH    000BH      -----    -----
+  +--> ?PR?_WRITE?AT24C512
+
+?PR?_WRITE?AT24C512                              -----    -----      0015H    0003H      -----    -----
+  +--> ?PR?I2C_INIT_EEPROM?IIC_FUNCTION
+  +--> ?PR?I2C_START_EEPROM?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE_EEPROM?IIC_FUNCTION
+  +--> ?PR?I2C_STOP_EEPROM?IIC_FUNCTION
+
+?PR?I2C_START_EEPROM?IIC_FUNCTION                -----    -----      -----    -----      -----    -----
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 7
+
+
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?_I2C_SENTBYTE_EEPROM?IIC_FUNCTION            0020H.7  0000H.1    -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?I2C_STOP_EEPROM?IIC_FUNCTION                 -----    -----      -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?_READ_GAIN_AND_OFFSET_MATRIX?LSM9...         -----    -----      000AH    0007H      -----    -----
+  +--> ?PR?_READ?AT24C512
+
+?PR?_READ?AT24C512                               -----    -----      0011H    0002H      -----    -----
+  +--> ?PR?I2C_START_EEPROM?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE_EEPROM?IIC_FUNCTION
+  +--> ?PR?I2C_RECEIVEBYTE_EEPROM?IIC_FUNCTION
+  +--> ?PR?SENDACKNOWLEDGE_EEPROM?IIC_FUNCTION
+  +--> ?PR?I2C_STOP_EEPROM?IIC_FUNCTION
+
+?PR?I2C_RECEIVEBYTE_EEPROM?IIC_FUNCTION          -----    -----      -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?SENDACKNOWLEDGE_EEPROM?IIC_FUNCTION          0020H.7  0000H.1    -----    -----      -----    -----
+  +--> ?PR?I2C_WAIT?IIC_FUNCTION
+
+?PR?_I2C_GYRO_DATA?IIC_FUNCTION                  0020H.7  0000H.1    0008H    0001H      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+  +--> ?CO?IIC_FUNCTION
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?I2C_RECEIVEBYTE?IIC_FUNCTION
+  +--> ?PR?SENDACKNOWLEDGE?IIC_FUNCTION
+  +--> ?PR?I2C_STOP?IIC_FUNCTION
+  +--> ?PR?_PUTLINE?SERIAL
+
+?PR?_I2C_ACC_DATA?IIC_FUNCTION                   0020H.7  0000H.1    0008H    0001H      -----    -----
+  +--> ?PR?I2C_START?IIC_FUNCTION
+  +--> ?PR?_I2C_SENTBYTE?IIC_FUNCTION
+  +--> ?CO?IIC_FUNCTION
+  +--> ?PR?_STRINGCOMPARE?HMC5983_IIC
+  +--> ?PR?I2C_RECEIVEBYTE?IIC_FUNCTION
+  +--> ?PR?SENDACKNOWLEDGE?IIC_FUNCTION
+  +--> ?PR?_SIGNINVERTOR2SCOMPLEMENT?IIC_FUN...
+  +--> ?PR?I2C_STOP?IIC_FUNCTION
+  +--> ?PR?_PUTLINE?SERIAL
+
+
+
+UNRESOLVED EXTERNAL SYMBOLS:
+   _I2CREADTRM2
+
+
+
+IGNORED SEGMENTS:
+   ?DT?HMC5983_IIC
+   _DATA_GROUP_
+
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 8
+
+
+
+IGNORED SYMBOLS:
+   ACCMODE
+   ACCX_DATA
+   ACCY_DATA
+   ACCZ_DATA
+   GYROMODE
+   GYROX_DATA
+   GYROY_DATA
+   GYROZ_DATA
+   INCOUNT
+   INLINE
+   MODE
+   ONEBYTE
+   READCOMMANDFLAG
+   RX3
+   SENSOR_TYPE_NAME
+   T_DATA
+   X_DATA
+   Y_DATA
+   Z_DATA
+
+
+
+SYMBOL TABLE OF MODULE:  .\output\HMC5983_IIC (HMC5983_IIC)
+
+  VALUE           TYPE          NAME
+  ----------------------------------
+
+  -------         MODULE        HMC5983_IIC
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0000H         PUBLIC        inline
+  C:133CH         PUBLIC        COM_Command
+  I:0075H         PUBLIC        ADD_CONFIG_A
+  D:0010H         PUBLIC        incount
+  I:0076H         PUBLIC        ADD_CONFIG_B
+  B:00A8H.7       PUBLIC        EA
+  C:2602H         PUBLIC        _ReadSensorID
+  C:23BAH         PUBLIC        _SetReadingOutputMode
+  C:2509H         PUBLIC        SetReadingTempMode
+  I:0077H         PUBLIC        ADD_STATUS
+  C:19B5H         PUBLIC        ReadXYZDataSequentially
+  B:0080H.3       PUBLIC        P0_3
+  C:26A0H         PUBLIC        _SetReadingAccOutputMode
+  B:0080H.4       PUBLIC        P0_4
+  B:0080H.5       PUBLIC        P0_5
+  B:0080H.6       PUBLIC        P0_6
+  I:0078H         PUBLIC        ACGY_ADD_STATUS
+  B:0080H.7       PUBLIC        P0_7
+  B:00A8H.4       PUBLIC        ES
+  B:0090H.7       PUBLIC        P1_7
+  C:1CE9H         PUBLIC        Initial_register
+  B:00B0H.7       PUBLIC        P3_7
+  C:27DAH         PUBLIC        serial_init
+  I:0079H         PUBLIC        ACGY_GYR_ADD_X_LSB
+  I:007AH         PUBLIC        ACGY_GYR_ADD_Y_LSB
+  I:007BH         PUBLIC        ACGY_GYR_ADD_X_MSB
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 9
+
+
+  I:007CH         PUBLIC        ACGY_GYR_ADD_Z_LSB
+  I:007DH         PUBLIC        ACGY_GYR_ADD_Y_MSB
+  I:007EH         PUBLIC        ACGY_GYR_ADD_Z_MSB
+  B:00B8H.4       PUBLIC        PS
+  C:27E6H         PUBLIC        timer0_ISR
+  D:0011H         PUBLIC        MODE
+  C:0CC7H         PUBLIC        main
+  C:2712H         PUBLIC        _SetReadingGyroOutputMode
+  D:0012H         PUBLIC        AccMODE
+  D:0013H         PUBLIC        T_Data
+  I:007FH         PUBLIC        ACGY_CTRL_REG4
+  I:0080H         PUBLIC        ACGY_CTRL_REG5
+  I:0081H         PUBLIC        ACGY_CTRL_REG6
+  I:0082H         PUBLIC        ACGY_ORIENT_CFG_G
+  I:0083H         PUBLIC        ACGY_CTRL_REG7
+  D:0016H         PUBLIC        X_Data
+  I:0084H         PUBLIC        ACGY_CTRL_REG8
+  D:0098H         PUBLIC        SCON
+  D:0018H         PUBLIC        Y_Data
+  I:0085H         PUBLIC        ACGY_CTRL_REG9
+  D:0089H         PUBLIC        TMOD
+  D:001AH         PUBLIC        Z_Data
+  C:1526H         PUBLIC        CheckSensorCorrect
+  I:0086H         PUBLIC        ADD_ID
+  C:27FCH         PUBLIC        Initial_board
+  D:001CH         PUBLIC        OneByte
+  B:0020H.0       PUBLIC        ReadHighResolution
+  D:001DH         PUBLIC        AccX_Data
+  I:0087H         PUBLIC        ACGY_ADD_ID
+  D:001FH         PUBLIC        AccY_Data
+  D:0021H         PUBLIC        AccZ_Data
+  D:0023H         PUBLIC        ReadCommandFlag
+  C:25AFH         PUBLIC        ReadCommand
+  I:0088H         PUBLIC        ACGY_FIFO_CTRL
+  C:1976H         PUBLIC        sensor_type
+  I:0089H         PUBLIC        ADD_X_LSB
+  I:008AH         PUBLIC        ADD_Y_LSB
+  I:008BH         PUBLIC        ADD_X_MSB
+  I:008CH         PUBLIC        ADD_Y_MSB
+  I:008DH         PUBLIC        ADD_Z_LSB
+  I:008EH         PUBLIC        ADD_Z_MSB
+  C:205EH         PUBLIC        _StringCompare
+  D:0024H         PUBLIC        sensor_type_name
+  B:00A8H.1       PUBLIC        ET0
+  D:0027H         PUBLIC        GyroMODE
+  D:008CH         PUBLIC        TH0
+  D:008DH         PUBLIC        TH1
+  C:2810H         PUBLIC        Initial_relay
+  I:008FH         PUBLIC        ADD_MODE
+  D:008AH         PUBLIC        TL0
+  I:0090H         PUBLIC        ACGY_CTRL_REG1_G
+  I:0091H         PUBLIC        CTRL_REG1_M
+  I:0092H         PUBLIC        CTRL_REG2_M
+  I:0093H         PUBLIC        CTRL_REG3_M
+  B:0088H.4       PUBLIC        TR0
+  I:0094H         PUBLIC        CTRL_REG4_M
+  B:0088H.6       PUBLIC        TR1
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 10
+
+
+  D:0028H         PUBLIC        GyroX_Data
+  C:1974H         PUBLIC        Ending
+  I:0095H         PUBLIC        CTRL_REG5_M
+  I:0096H         PUBLIC        ADD_ID_A
+  B:0020H.1       PUBLIC        Acc_DRY_Bit
+  D:002AH         PUBLIC        GyroY_Data
+  I:0097H         PUBLIC        ADD_ID_B
+  D:002CH         PUBLIC        GyroZ_Data
+  I:0098H         PUBLIC        ADD_ID_C
+  C:20B7H         PUBLIC        _ControlAlertLight
+  I:0099H         PUBLIC        ADD_TMP_LSB
+  C:2542H         PUBLIC        _CheckArrayEqual
+  I:009AH         PUBLIC        ADD_TMP_MSB
+  C:2287H         PUBLIC        _ChangeMeasurementMode
+  C:27F1H         PUBLIC        EOL
+  I:009BH         PUBLIC        ACGY_ADD_TMP_LSB
+  I:009CH         PUBLIC        ACGY_ADD_TMP_MSB
+  I:009DH         PUBLIC        ADD_I2C
+  C:2737H         PUBLIC        timer0_init
+  I:009EH         PUBLIC        ACGY_ADD_I2C
+  B:0020H.2       PUBLIC        DRY_Bit
+  I:009FH         PUBLIC        ACGY_ACC_ADD_X_LSB
+  I:00A0H         PUBLIC        ADD_CONFIG_0
+  I:00A1H         PUBLIC        ACGY_ACC_ADD_Y_LSB
+  I:00A2H         PUBLIC        ACGY_ACC_ADD_X_MSB
+  I:00A3H         PUBLIC        ADD_CONFIG_1
+  B:0020H.3       PUBLIC        Gyro_DRY_Bit
+  I:00A4H         PUBLIC        ACGY_ACC_ADD_Z_LSB
+  I:00A5H         PUBLIC        ACGY_ACC_ADD_Y_MSB
+  I:00A6H         PUBLIC        ADD_CONFIG_2
+  I:00A7H         PUBLIC        ACGY_ACC_ADD_Z_MSB
+  C:1ED9H         PUBLIC        _RelayControl_1
+  C:1F60H         PUBLIC        _RelayControl_2
+  D:002EH         PUBLIC        Rx3
+  -------         PROC          MAIN
+  -------         DO            
+  D:0000H         SYMBOL        i
+  D:0002H         SYMBOL        iRx3
+  D:0004H         SYMBOL        GyroiRx3
+  D:0006H         SYMBOL        AcciRx3
+  D:0007H         SYMBOL        index_sensor_type_struct
+  -------         ENDDO         
+  C:0CC7H         LINE#         182
+  C:0CC7H         LINE#         183
+  C:0CC7H         LINE#         190
+  C:0CCAH         LINE#         191
+  C:0CCDH         LINE#         193
+  C:0CCFH         LINE#         194
+  C:0CD6H         LINE#         195
+  C:0CD8H         LINE#         196
+  C:0CDFH         LINE#         197
+  C:0CE1H         LINE#         198
+  C:0CE8H         LINE#         199
+  C:0CEAH         LINE#         200
+  C:0CF1H         LINE#         201
+  C:0CF3H         LINE#         202
+  C:0CFAH         LINE#         203
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 11
+
+
+  C:0CFCH         LINE#         204
+  C:0D03H         LINE#         207
+  C:0D06H         LINE#         209
+  C:0D20H         LINE#         211
+  C:0D23H         LINE#         212
+  C:0D26H         LINE#         214
+  C:0D31H         LINE#         215
+  C:0D34H         LINE#         218
+  C:0D37H         LINE#         223
+  C:0D37H         LINE#         224
+  C:0D37H         LINE#         226
+  C:0D3AH         LINE#         231
+  C:0D4AH         LINE#         232
+  C:0D4AH         LINE#         233
+  C:0D4CH         LINE#         234
+  C:0D57H         LINE#         235
+  C:0D5AH         LINE#         236
+  C:0D5FH         LINE#         237
+  C:0D5FH         LINE#         238
+  C:0D6CH         LINE#         239
+  C:0D6CH         LINE#         252
+  C:0D6EH         LINE#         254
+  C:0D7BH         LINE#         255
+  C:0D7BH         LINE#         256
+  C:0D80H         LINE#         257
+  C:0D80H         LINE#         258
+  C:0D82H         LINE#         259
+  C:0D85H         LINE#         260
+  C:0D85H         LINE#         261
+  C:0D95H         LINE#         262
+  C:0D97H         LINE#         263
+  C:0D97H         LINE#         279
+  C:0D9AH         LINE#         280
+  C:0D9FH         LINE#         281
+  C:0DAEH         LINE#         287
+  C:0DB0H         LINE#         289
+  C:0DB5H         LINE#         290
+  C:0DB5H         LINE#         292
+  C:0DC2H         LINE#         293
+  C:0DC2H         LINE#         302
+  C:0DCDH         LINE#         303
+  C:0DD0H         LINE#         304
+  C:0DDBH         LINE#         305
+  C:0DDEH         LINE#         306
+  C:0DE1H         LINE#         312
+  C:0DF1H         LINE#         313
+  C:0DF1H         LINE#         314
+  C:0DF3H         LINE#         316
+  C:0DFEH         LINE#         317
+  C:0E01H         LINE#         319
+  C:0E0CH         LINE#         321
+  C:0E1CH         LINE#         322
+  C:0E1CH         LINE#         323
+  C:0E21H         LINE#         324
+  C:0E21H         LINE#         325
+  C:0E2EH         LINE#         326
+  C:0E2EH         LINE#         341
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 12
+
+
+  C:0E33H         LINE#         342
+  C:0E43H         LINE#         347
+  C:0E46H         LINE#         348
+  C:0E46H         LINE#         349
+  C:0E48H         LINE#         350
+  C:0E48H         LINE#         351
+  C:0E4AH         LINE#         353
+  C:0E4DH         LINE#         354
+  C:0E4DH         LINE#         355
+  C:0E52H         LINE#         356
+  C:0E62H         LINE#         361
+  C:0E65H         LINE#         362
+  C:0E65H         LINE#         363
+  C:0E67H         LINE#         364
+  C:0E67H         LINE#         366
+  C:0E6EH         LINE#         367
+  C:0E70H         LINE#         368
+  C:0E75H         LINE#         369
+  C:0E84H         LINE#         375
+  C:0E8FH         LINE#         379
+  C:0E9AH         LINE#         380
+  C:0E9DH         LINE#         381
+  C:0EA8H         LINE#         382
+  C:0EABH         LINE#         384
+  C:0EAEH         LINE#         385
+  C:0EAEH         LINE#         388
+  C:0EBBH         LINE#         389
+  C:0EBBH         LINE#         390
+  C:0EBEH         LINE#         391
+  C:0EC0H         LINE#         392
+  C:0EC7H         LINE#         393
+  C:0EC9H         LINE#         394
+  C:0ED0H         LINE#         395
+  C:0ED2H         LINE#         398
+  C:0EDFH         LINE#         399
+  C:0EDFH         LINE#         400
+  C:0EE2H         LINE#         401
+  C:0EE4H         LINE#         402
+  C:0EE6H         LINE#         405
+  C:0EF3H         LINE#         406
+  C:0EF3H         LINE#         407
+  C:0EF6H         LINE#         408
+  C:0EF8H         LINE#         409
+  C:0EFAH         LINE#         415
+  C:0F07H         LINE#         416
+  C:0F07H         LINE#         418
+  C:0F12H         LINE#         419
+  C:0F15H         LINE#         421
+  C:0F22H         LINE#         422
+  C:0F22H         LINE#         424
+  C:0F24H         LINE#         426
+  C:0F27H         LINE#         427
+  C:0F27H         LINE#         428
+  C:0F37H         LINE#         429
+  C:0F39H         LINE#         431
+  C:0F3CH         LINE#         433
+  C:0F47H         LINE#         434
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 13
+
+
+  C:0F49H         LINE#         437
+  C:0F56H         LINE#         439
+  C:0F61H         LINE#         440
+  C:0F64H         LINE#         441
+  C:0F6FH         LINE#         442
+  C:0F72H         LINE#         443
+  C:0F74H         LINE#         449
+  C:0F84H         LINE#         450
+  C:0F84H         LINE#         452
+  C:0F8FH         LINE#         453
+  C:0F92H         LINE#         455
+  C:0F9DH         LINE#         457
+  C:0FADH         LINE#         458
+  C:0FADH         LINE#         459
+  C:0FBDH         LINE#         461
+  C:0FC0H         LINE#         462
+  C:0FC0H         LINE#         463
+  C:0FC0H         LINE#         464
+  C:0FC2H         LINE#         466
+  C:0FC5H         LINE#         467
+  C:0FC5H         LINE#         468
+  C:0FD5H         LINE#         469
+  C:0FDCH         LINE#         470
+  C:0FDEH         LINE#         471
+  C:0FE9H         LINE#         472
+  C:0FF3H         LINE#         474
+  C:0FFEH         LINE#         475
+  C:1001H         LINE#         476
+  C:100CH         LINE#         477
+  C:100FH         LINE#         479
+  C:1012H         LINE#         480
+  C:1012H         LINE#         486
+  C:101FH         LINE#         487
+  C:101FH         LINE#         489
+  C:102AH         LINE#         490
+  C:102DH         LINE#         492
+  C:103AH         LINE#         493
+  C:103AH         LINE#         495
+  C:103CH         LINE#         497
+  C:103FH         LINE#         498
+  C:103FH         LINE#         499
+  C:104EH         LINE#         500
+  C:1050H         LINE#         502
+  C:1053H         LINE#         504
+  C:105DH         LINE#         505
+  C:105FH         LINE#         508
+  C:106CH         LINE#         510
+  C:1077H         LINE#         511
+  C:107AH         LINE#         512
+  C:1085H         LINE#         513
+  C:1088H         LINE#         514
+  C:108AH         LINE#         520
+  C:109AH         LINE#         521
+  C:109AH         LINE#         523
+  C:10A5H         LINE#         524
+  C:10A8H         LINE#         526
+  C:10B3H         LINE#         528
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 14
+
+
+  C:10C3H         LINE#         529
+  C:10C3H         LINE#         530
+  C:10D2H         LINE#         532
+  C:10D5H         LINE#         533
+  C:10D5H         LINE#         534
+  C:10D5H         LINE#         535
+  C:10D7H         LINE#         537
+  C:10DAH         LINE#         538
+  C:10DAH         LINE#         539
+  C:10E9H         LINE#         540
+  C:10F0H         LINE#         541
+  C:10F2H         LINE#         542
+  C:10FCH         LINE#         543
+  C:1106H         LINE#         545
+  C:1111H         LINE#         546
+  C:1114H         LINE#         547
+  C:111FH         LINE#         548
+  C:1122H         LINE#         550
+  C:1125H         LINE#         551
+  C:1125H         LINE#         553
+  -------         ENDPROC       MAIN
+  -------         PROC          COM_COMMAND
+  -------         DO            
+  D:0008H         SYMBOL        _index
+  D:0009H         SYMBOL        command_count
+  I:000CH         SYMBOL        char_float_conv
+  -------         ENDDO         
+  C:133CH         LINE#         560
+  C:133CH         LINE#         561
+  C:133CH         LINE#         563
+  C:133FH         LINE#         567
+  C:1342H         LINE#         568
+  C:1342H         LINE#         569
+  C:134AH         LINE#         570
+  C:134AH         LINE#         571
+  C:1353H         LINE#         572
+  C:1353H         LINE#         573
+  C:1386H         LINE#         574
+  C:1386H         LINE#         576
+  C:1386H         LINE#         577
+  C:138BH         LINE#         578
+  C:138EH         LINE#         580
+  C:138EH         LINE#         581
+  C:1391H         LINE#         582
+  C:1394H         LINE#         584
+  C:1394H         LINE#         585
+  C:1397H         LINE#         586
+  C:139AH         LINE#         588
+  C:139AH         LINE#         589
+  C:13A3H         LINE#         590
+  C:13A3H         LINE#         600
+  C:13A3H         LINE#         602
+  C:13A3H         LINE#         603
+  C:13AEH         LINE#         604
+  C:13B9H         LINE#         605
+  C:13C1H         LINE#         606
+  C:13C1H         LINE#         607
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 15
+
+
+  C:13C1H         LINE#         609
+  C:13C4H         LINE#         611
+  C:13C4H         LINE#         612
+  C:13CFH         LINE#         613
+  C:13D7H         LINE#         614
+  C:13D7H         LINE#         615
+  C:13DAH         LINE#         617
+  C:13DAH         LINE#         618
+  C:13DFH         LINE#         619
+  C:13E2H         LINE#         621
+  C:13E2H         LINE#         622
+  C:13E7H         LINE#         623
+  C:13EAH         LINE#         625
+  C:13EAH         LINE#         626
+  C:13F1H         LINE#         627
+  C:13F7H         LINE#         629
+  C:13FAH         LINE#         630
+  C:13FDH         LINE#         632
+  C:13FDH         LINE#         633
+  C:1402H         LINE#         634
+  C:1405H         LINE#         635
+  C:1405H         LINE#         636
+  C:140AH         LINE#         637
+  C:140DH         LINE#         639
+  C:140DH         LINE#         643
+  C:140DH         LINE#         644
+  C:1416H         LINE#         645
+  C:1416H         LINE#         646
+  C:141BH         LINE#         647
+  C:1435H         LINE#         648
+  C:1438H         LINE#         649
+  C:1452H         LINE#         650
+  C:1452H         LINE#         651
+  C:1452H         LINE#         652
+  C:1455H         LINE#         654
+  C:1455H         LINE#         655
+  C:145AH         LINE#         656
+  C:145DH         LINE#         659
+  C:145DH         LINE#         660
+  C:1474H         LINE#         661
+  C:1474H         LINE#         685
+  C:1474H         LINE#         687
+  C:14A5H         LINE#         688
+  C:14A5H         LINE#         689
+  C:14B7H         LINE#         690
+  C:14C9H         LINE#         691
+  C:14EBH         LINE#         692
+  C:14F1H         LINE#         693
+  C:14F3H         LINE#         694
+  C:14F3H         LINE#         695
+  C:14FEH         LINE#         697
+  C:14FEH         LINE#         698
+  C:1500H         LINE#         699
+  C:1500H         LINE#         701
+  C:1500H         LINE#         702
+  C:1500H         LINE#         704
+  C:1500H         LINE#         705
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 16
+
+
+  C:1512H         LINE#         706
+  C:1514H         LINE#         707
+  C:1514H         LINE#         708
+  C:151FH         LINE#         709
+  C:1522H         LINE#         710
+  C:1522H         LINE#         711
+  C:1522H         LINE#         712
+  C:1522H         LINE#         713
+  C:1522H         LINE#         714
+  C:1522H         LINE#         716
+  C:1525H         LINE#         717
+  C:1525H         LINE#         718
+  -------         ENDPROC       COM_COMMAND
+  -------         PROC          INITIAL_RELAY
+  C:2810H         LINE#         728
+  C:2810H         LINE#         729
+  C:2810H         LINE#         730
+  C:2812H         LINE#         731
+  C:2814H         LINE#         732
+  C:2816H         LINE#         733
+  C:2818H         LINE#         734
+  -------         ENDPROC       INITIAL_RELAY
+  -------         PROC          SERIAL_INIT
+  C:27DAH         LINE#         739
+  C:27DAH         LINE#         740
+  C:27DAH         LINE#         742
+  C:27DDH         LINE#         743
+  C:27E0H         LINE#         744
+  C:27E3H         LINE#         745
+  C:27E5H         LINE#         746
+  -------         ENDPROC       SERIAL_INIT
+  -------         PROC          TIMER0_INIT
+  C:2737H         LINE#         751
+  C:2737H         LINE#         752
+  C:2737H         LINE#         754
+  C:273FH         LINE#         756
+  C:2741H         LINE#         757
+  C:2743H         LINE#         760
+  C:2746H         LINE#         761
+  C:2749H         LINE#         763
+  C:274BH         LINE#         764
+  -------         ENDPROC       TIMER0_INIT
+  -------         PROC          TIMER0_ISR
+  C:27E6H         LINE#         769
+  C:27E6H         LINE#         771
+  C:27E8H         LINE#         773
+  C:27EBH         LINE#         774
+  C:27EEH         LINE#         776
+  C:27F0H         LINE#         777
+  -------         ENDPROC       TIMER0_ISR
+  -------         PROC          INITIAL_BOARD
+  C:27FCH         LINE#         782
+  C:27FCH         LINE#         783
+  C:27FCH         LINE#         785
+  C:27FFH         LINE#         788
+  C:2801H         LINE#         789
+  C:2803H         LINE#         791
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 17
+
+
+  C:2805H         LINE#         792
+  -------         ENDPROC       INITIAL_BOARD
+  -------         PROC          READCOMMAND
+  -------         DO            
+  D:000AH         SYMBOL        index
+  -------         ENDDO         
+  C:25AFH         LINE#         797
+  C:25AFH         LINE#         798
+  C:25AFH         LINE#         800
+  C:25B2H         LINE#         802
+  C:25B4H         LINE#         804
+  C:25B9H         LINE#         806
+  C:25BFH         LINE#         807
+  C:25BFH         LINE#         808
+  C:25CBH         LINE#         809
+  C:25CDH         LINE#         810
+  C:25CFH         LINE#         812
+  C:25D1H         LINE#         813
+  C:25D4H         LINE#         815
+  C:25D6H         LINE#         817
+  C:25D8H         LINE#         818
+  -------         ENDPROC       READCOMMAND
+  -------         PROC          _CHANGEMEASUREMENTMODE
+  D:000AH         SYMBOL        _inline
+  C:2287H         LINE#         824
+  C:2289H         LINE#         825
+  C:2289H         LINE#         826
+  C:2293H         LINE#         827
+  C:2293H         LINE#         828
+  C:2299H         LINE#         829
+  C:2299H         LINE#         830
+  C:2299H         LINE#         831
+  C:229BH         LINE#         832
+  C:22A4H         LINE#         833
+  C:22A4H         LINE#         834
+  C:22AAH         LINE#         835
+  C:22AAH         LINE#         836
+  C:22AAH         LINE#         837
+  C:22ACH         LINE#         838
+  C:22B5H         LINE#         839
+  C:22B5H         LINE#         840
+  C:22C0H         LINE#         841
+  C:22CBH         LINE#         842
+  C:22D6H         LINE#         843
+  C:22D6H         LINE#         844
+  -------         ENDPROC       _CHANGEMEASUREMENTMODE
+  -------         PROC          READXYZDATASEQUENTIALLY
+  C:19B5H         LINE#         846
+  C:19B5H         LINE#         847
+  C:19B5H         LINE#         848
+  C:19BAH         LINE#         849
+  C:19C9H         LINE#         855
+  C:19D4H         LINE#         856
+  C:19E1H         LINE#         857
+  C:19ECH         LINE#         858
+  C:19F3H         LINE#         859
+  C:1A00H         LINE#         860
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 18
+
+
+  C:1A0BH         LINE#         861
+  C:1A12H         LINE#         862
+  C:1A1DH         LINE#         863
+  C:1A2AH         LINE#         864
+  C:1A35H         LINE#         865
+  C:1A3CH         LINE#         866
+  C:1A49H         LINE#         867
+  C:1A54H         LINE#         868
+  C:1A5BH         LINE#         869
+  C:1A66H         LINE#         870
+  C:1A73H         LINE#         871
+  C:1A7EH         LINE#         872
+  C:1A85H         LINE#         873
+  C:1A92H         LINE#         874
+  C:1A9DH         LINE#         875
+  -------         ENDPROC       READXYZDATASEQUENTIALLY
+  -------         PROC          _RELAYCONTROL_1
+  D:000AH         SYMBOL        _inline
+  C:1ED9H         LINE#         878
+  C:1EDBH         LINE#         879
+  C:1EDBH         LINE#         880
+  C:1EE9H         LINE#         881
+  C:1EE9H         LINE#         882
+  C:1EE9H         LINE#         883
+  C:1EF7H         LINE#         884
+  C:1EF7H         LINE#         885
+  C:1EF7H         LINE#         886
+  C:1EF9H         LINE#         887
+  C:1EFBH         LINE#         888
+  C:1EFDH         LINE#         889
+  C:1F03H         LINE#         890
+  C:1F03H         LINE#         891
+  C:1F03H         LINE#         892
+  C:1F03H         LINE#         893
+  C:1F03H         LINE#         894
+  C:1F03H         LINE#         895
+  C:1F05H         LINE#         897
+  C:1F05H         LINE#         898
+  C:1F07H         LINE#         899
+  C:1F09H         LINE#         900
+  C:1F0BH         LINE#         901
+  C:1F11H         LINE#         902
+  C:1F11H         LINE#         903
+  C:1F11H         LINE#         904
+  C:1F11H         LINE#         905
+  C:1F11H         LINE#         906
+  C:1F11H         LINE#         907
+  C:1F13H         LINE#         908
+  C:1F13H         LINE#         909
+  C:1F13H         LINE#         911
+  C:1F13H         LINE#         912
+  C:1F21H         LINE#         913
+  C:1F21H         LINE#         914
+  C:1F21H         LINE#         915
+  C:1F23H         LINE#         916
+  C:1F25H         LINE#         917
+  C:1F27H         LINE#         918
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 19
+
+
+  C:1F2DH         LINE#         919
+  C:1F2DH         LINE#         920
+  C:1F2DH         LINE#         921
+  C:1F2DH         LINE#         922
+  C:1F2DH         LINE#         923
+  C:1F2DH         LINE#         924
+  C:1F2FH         LINE#         926
+  C:1F2FH         LINE#         927
+  C:1F31H         LINE#         928
+  C:1F33H         LINE#         929
+  C:1F35H         LINE#         930
+  C:1F40H         LINE#         931
+  C:1F43H         LINE#         932
+  C:1F4EH         LINE#         933
+  C:1F51H         LINE#         934
+  C:1F5CH         LINE#         935
+  C:1F5FH         LINE#         936
+  C:1F5FH         LINE#         937
+  C:1F5FH         LINE#         938
+  C:1F5FH         LINE#         939
+  C:1F5FH         LINE#         940
+  -------         ENDPROC       _RELAYCONTROL_1
+  -------         PROC          _RELAYCONTROL_2
+  D:0000H         SYMBOL        _inline
+  C:1F60H         LINE#         942
+  C:1F60H         LINE#         943
+  C:1F60H         LINE#         944
+  C:1F6CH         LINE#         945
+  C:1F6CH         LINE#         946
+  C:1F6CH         LINE#         947
+  C:1F76H         LINE#         948
+  C:1F76H         LINE#         949
+  C:1F76H         LINE#         950
+  C:1F78H         LINE#         951
+  C:1F7AH         LINE#         952
+  C:1F7CH         LINE#         953
+  C:1F82H         LINE#         954
+  C:1F82H         LINE#         955
+  C:1F82H         LINE#         956
+  C:1F82H         LINE#         957
+  C:1F82H         LINE#         958
+  C:1F82H         LINE#         959
+  C:1F84H         LINE#         961
+  C:1F84H         LINE#         962
+  C:1F86H         LINE#         963
+  C:1F88H         LINE#         964
+  C:1F8AH         LINE#         965
+  C:1F90H         LINE#         966
+  C:1F90H         LINE#         967
+  C:1F90H         LINE#         968
+  C:1F90H         LINE#         969
+  C:1F90H         LINE#         970
+  C:1F90H         LINE#         971
+  C:1F92H         LINE#         972
+  C:1F92H         LINE#         973
+  C:1F92H         LINE#         975
+  C:1F92H         LINE#         976
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 20
+
+
+  C:1F9CH         LINE#         977
+  C:1F9CH         LINE#         978
+  C:1F9CH         LINE#         979
+  C:1F9EH         LINE#         980
+  C:1FA0H         LINE#         981
+  C:1FA2H         LINE#         982
+  C:1FA8H         LINE#         983
+  C:1FA8H         LINE#         984
+  C:1FA8H         LINE#         985
+  C:1FA8H         LINE#         986
+  C:1FA8H         LINE#         987
+  C:1FA8H         LINE#         988
+  C:1FAAH         LINE#         990
+  C:1FAAH         LINE#         991
+  C:1FACH         LINE#         992
+  C:1FAEH         LINE#         993
+  C:1FB0H         LINE#         994
+  C:1FBBH         LINE#         995
+  C:1FBEH         LINE#         996
+  C:1FC9H         LINE#         997
+  C:1FCCH         LINE#         998
+  C:1FD7H         LINE#         999
+  C:1FDAH         LINE#         1000
+  C:1FDAH         LINE#         1001
+  C:1FDAH         LINE#         1002
+  C:1FDAH         LINE#         1003
+  C:1FDAH         LINE#         1004
+  -------         ENDPROC       _RELAYCONTROL_2
+  -------         PROC          _SETREADINGOUTPUTMODE
+  D:000AH         SYMBOL        _inline
+  C:23BAH         LINE#         1006
+  C:23BCH         LINE#         1007
+  C:23BCH         LINE#         1008
+  C:23D2H         LINE#         1009
+  C:23D2H         LINE#         1010
+  C:23D2H         LINE#         1011
+  C:23D4H         LINE#         1012
+  C:23DAH         LINE#         1013
+  C:23DAH         LINE#         1014
+  C:23DCH         LINE#         1016
+  C:23DCH         LINE#         1017
+  C:23DEH         LINE#         1018
+  C:23E9H         LINE#         1019
+  C:23ECH         LINE#         1020
+  C:23ECH         LINE#         1022
+  C:23ECH         LINE#         1023
+  C:23F4H         LINE#         1024
+  C:23F7H         LINE#         1025
+  C:23F7H         LINE#         1026
+  C:23F7H         LINE#         1027
+  C:23F9H         LINE#         1029
+  C:23F9H         LINE#         1030
+  C:23FCH         LINE#         1031
+  C:23FFH         LINE#         1032
+  C:2401H         LINE#         1033
+  C:2401H         LINE#         1034
+  C:2401H         LINE#         1035
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 21
+
+
+  -------         ENDPROC       _SETREADINGOUTPUTMODE
+  -------         PROC          _SETREADINGACCOUTPUTMODE
+  D:0007H         SYMBOL        _inline
+  C:26A0H         LINE#         1036
+  C:26A0H         LINE#         1037
+  C:26A0H         LINE#         1038
+  C:26ADH         LINE#         1039
+  C:26ADH         LINE#         1040
+  C:26ADH         LINE#         1041
+  C:26B4H         LINE#         1042
+  C:26B7H         LINE#         1043
+  C:26B9H         LINE#         1044
+  C:26BCH         LINE#         1045
+  C:26BDH         LINE#         1047
+  C:26BDH         LINE#         1048
+  C:26C0H         LINE#         1049
+  C:26C2H         LINE#         1050
+  C:26C5H         LINE#         1051
+  C:26C5H         LINE#         1052
+  C:26C5H         LINE#         1053
+  -------         ENDPROC       _SETREADINGACCOUTPUTMODE
+  -------         PROC          SETREADINGTEMPMODE
+  -------         DO            
+  D:000AH         SYMBOL        T_status
+  -------         ENDDO         
+  C:2509H         LINE#         1054
+  C:2509H         LINE#         1055
+  C:2509H         LINE#         1056
+  C:250CH         LINE#         1057
+  C:2511H         LINE#         1058
+  C:2511H         LINE#         1059
+  C:2513H         LINE#         1060
+  C:251CH         LINE#         1061
+  C:251CH         LINE#         1062
+  C:252CH         LINE#         1063
+  C:252EH         LINE#         1065
+  C:2534H         LINE#         1066
+  C:2536H         LINE#         1068
+  C:2536H         LINE#         1069
+  C:2541H         LINE#         1070
+  C:2541H         LINE#         1071
+  -------         ENDPROC       SETREADINGTEMPMODE
+  -------         PROC          _SETREADINGGYROOUTPUTMODE
+  D:0007H         SYMBOL        _inline
+  C:2712H         LINE#         1073
+  C:2712H         LINE#         1074
+  C:2712H         LINE#         1075
+  C:271EH         LINE#         1076
+  C:271EH         LINE#         1077
+  C:271EH         LINE#         1078
+  C:2725H         LINE#         1079
+  C:2728H         LINE#         1080
+  C:272BH         LINE#         1081
+  C:272DH         LINE#         1082
+  C:272EH         LINE#         1084
+  C:272EH         LINE#         1085
+  C:2731H         LINE#         1086
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 22
+
+
+  C:2734H         LINE#         1087
+  C:2736H         LINE#         1088
+  C:2736H         LINE#         1089
+  C:2736H         LINE#         1090
+  -------         ENDPROC       _SETREADINGGYROOUTPUTMODE
+  -------         PROC          _CONTROLALERTLIGHT
+  D:0000H         SYMBOL        _inline
+  C:20B7H         LINE#         1092
+  C:20B7H         LINE#         1093
+  C:20B7H         LINE#         1094
+  C:20C8H         LINE#         1095
+  C:20C8H         LINE#         1096
+  C:20C8H         LINE#         1097
+  C:20CBH         LINE#         1098
+  C:20CEH         LINE#         1099
+  C:20D0H         LINE#         1101
+  C:20D6H         LINE#         1102
+  C:20D6H         LINE#         1103
+  C:20D6H         LINE#         1104
+  C:20D6H         LINE#         1105
+  C:20D6H         LINE#         1106
+  C:20D6H         LINE#         1107
+  C:20D8H         LINE#         1109
+  C:20D8H         LINE#         1110
+  C:20DBH         LINE#         1111
+  C:20DEH         LINE#         1112
+  C:20E0H         LINE#         1113
+  C:20E6H         LINE#         1114
+  C:20E6H         LINE#         1115
+  C:20E6H         LINE#         1116
+  C:20E6H         LINE#         1117
+  C:20E6H         LINE#         1118
+  C:20E6H         LINE#         1119
+  C:20E8H         LINE#         1121
+  C:20E8H         LINE#         1122
+  C:20EBH         LINE#         1123
+  C:20EEH         LINE#         1124
+  C:20F0H         LINE#         1126
+  C:20FBH         LINE#         1127
+  C:20FEH         LINE#         1128
+  C:2109H         LINE#         1129
+  C:210CH         LINE#         1130
+  C:2117H         LINE#         1131
+  C:211AH         LINE#         1132
+  C:211AH         LINE#         1133
+  C:211AH         LINE#         1134
+  -------         ENDPROC       _CONTROLALERTLIGHT
+  -------         PROC          _READSENSORID
+  D:0000H         SYMBOL        _inline
+  -------         DO            
+  D:000AH         SYMBOL        ID_Byte
+  -------         ENDDO         
+  C:2602H         LINE#         1136
+  C:2602H         LINE#         1137
+  C:2602H         LINE#         1141
+  C:2609H         LINE#         1142
+  C:2609H         LINE#         1145
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 23
+
+
+  C:2616H         LINE#         1146
+  C:2621H         LINE#         1147
+  C:2626H         LINE#         1148
+  C:2629H         LINE#         1149
+  C:2629H         LINE#         1150
+  -------         ENDPROC       _READSENSORID
+  -------         PROC          CHECKSENSORCORRECT
+  -------         DO            
+  D:000AH         SYMBOL        len_sensor_type
+  D:000CH         SYMBOL        _i
+  D:000DH         SYMBOL        _data
+  D:0010H         SYMBOL        _data2
+  D:0013H         SYMBOL        ID_Byte
+  D:0007H         SYMBOL        ID2_Byte
+  -------         ENDDO         
+  C:1526H         LINE#         1167
+  C:1526H         LINE#         1168
+  C:1526H         LINE#         1174
+  C:152CH         LINE#         1181
+  C:1548H         LINE#         1182
+  C:1548H         LINE#         1183
+  C:1571H         LINE#         1184
+  C:1571H         LINE#         1185
+  C:15AEH         LINE#         1186
+  C:1608H         LINE#         1187
+  C:162AH         LINE#         1188
+  C:162AH         LINE#         1189
+  C:1649H         LINE#         1190
+  C:164CH         LINE#         1192
+  C:164FH         LINE#         1193
+  C:164FH         LINE#         1194
+  C:164FH         LINE#         1196
+  C:164FH         LINE#         1197
+  C:1687H         LINE#         1198
+  C:16BDH         LINE#         1199
+  C:16DCH         LINE#         1200
+  C:16DCH         LINE#         1201
+  C:16F4H         LINE#         1202
+  C:16F4H         LINE#         1203
+  C:16FAH         LINE#         1204
+  C:16FAH         LINE#         1206
+  C:16FAH         LINE#         1207
+  C:16FDH         LINE#         1208
+  C:16FDH         LINE#         1209
+  C:16FDH         LINE#         1210
+  C:16FDH         LINE#         1211
+  C:1702H         LINE#         1212
+  C:1704H         LINE#         1213
+  -------         ENDPROC       CHECKSENSORCORRECT
+  -------         PROC          _CHECKARRAYEQUAL
+  D:0007H         SYMBOL        _data
+  D:0014H         SYMBOL        sensor_ID
+  -------         DO            
+  D:0017H         SYMBOL        len_data
+  D:0006H         SYMBOL        _i
+  -------         ENDDO         
+  C:2542H         LINE#         1215
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 24
+
+
+  C:2548H         LINE#         1216
+  C:2548H         LINE#         1217
+  C:254BH         LINE#         1220
+  C:2559H         LINE#         1221
+  C:2559H         LINE#         1222
+  C:2573H         LINE#         1223
+  C:2575H         LINE#         1224
+  C:2578H         LINE#         1225
+  C:2579H         LINE#         1226
+  -------         ENDPROC       _CHECKARRAYEQUAL
+  C:204CH         SYMBOL        L?0205
+  -------         PROC          L?0204
+  -------         ENDPROC       L?0204
+  C:204CH         SYMBOL        L?0205
+  -------         PROC          _STRINGCOMPARE
+  D:0016H         SYMBOL        strA
+  D:0019H         SYMBOL        strB
+  D:001CH         SYMBOL        num_char
+  -------         DO            
+  D:0007H         SYMBOL        _i
+  D:0007H         SYMBOL        len_str
+  -------         DO            
+  D:001DH         SYMBOL        _c
+  -------         ENDDO         
+  -------         ENDDO         
+  C:205EH         LINE#         1228
+  C:2064H         LINE#         1229
+  C:2064H         LINE#         1232
+  C:2066H         LINE#         1234
+  C:2072H         LINE#         1235
+  C:2074H         LINE#         1237
+  C:2082H         LINE#         1238
+  C:2082H         LINE#         1239
+  C:2096H         LINE#         1240
+  C:20B0H         LINE#         1241
+  C:20B2H         LINE#         1242
+  C:20B5H         LINE#         1244
+  C:20B6H         LINE#         1245
+  -------         ENDPROC       _STRINGCOMPARE
+  -------         PROC          INITIAL_REGISTER
+  C:1CE9H         LINE#         1247
+  C:1CE9H         LINE#         1248
+  C:1CE9H         LINE#         1249
+  C:1CF1H         LINE#         1250
+  C:1CF1H         LINE#         1251
+  C:1CFEH         LINE#         1253
+  C:1D0BH         LINE#         1254
+  C:1D18H         LINE#         1255
+  C:1D25H         LINE#         1256
+  C:1D32H         LINE#         1258
+  C:1D3FH         LINE#         1259
+  C:1D4CH         LINE#         1260
+  C:1D59H         LINE#         1261
+  C:1D66H         LINE#         1262
+  C:1D73H         LINE#         1263
+  C:1D80H         LINE#         1264
+  C:1D8DH         LINE#         1265
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 25
+
+
+  C:1D98H         LINE#         1266
+  C:1D9BH         LINE#         1267
+  C:1D9BH         LINE#         1282
+  -------         ENDPROC       INITIAL_REGISTER
+  -------         PROC          EOL
+  C:27F1H         LINE#         1284
+  C:27F1H         LINE#         1285
+  -------         ENDPROC       EOL
+  -------         ENDMOD        HMC5983_IIC
+
+  -------         MODULE        ?C_STARTUP
+  C:1E4DH         SEGMENT       ?C_C51STARTUP
+  I:00D8H         SEGMENT       ?STACK
+  C:0000H         PUBLIC        ?C_STARTUP
+  D:00E0H         SYMBOL        ACC
+  D:00F0H         SYMBOL        B
+  D:0083H         SYMBOL        DPH
+  D:0082H         SYMBOL        DPL
+  N:0000H         SYMBOL        IBPSTACK
+  N:0100H         SYMBOL        IBPSTACKTOP
+  N:0080H         SYMBOL        IDATALEN
+  C:1E50H         SYMBOL        IDATALOOP
+  N:0000H         SYMBOL        PBPSTACK
+  N:0100H         SYMBOL        PBPSTACKTOP
+  N:0000H         SYMBOL        PDATALEN
+  N:0000H         SYMBOL        PDATASTART
+  N:0000H         SYMBOL        PPAGE
+  N:0000H         SYMBOL        PPAGEENABLE
+  D:00A0H         SYMBOL        PPAGE_SFR
+  D:0081H         SYMBOL        SP
+  C:1E4DH         SYMBOL        STARTUP1
+  N:0000H         SYMBOL        XBPSTACK
+  N:0000H         SYMBOL        XBPSTACKTOP
+  N:0000H         SYMBOL        XDATALEN
+  N:0000H         SYMBOL        XDATASTART
+  C:0000H         LINE#         126
+  C:1E4DH         LINE#         133
+  C:1E4FH         LINE#         134
+  C:1E50H         LINE#         135
+  C:1E51H         LINE#         136
+  C:1E53H         LINE#         185
+  C:1E56H         LINE#         196
+  -------         ENDMOD        ?C_STARTUP
+
+  -------         MODULE        AT24C512
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:257AH         PUBLIC        _read
+  C:26C6H         PUBLIC        _write
+  I:0018H         PUBLIC        tempdata
+  -------         PROC          _READ
+  D:0011H         SYMBOL        index
+  C:257AH         LINE#         10
+  C:257EH         LINE#         12
+  C:2581H         LINE#         13
+  C:2586H         LINE#         14
+  C:258CH         LINE#         15
+  C:2593H         LINE#         18
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 26
+
+
+  C:2596H         LINE#         19
+  C:259BH         LINE#         20
+  C:25A2H         LINE#         21
+  C:25A7H         LINE#         22
+  C:25AAH         LINE#         24
+  C:25AEH         LINE#         25
+  -------         ENDPROC       _READ
+  -------         PROC          _WRITE
+  D:0015H         SYMBOL        index
+  D:0017H         SYMBOL        datain
+  C:26C6H         LINE#         27
+  C:26CCH         LINE#         28
+  C:26CFH         LINE#         29
+  C:26D2H         LINE#         30
+  C:26D7H         LINE#         31
+  C:26DDH         LINE#         32
+  C:26E4H         LINE#         33
+  C:26E9H         LINE#         34
+  -------         ENDPROC       _WRITE
+  -------         ENDMOD        AT24C512
+
+  -------         MODULE        IIC_ADDRESS
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:1B78H         PUBLIC        SetI2CParameters
+  -------         PROC          SETI2CPARAMETERS
+  C:1B78H         LINE#         9
+  C:1B78H         LINE#         10
+  C:1B78H         LINE#         13
+  C:1B92H         LINE#         14
+  C:1B92H         LINE#         15
+  C:1B96H         LINE#         17
+  C:1B9AH         LINE#         18
+  C:1B9EH         LINE#         19
+  C:1BA2H         LINE#         20
+  C:1BA6H         LINE#         21
+  C:1BAAH         LINE#         22
+  C:1BAEH         LINE#         23
+  C:1BB2H         LINE#         24
+  C:1BB6H         LINE#         25
+  C:1BBAH         LINE#         26
+  C:1BBEH         LINE#         27
+  C:1BC2H         LINE#         28
+  C:1BC6H         LINE#         29
+  C:1BCAH         LINE#         31
+  C:1BCEH         LINE#         33
+  C:1BD2H         LINE#         34
+  C:1BD6H         LINE#         35
+  C:1BDAH         LINE#         36
+  C:1BDEH         LINE#         37
+  C:1BE2H         LINE#         38
+  C:1BE6H         LINE#         39
+  C:1BEAH         LINE#         40
+  C:1BEEH         LINE#         41
+  C:1BF2H         LINE#         42
+  C:1BF6H         LINE#         43
+  C:1BFAH         LINE#         44
+  C:1BFEH         LINE#         45
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 27
+
+
+  C:1C02H         LINE#         46
+  C:1C06H         LINE#         47
+  C:1C0AH         LINE#         48
+  C:1C0EH         LINE#         49
+  C:1C12H         LINE#         50
+  C:1C16H         LINE#         51
+  C:1C1AH         LINE#         52
+  C:1C1EH         LINE#         53
+  C:1C22H         LINE#         54
+  C:1C26H         LINE#         55
+  C:1C2AH         LINE#         56
+  C:1C2EH         LINE#         57
+  C:1C32H         LINE#         59
+  C:1C32H         LINE#         100
+  -------         ENDPROC       SETI2CPARAMETERS
+  -------         ENDMOD        IIC_ADDRESS
+
+  -------         MODULE        IIC_FUNCTION
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  D:0022H         PUBLIC        R1
+  D:002EH         PUBLIC        R2
+  C:1C33H         PUBLIC        _I2C_Acc_Data
+  D:003AH         PUBLIC        R3
+  D:0046H         PUBLIC        R4
+  C:217CH         PUBLIC        _LowerResolution2MatchOldSensor
+  D:0052H         PUBLIC        ID
+  B:0080H.0       PUBLIC        P0_0
+  B:0090H.0       PUBLIC        P1_0
+  B:0080H.1       PUBLIC        P0_1
+  B:0090H.1       PUBLIC        P1_1
+  C:2236H         PUBLIC        _SignInvertor2SComplement
+  C:1705H         PUBLIC        _CalibrationCaculate
+  C:1D9CH         PUBLIC        _I2C_Gyro_Data
+  C:27A4H         PUBLIC        SendAcknowledge_EEPROM
+  C:2791H         PUBLIC        _TwoBytes2Int
+  C:2679H         PUBLIC        I2C_ReceiveByte_EEPROM
+  C:27C0H         PUBLIC        I2C_Start
+  C:26ECH         PUBLIC        _I2C_ByteRead
+  C:2830H         PUBLIC        I2C_Init
+  C:2751H         PUBLIC        I2C_Wait
+  C:211BH         PUBLIC        _I2C_ByteWrite
+  C:2821H         PUBLIC        I2C_Stop
+  C:1AA4H         PUBLIC        _I2C_M_Data
+  C:21DBH         PUBLIC        _I2C_T_Data
+  C:2409H         PUBLIC        _I2C_SentByte
+  C:24CCH         PUBLIC        _I2CReadMultiBytes
+  C:2774H         PUBLIC        I2C_Start_EEPROM
+  C:2835H         PUBLIC        I2C_Init_EEPROM
+  C:27CDH         PUBLIC        I2C_Stop_EEPROM
+  C:2796H         PUBLIC        SendAcknowledge
+  C:2652H         PUBLIC        I2C_ReceiveByte
+  C:248DH         PUBLIC        _I2C_SentByte_EEPROM
+  C:274CH         SYMBOL        L?0082
+  -------         PROC          L?0081
+  -------         ENDPROC       L?0081
+  C:274CH         SYMBOL        L?0082
+  -------         PROC          I2C_WAIT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 28
+
+
+  -------         DO            
+  D:0006H         SYMBOL        _i
+  -------         ENDDO         
+  C:2751H         LINE#         44
+  C:2751H         LINE#         45
+  C:2751H         LINE#         47
+  C:2754H         LINE#         48
+  C:2754H         LINE#         49
+  C:2755H         LINE#         50
+  C:2760H         LINE#         51
+  -------         ENDPROC       I2C_WAIT
+  -------         PROC          I2C_INIT
+  C:2830H         LINE#         56
+  C:2830H         LINE#         57
+  C:2830H         LINE#         58
+  C:2832H         LINE#         59
+  C:2834H         LINE#         60
+  -------         ENDPROC       I2C_INIT
+  -------         PROC          I2C_INIT_EEPROM
+  C:2835H         LINE#         62
+  C:2835H         LINE#         63
+  C:2835H         LINE#         64
+  C:2837H         LINE#         65
+  C:2839H         LINE#         66
+  -------         ENDPROC       I2C_INIT_EEPROM
+  -------         PROC          I2C_START
+  C:27C0H         LINE#         73
+  C:27C0H         LINE#         74
+  C:27C0H         LINE#         75
+  C:27C2H         LINE#         76
+  C:27C2H         LINE#         77
+  C:27C2H         LINE#         78
+  C:27C5H         LINE#         79
+  C:27C7H         LINE#         80
+  C:27CAH         LINE#         81
+  C:27CCH         LINE#         82
+  -------         ENDPROC       I2C_START
+  -------         PROC          I2C_START_EEPROM
+  C:2774H         LINE#         84
+  C:2774H         LINE#         85
+  C:2774H         LINE#         86
+  C:2776H         LINE#         87
+  C:2779H         LINE#         88
+  C:277BH         LINE#         89
+  C:277EH         LINE#         90
+  C:2780H         LINE#         91
+  C:2783H         LINE#         92
+  C:2785H         LINE#         93
+  -------         ENDPROC       I2C_START_EEPROM
+  -------         PROC          I2C_STOP
+  C:2821H         LINE#         99
+  C:2821H         LINE#         100
+  C:2821H         LINE#         101
+  C:2823H         LINE#         102
+  C:2823H         LINE#         103
+  C:2823H         LINE#         104
+  C:2826H         LINE#         105
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 29
+
+
+  C:2828H         LINE#         106
+  -------         ENDPROC       I2C_STOP
+  -------         PROC          I2C_STOP_EEPROM
+  C:27CDH         LINE#         107
+  C:27CDH         LINE#         108
+  C:27CDH         LINE#         109
+  C:27CFH         LINE#         110
+  C:27D2H         LINE#         111
+  C:27D4H         LINE#         112
+  C:27D7H         LINE#         113
+  C:27D9H         LINE#         114
+  -------         ENDPROC       I2C_STOP_EEPROM
+  C:2402H         SYMBOL        L?0080
+  -------         PROC          L?0079
+  -------         ENDPROC       L?0079
+  C:2402H         SYMBOL        L?0080
+  -------         PROC          _I2C_SENTBYTE
+  D:0005H         SYMBOL        bytedata
+  -------         DO            
+  D:0004H         SYMBOL        i
+  B:0021H.1       SYMBOL        ack
+  -------         ENDDO         
+  C:2409H         LINE#         121
+  C:240BH         LINE#         122
+  C:240BH         LINE#         125
+  C:2417H         LINE#         126
+  C:2417H         LINE#         127
+  C:2423H         LINE#         128
+  C:2426H         LINE#         129
+  C:2426H         LINE#         130
+  C:2428H         LINE#         131
+  C:242AH         LINE#         133
+  C:242AH         LINE#         134
+  C:242CH         LINE#         135
+  C:242CH         LINE#         137
+  C:242EH         LINE#         138
+  C:2431H         LINE#         139
+  C:2433H         LINE#         140
+  C:2436H         LINE#         141
+  C:2439H         LINE#         144
+  C:2439H         LINE#         145
+  C:2439H         LINE#         146
+  C:243CH         LINE#         147
+  C:2440H         LINE#         149
+  C:2442H         LINE#         151
+  C:2445H         LINE#         152
+  C:2447H         LINE#         153
+  -------         ENDPROC       _I2C_SENTBYTE
+  -------         PROC          _I2C_SENTBYTE_EEPROM
+  D:0005H         SYMBOL        bytedata
+  -------         DO            
+  D:0004H         SYMBOL        i
+  B:0020H.7       SYMBOL        ack
+  -------         ENDDO         
+  C:248DH         LINE#         155
+  C:248FH         LINE#         156
+  C:248FH         LINE#         159
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 30
+
+
+  C:249BH         LINE#         160
+  C:249BH         LINE#         162
+  C:24A7H         LINE#         163
+  C:24AAH         LINE#         164
+  C:24AAH         LINE#         165
+  C:24ACH         LINE#         166
+  C:24AEH         LINE#         168
+  C:24AEH         LINE#         169
+  C:24B0H         LINE#         170
+  C:24B0H         LINE#         172
+  C:24B2H         LINE#         173
+  C:24B5H         LINE#         174
+  C:24B7H         LINE#         175
+  C:24BAH         LINE#         176
+  C:24BDH         LINE#         177
+  C:24BFH         LINE#         178
+  C:24C2H         LINE#         179
+  C:24C6H         LINE#         180
+  C:24C8H         LINE#         181
+  C:24C9H         LINE#         182
+  C:24CBH         LINE#         183
+  -------         ENDPROC       _I2C_SENTBYTE_EEPROM
+  -------         PROC          I2C_RECEIVEBYTE
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0005H         SYMBOL        bytedata
+  -------         ENDDO         
+  C:2652H         LINE#         190
+  C:2652H         LINE#         191
+  C:2652H         LINE#         193
+  C:2654H         LINE#         196
+  C:265FH         LINE#         197
+  C:265FH         LINE#         198
+  C:2661H         LINE#         199
+  C:2664H         LINE#         201
+  C:2668H         LINE#         202
+  C:266BH         LINE#         203
+  C:266EH         LINE#         205
+  C:2670H         LINE#         206
+  C:2673H         LINE#         207
+  C:2676H         LINE#         208
+  C:2678H         LINE#         209
+  -------         ENDPROC       I2C_RECEIVEBYTE
+  -------         PROC          I2C_RECEIVEBYTE_EEPROM
+  -------         DO            
+  D:0004H         SYMBOL        i
+  D:0005H         SYMBOL        bytedata
+  -------         ENDDO         
+  C:2679H         LINE#         211
+  C:2679H         LINE#         212
+  C:2679H         LINE#         214
+  C:267BH         LINE#         217
+  C:2686H         LINE#         218
+  C:2686H         LINE#         219
+  C:2688H         LINE#         220
+  C:268BH         LINE#         222
+  C:268FH         LINE#         223
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 31
+
+
+  C:2692H         LINE#         224
+  C:2695H         LINE#         226
+  C:2697H         LINE#         227
+  C:269AH         LINE#         228
+  C:269DH         LINE#         229
+  C:269FH         LINE#         230
+  -------         ENDPROC       I2C_RECEIVEBYTE_EEPROM
+  -------         PROC          SENDACKNOWLEDGE
+  B:0021H.1       SYMBOL        ack
+  C:2796H         LINE#         236
+  C:2796H         LINE#         237
+  C:2796H         LINE#         238
+  C:279AH         LINE#         239
+  C:279CH         LINE#         240
+  C:279FH         LINE#         241
+  C:27A1H         LINE#         242
+  C:27A3H         LINE#         243
+  -------         ENDPROC       SENDACKNOWLEDGE
+  -------         PROC          SENDACKNOWLEDGE_EEPROM
+  B:0020H.7       SYMBOL        ack
+  C:27A4H         LINE#         244
+  C:27A4H         LINE#         245
+  C:27A4H         LINE#         246
+  C:27A8H         LINE#         247
+  C:27AAH         LINE#         248
+  C:27ADH         LINE#         249
+  C:27AFH         LINE#         250
+  C:27B1H         LINE#         251
+  -------         ENDPROC       SENDACKNOWLEDGE_EEPROM
+  -------         PROC          _I2C_BYTEWRITE
+  D:000BH         SYMBOL        device
+  D:000CH         SYMBOL        address
+  D:000DH         SYMBOL        bytedata
+  -------         DO            
+  D:0003H         SYMBOL        i
+  B:0020H.7       SYMBOL        ack
+  -------         ENDDO         
+  C:211BH         LINE#         258
+  C:2121H         LINE#         259
+  C:2121H         LINE#         263
+  C:212DH         LINE#         264
+  C:212DH         LINE#         265
+  C:2130H         LINE#         267
+  C:2137H         LINE#         268
+  C:213AH         LINE#         269
+  C:213AH         LINE#         270
+  C:213AH         LINE#         271
+  C:213CH         LINE#         272
+  C:213CH         LINE#         274
+  C:2143H         LINE#         275
+  C:2146H         LINE#         276
+  C:2146H         LINE#         277
+  C:2146H         LINE#         278
+  C:2148H         LINE#         279
+  C:2148H         LINE#         281
+  C:214FH         LINE#         282
+  C:2152H         LINE#         283
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 32
+
+
+  C:2152H         LINE#         284
+  C:2155H         LINE#         285
+  C:2157H         LINE#         286
+  C:2157H         LINE#         288
+  C:215AH         LINE#         290
+  C:215DH         LINE#         291
+  C:215DH         LINE#         292
+  C:215DH         LINE#         293
+  C:215DH         LINE#         294
+  C:2160H         LINE#         295
+  C:2167H         LINE#         297
+  C:216AH         LINE#         298
+  C:216FH         LINE#         299
+  C:2174H         LINE#         300
+  C:2179H         LINE#         301
+  -------         ENDPROC       _I2C_BYTEWRITE
+  -------         PROC          _I2C_BYTEREAD
+  D:0003H         SYMBOL        device
+  D:0002H         SYMBOL        address
+  -------         DO            
+  D:0005H         SYMBOL        bytedata
+  -------         ENDDO         
+  C:26ECH         LINE#         311
+  C:26F0H         LINE#         312
+  C:26F0H         LINE#         313
+  C:26F2H         LINE#         315
+  C:26F5H         LINE#         317
+  C:26FAH         LINE#         318
+  C:26FFH         LINE#         319
+  C:26FFH         LINE#         320
+  C:2702H         LINE#         321
+  C:2707H         LINE#         322
+  C:270CH         LINE#         324
+  C:270FH         LINE#         326
+  C:2711H         LINE#         327
+  -------         ENDPROC       _I2C_BYTEREAD
+  -------         PROC          _I2C_M_DATA
+  D:0003H         SYMBOL        device
+  D:0002H         SYMBOL        address
+  B:0020H.7       SYMBOL        ReadHighResolution
+  -------         DO            
+  D:000AH         SYMBOL        bytedata
+  B:0021H.0       SYMBOL        ack
+  -------         ENDDO         
+  C:1AA4H         LINE#         337
+  C:1AA8H         LINE#         338
+  C:1AA8H         LINE#         339
+  C:1AABH         LINE#         344
+  C:1AAEH         LINE#         345
+  C:1AB3H         LINE#         346
+  C:1AB8H         LINE#         348
+  C:1AB8H         LINE#         349
+  C:1ABDH         LINE#         401
+  C:1AD4H         LINE#         402
+  C:1AD4H         LINE#         403
+  C:1AD9H         LINE#         404
+  C:1ADEH         LINE#         405
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 33
+
+
+  C:1AE3H         LINE#         406
+  C:1AE8H         LINE#         408
+  C:1AEDH         LINE#         409
+  C:1AF2H         LINE#         410
+  C:1AF7H         LINE#         411
+  C:1AFCH         LINE#         413
+  C:1B01H         LINE#         414
+  C:1B06H         LINE#         415
+  C:1B0BH         LINE#         416
+  C:1B10H         LINE#         418
+  C:1B13H         LINE#         419
+  C:1B13H         LINE#         421
+  C:1B1CH         LINE#         422
+  C:1B25H         LINE#         423
+  C:1B2EH         LINE#         425
+  C:1B33H         LINE#         426
+  C:1B33H         LINE#         427
+  C:1B33H         LINE#         429
+  C:1B36H         LINE#         432
+  C:1B41H         LINE#         433
+  C:1B4CH         LINE#         434
+  C:1B57H         LINE#         435
+  C:1B62H         LINE#         436
+  C:1B6DH         LINE#         437
+  -------         ENDPROC       _I2C_M_DATA
+  -------         PROC          _I2C_T_DATA
+  D:0003H         SYMBOL        device
+  D:0002H         SYMBOL        address
+  -------         DO            
+  D:000BH         SYMBOL        bytedata
+  -------         ENDDO         
+  C:21DBH         LINE#         447
+  C:21DFH         LINE#         448
+  C:21DFH         LINE#         450
+  C:21E2H         LINE#         452
+  C:21E5H         LINE#         453
+  C:21EAH         LINE#         454
+  C:21EFH         LINE#         456
+  C:21EFH         LINE#         457
+  C:21F2H         LINE#         474
+  C:2209H         LINE#         475
+  C:2209H         LINE#         476
+  C:220EH         LINE#         477
+  C:2213H         LINE#         478
+  C:2218H         LINE#         479
+  C:221DH         LINE#         480
+  C:221DH         LINE#         482
+  C:2220H         LINE#         484
+  C:222BH         LINE#         485
+  -------         ENDPROC       _I2C_T_DATA
+  -------         PROC          _I2C_GYRO_DATA
+  D:0003H         SYMBOL        device
+  D:0002H         SYMBOL        address
+  -------         DO            
+  D:0008H         SYMBOL        bytedata
+  B:0020H.7       SYMBOL        ack
+  -------         ENDDO         
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 34
+
+
+  C:1D9CH         LINE#         495
+  C:1DA0H         LINE#         496
+  C:1DA0H         LINE#         497
+  C:1DA3H         LINE#         502
+  C:1DA6H         LINE#         503
+  C:1DABH         LINE#         504
+  C:1DB0H         LINE#         506
+  C:1DB0H         LINE#         507
+  C:1DB5H         LINE#         509
+  C:1DCCH         LINE#         510
+  C:1DCCH         LINE#         511
+  C:1DD1H         LINE#         512
+  C:1DD6H         LINE#         513
+  C:1DDBH         LINE#         514
+  C:1DE0H         LINE#         516
+  C:1DE5H         LINE#         517
+  C:1DEAH         LINE#         518
+  C:1DEFH         LINE#         519
+  C:1DF4H         LINE#         521
+  C:1DF9H         LINE#         522
+  C:1DFEH         LINE#         523
+  C:1E03H         LINE#         524
+  C:1E08H         LINE#         527
+  C:1E08H         LINE#         529
+  C:1E0BH         LINE#         532
+  C:1E16H         LINE#         533
+  C:1E21H         LINE#         534
+  C:1E2CH         LINE#         535
+  C:1E37H         LINE#         536
+  C:1E42H         LINE#         537
+  -------         ENDPROC       _I2C_GYRO_DATA
+  -------         PROC          _I2C_ACC_DATA
+  D:0003H         SYMBOL        device
+  D:0002H         SYMBOL        address
+  -------         DO            
+  D:0008H         SYMBOL        bytedata
+  B:0020H.7       SYMBOL        ack
+  -------         ENDDO         
+  C:1C33H         LINE#         547
+  C:1C37H         LINE#         548
+  C:1C37H         LINE#         549
+  C:1C3AH         LINE#         554
+  C:1C3DH         LINE#         555
+  C:1C42H         LINE#         556
+  C:1C47H         LINE#         558
+  C:1C47H         LINE#         559
+  C:1C4CH         LINE#         561
+  C:1C63H         LINE#         562
+  C:1C63H         LINE#         563
+  C:1C68H         LINE#         564
+  C:1C6DH         LINE#         565
+  C:1C72H         LINE#         566
+  C:1C77H         LINE#         568
+  C:1C7CH         LINE#         569
+  C:1C81H         LINE#         570
+  C:1C86H         LINE#         571
+  C:1C8BH         LINE#         573
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 35
+
+
+  C:1C90H         LINE#         574
+  C:1C95H         LINE#         575
+  C:1C9AH         LINE#         576
+  C:1C9FH         LINE#         578
+  C:1CA4H         LINE#         579
+  C:1CA4H         LINE#         581
+  C:1CA7H         LINE#         584
+  C:1CB2H         LINE#         585
+  C:1CBDH         LINE#         586
+  C:1CC8H         LINE#         587
+  C:1CD3H         LINE#         588
+  C:1CDEH         LINE#         589
+  -------         ENDPROC       _I2C_ACC_DATA
+  -------         PROC          _I2CREADMULTIBYTES
+  D:0014H         SYMBOL        device
+  D:0015H         SYMBOL        address
+  D:0016H         SYMBOL        _data
+  D:0019H         SYMBOL        amount
+  -------         DO            
+  D:001AH         SYMBOL        _i
+  -------         ENDDO         
+  C:24CCH         LINE#         608
+  C:24D6H         LINE#         609
+  C:24D6H         LINE#         612
+  C:24E6H         LINE#         613
+  C:24E6H         LINE#         614
+  C:2504H         LINE#         615
+  C:2508H         LINE#         616
+  -------         ENDPROC       _I2CREADMULTIBYTES
+  C:2786H         SYMBOL        L?0078
+  -------         PROC          L?0077
+  -------         ENDPROC       L?0077
+  C:2786H         SYMBOL        L?0078
+  -------         PROC          _TWOBYTES2INT
+  D:0007H         SYMBOL        HighByte
+  D:0005H         SYMBOL        LowByte
+  C:2791H         LINE#         618
+  C:2791H         LINE#         619
+  C:2791H         LINE#         620
+  C:2795H         LINE#         621
+  -------         ENDPROC       _TWOBYTES2INT
+  -------         PROC          _LOWERRESOLUTION2MATCHOLDSENSOR
+  D:000BH         SYMBOL        DataArray
+  -------         DO            
+  D:000EH         SYMBOL        TwoBytesInt
+  D:0010H         SYMBOL        SignedTwoBytesInt
+  D:0012H         SYMBOL        TransFactor
+  D:0006H         SYMBOL        TransformedSignedTwoBytesInt
+  -------         ENDDO         
+  C:217CH         LINE#         623
+  C:2182H         LINE#         624
+  C:2182H         LINE#         626
+  C:2189H         LINE#         638
+  C:21A0H         LINE#         639
+  C:21A0H         LINE#         640
+  C:21A6H         LINE#         641
+  C:21B2H         LINE#         642
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 36
+
+
+  C:21B2H         LINE#         644
+  C:21C8H         LINE#         645
+  C:21D5H         LINE#         646
+  -------         ENDPROC       _LOWERRESOLUTION2MATCHOLDSENSOR
+  -------         PROC          _CALIBRATIONCACULATE
+  D:0001H         SYMBOL        Xorigin
+  D:0058H         SYMBOL        Yorigin
+  D:005BH         SYMBOL        Zorigin
+  D:005EH         SYMBOL        Xcal
+  D:0061H         SYMBOL        Ycal
+  D:0064H         SYMBOL        Zcal
+  -------         DO            
+  D:0067H         SYMBOL        TwoBytesIntX
+  D:0069H         SYMBOL        TwoBytesIntY
+  D:0006H         SYMBOL        TwoBytesIntZ
+  D:006BH         SYMBOL        SignedTwoBytesIntX
+  D:006DH         SYMBOL        SignedTwoBytesIntY
+  D:006FH         SYMBOL        SignedTwoBytesIntZ
+  D:0071H         SYMBOL        TransformedSignedTwoBytesIntX
+  D:0073H         SYMBOL        TransformedSignedTwoBytesIntY
+  D:0004H         SYMBOL        TransformedSignedTwoBytesIntZ
+  -------         ENDDO         
+  C:1705H         LINE#         649
+  C:1705H         LINE#         651
+  C:1705H         LINE#         654
+  C:170CH         LINE#         655
+  C:1719H         LINE#         656
+  C:1722H         LINE#         661
+  C:1728H         LINE#         662
+  C:172EH         LINE#         663
+  C:1732H         LINE#         665
+  C:17A3H         LINE#         668
+  C:1814H         LINE#         671
+  C:1883H         LINE#         674
+  C:1891H         LINE#         675
+  C:1898H         LINE#         676
+  C:18A6H         LINE#         677
+  C:18ADH         LINE#         678
+  C:18BAH         LINE#         679
+  -------         ENDPROC       _CALIBRATIONCACULATE
+  -------         PROC          _SIGNINVERTOR2SCOMPLEMENT
+  D:0007H         SYMBOL        axis
+  -------         DO            
+  D:0006H         SYMBOL        carry
+  -------         ENDDO         
+  C:2236H         LINE#         682
+  C:2236H         LINE#         683
+  C:2236H         LINE#         688
+  C:2248H         LINE#         689
+  C:2248H         LINE#         690
+  C:224CH         LINE#         691
+  C:224CH         LINE#         692
+  C:224EH         LINE#         693
+  C:2250H         LINE#         695
+  C:2250H         LINE#         696
+  C:2256H         LINE#         697
+  C:2258H         LINE#         698
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 37
+
+
+  C:2258H         LINE#         699
+  C:225EH         LINE#         700
+  C:225EH         LINE#         702
+  C:2270H         LINE#         703
+  C:2270H         LINE#         704
+  C:2274H         LINE#         705
+  C:2274H         LINE#         706
+  C:2276H         LINE#         707
+  C:2278H         LINE#         709
+  C:2278H         LINE#         710
+  C:227EH         LINE#         711
+  C:2280H         LINE#         712
+  C:2280H         LINE#         714
+  C:2286H         LINE#         715
+  C:2286H         LINE#         716
+  -------         ENDPROC       _SIGNINVERTOR2SCOMPLEMENT
+  -------         ENDMOD        IIC_FUNCTION
+
+  -------         MODULE        SERIAL
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:1FDBH         PUBLIC        serial
+  C:262AH         PUBLIC        _putline
+  C:2761H         PUBLIC        _delay
+  C:283AH         PUBLIC        GetSerialCount
+  I:00A8H         PUBLIC        inbuf
+  B:00A8H.4       PUBLIC        ES
+  I:00B8H         PUBLIC        outbuf
+  C:25D9H         SYMBOL        _putbuf
+  D:0008H         PUBLIC        istart
+  B:0098H.0       PUBLIC        RI
+  B:0098H.1       PUBLIC        TI
+  D:0009H         PUBLIC        ostart
+  B:0020H.4       PUBLIC        CheckCommandFlag
+  D:000AH         PUBLIC        iend
+  D:000BH         PUBLIC        oend
+  B:0020H.5       SYMBOL        sendactive
+  D:0099H         PUBLIC        SBUF
+  B:0020H.6       SYMBOL        sendfull
+  C:2806H         PUBLIC        _putchar
+  C:2829H         PUBLIC        _GetCommandByte
+  -------         PROC          _DELAY
+  D:0006H         SYMBOL        end_count
+  -------         DO            
+  D:0004H         SYMBOL        start_count
+  -------         ENDDO         
+  C:2761H         LINE#         27
+  C:2761H         LINE#         28
+  C:2761H         LINE#         29
+  C:2773H         LINE#         30
+  -------         ENDPROC       _DELAY
+  -------         PROC          _PUTBUF
+  D:0007H         SYMBOL        c
+  C:25D9H         LINE#         34
+  C:25D9H         LINE#         35
+  C:25DCH         LINE#         36
+  C:25DEH         LINE#         37
+  C:25E1H         LINE#         38
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 38
+
+
+  C:25E3H         LINE#         39
+  C:25E5H         LINE#         40
+  C:25E7H         LINE#         42
+  C:25E9H         LINE#         43
+  C:25E9H         LINE#         44
+  C:25F5H         LINE#         45
+  C:25FFH         LINE#         46
+  C:25FFH         LINE#         47
+  C:2601H         LINE#         48
+  C:2601H         LINE#         49
+  -------         ENDPROC       _PUTBUF
+  -------         PROC          _PUTCHAR
+  D:0005H         SYMBOL        c
+  C:2806H         LINE#         54
+  C:2808H         LINE#         56
+  C:280BH         LINE#         58
+  C:280BH         LINE#         59
+  -------         ENDPROC       _PUTCHAR
+  -------         PROC          _PUTLINE
+  D:000CH         SYMBOL        Dataline
+  D:0004H         SYMBOL        DataCount
+  -------         DO            
+  D:000FH         SYMBOL        index
+  -------         ENDDO         
+  C:262AH         LINE#         71
+  C:2632H         LINE#         72
+  C:2635H         LINE#         73
+  C:2638H         LINE#         74
+  C:2638H         LINE#         75
+  C:264EH         LINE#         76
+  C:264FH         LINE#         77
+  C:2651H         LINE#         78
+  -------         ENDPROC       _PUTLINE
+  -------         PROC          GETSERIALCOUNT
+  C:283AH         LINE#         83
+  C:283AH         LINE#         85
+  C:283CH         LINE#         86
+  -------         ENDPROC       GETSERIALCOUNT
+  -------         PROC          _GETCOMMANDBYTE
+  D:0007H         SYMBOL        index
+  C:2829H         LINE#         91
+  C:2829H         LINE#         93
+  C:282FH         LINE#         94
+  -------         ENDPROC       _GETCOMMANDBYTE
+  -------         PROC          SERIAL
+  C:1FDBH         LINE#         100
+  C:1FE2H         LINE#         102
+  C:1FE5H         LINE#         104
+  C:1FE7H         LINE#         106
+  C:1FEDH         LINE#         107
+  C:1FEDH         LINE#         108
+  C:1FF7H         LINE#         109
+  C:2008H         LINE#         110
+  C:2019H         LINE#         111
+  C:201BH         LINE#         112
+  C:201EH         LINE#         113
+  C:2020H         LINE#         114
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 39
+
+
+  C:2022H         LINE#         116
+  C:2022H         LINE#         117
+  C:2025H         LINE#         118
+  C:2025H         LINE#         121
+  C:2027H         LINE#         123
+  C:2029H         LINE#         125
+  C:2029H         LINE#         127
+  C:202CH         LINE#         129
+  C:202EH         LINE#         130
+  C:2034H         LINE#         131
+  C:2041H         LINE#         132
+  C:2043H         LINE#         133
+  C:2045H         LINE#         134
+  C:2047H         LINE#         135
+  C:2047H         LINE#         137
+  -------         ENDPROC       SERIAL
+  -------         ENDMOD        SERIAL
+
+  -------         MODULE        LSM9DS1_CALIBRATION
+  C:0000H         SYMBOL        _ICE_DUMMY_
+  C:2371H         PUBLIC        _read_gain_and_offset_matrix
+  C:2326H         PUBLIC        _power_of_10
+  C:22D7H         PUBLIC        _write_gain_and_offset_matrix
+  C:1128H         PUBLIC        _byte_to_float
+  -------         PROC          _WRITE_GAIN_AND_OFFSET_MATRIX
+  D:000AH         SYMBOL        row
+  D:000BH         SYMBOL        col
+  D:000CH         SYMBOL        num
+  -------         DO            
+  D:0010H         SYMBOL        i
+  D:0011H         SYMBOL        char_to_float
+  -------         ENDDO         
+  C:22D7H         LINE#         5
+  C:22DBH         LINE#         9
+  C:22EAH         LINE#         11
+  C:22FFH         LINE#         12
+  C:2321H         LINE#         13
+  C:2325H         LINE#         14
+  -------         ENDPROC       _WRITE_GAIN_AND_OFFSET_MATRIX
+  -------         PROC          _READ_GAIN_AND_OFFSET_MATRIX
+  D:000AH         SYMBOL        row
+  D:000BH         SYMBOL        col
+  -------         DO            
+  D:000CH         SYMBOL        i
+  D:000DH         SYMBOL        char_to_float
+  -------         ENDDO         
+  C:2371H         LINE#         16
+  C:2375H         LINE#         20
+  C:238AH         LINE#         21
+  C:23ADH         LINE#         22
+  C:23B1H         LINE#         24
+  C:23B9H         LINE#         25
+  -------         ENDPROC       _READ_GAIN_AND_OFFSET_MATRIX
+  -------         PROC          _POWER_OF_10
+  D:0007H         SYMBOL        exp
+  -------         DO            
+  D:0002H         SYMBOL        result
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 40
+
+
+  D:0001H         SYMBOL        i
+  -------         ENDDO         
+  C:2326H         LINE#         27
+  C:2326H         LINE#         28
+  C:232AH         LINE#         29
+  C:232CH         LINE#         31
+  C:2337H         LINE#         32
+  C:233BH         LINE#         33
+  C:233BH         LINE#         34
+  C:2343H         LINE#         35
+  C:2347H         LINE#         36
+  C:2347H         LINE#         38
+  C:235AH         LINE#         39
+  C:2369H         LINE#         40
+  C:236CH         LINE#         41
+  C:2370H         LINE#         42
+  -------         ENDPROC       _POWER_OF_10
+  -------         PROC          _BYTE_TO_FLOAT
+  D:000AH         SYMBOL        bytes
+  D:000DH         SYMBOL        index_start
+  D:000EH         SYMBOL        index_end
+  -------         DO            
+  D:000FH         SYMBOL        i
+  D:0010H         SYMBOL        sign_semicolon
+  D:0011H         SYMBOL        sign_dot
+  D:0012H         SYMBOL        flag_sign
+  D:0013H         SYMBOL        result
+  -------         ENDDO         
+  C:1128H         LINE#         44
+  C:1130H         LINE#         45
+  C:1133H         LINE#         46
+  C:1136H         LINE#         47
+  C:1139H         LINE#         48
+  C:113CH         LINE#         49
+  C:1144H         LINE#         53
+  C:1155H         LINE#         54
+  C:1158H         LINE#         55
+  C:115AH         LINE#         56
+  C:115CH         LINE#         57
+  C:1160H         LINE#         58
+  C:1163H         LINE#         59
+  C:1165H         LINE#         60
+  C:1165H         LINE#         63
+  C:1175H         LINE#         64
+  C:118CH         LINE#         65
+  C:118FH         LINE#         66
+  C:11A4H         LINE#         67
+  C:11A6H         LINE#         68
+  C:11A6H         LINE#         69
+  C:11AAH         LINE#         70
+  C:11ADH         LINE#         71
+  C:11AFH         LINE#         72
+  C:11DDH         LINE#         73
+  C:11DFH         LINE#         74
+  C:11DFH         LINE#         75
+  C:11E3H         LINE#         78
+  C:11F0H         LINE#         79
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 41
+
+
+  C:11F4H         LINE#         80
+  C:11F4H         LINE#         81
+  C:1208H         LINE#         82
+  C:1210H         LINE#         83
+  C:1210H         LINE#         86
+  C:1220H         LINE#         87
+  C:1278H         LINE#         88
+  C:127CH         LINE#         91
+  C:1291H         LINE#         92
+  C:130DH         LINE#         93
+  C:1312H         LINE#         94
+  C:133BH         LINE#         95
+  C:133BH         LINE#         96
+  -------         ENDPROC       _BYTE_TO_FLOAT
+  -------         ENDMOD        LSM9DS1_CALIBRATION
+
+  -------         MODULE        ?C?FPADD
+  C:0807H         PUBLIC        ?C?FPADD
+  C:0803H         PUBLIC        ?C?FPSUB
+  -------         ENDMOD        ?C?FPADD
+
+  -------         MODULE        ?C?FPMUL
+  C:08F8H         PUBLIC        ?C?FPMUL
+  -------         ENDMOD        ?C?FPMUL
+
+  -------         MODULE        ?C?FPDIV
+  C:0A01H         PUBLIC        ?C?FPDIV
+  -------         ENDMOD        ?C?FPDIV
+
+  -------         MODULE        ?C?FPCMP
+  C:0AA0H         PUBLIC        ?C?FPCMP
+  C:0A9EH         PUBLIC        ?C?FPCMP3
+  -------         ENDMOD        ?C?FPCMP
+
+  -------         MODULE        ?C?FCAST
+  C:0B21H         PUBLIC        ?C?FCASTC
+  C:0B1CH         PUBLIC        ?C?FCASTI
+  C:0B17H         PUBLIC        ?C?FCASTL
+  -------         ENDMOD        ?C?FCAST
+
+  -------         MODULE        ?C?CASTF
+  C:0B55H         PUBLIC        ?C?CASTF
+  -------         ENDMOD        ?C?CASTF
+
+  -------         MODULE        ?C?CLDPTR
+  C:0BD6H         PUBLIC        ?C?CLDPTR
+  -------         ENDMOD        ?C?CLDPTR
+
+  -------         MODULE        ?C?CLDOPTR
+  C:0BEFH         PUBLIC        ?C?CLDOPTR
+  -------         ENDMOD        ?C?CLDOPTR
+
+  -------         MODULE        ?C?CSTPTR
+  C:0C1CH         PUBLIC        ?C?CSTPTR
+  -------         ENDMOD        ?C?CSTPTR
+
+  -------         MODULE        ?C?CSTOPTR
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 42
+
+
+  C:0C2EH         PUBLIC        ?C?CSTOPTR
+  -------         ENDMOD        ?C?CSTOPTR
+
+  -------         MODULE        ?C?IMUL
+  C:0C50H         PUBLIC        ?C?IMUL
+  -------         ENDMOD        ?C?IMUL
+
+  -------         MODULE        ?C?LNEG
+  C:0C62H         PUBLIC        ?C?LNEG
+  -------         ENDMOD        ?C?LNEG
+
+  -------         MODULE        ?C?LLDIDATA
+  C:0C70H         PUBLIC        ?C?LLDIDATA
+  -------         ENDMOD        ?C?LLDIDATA
+
+  -------         MODULE        ?C?LLDIDATA0
+  C:0C7CH         PUBLIC        ?C?LLDIDATA0
+  -------         ENDMOD        ?C?LLDIDATA0
+
+  -------         MODULE        ?C?LSTIDATA
+  C:0C89H         PUBLIC        ?C?LSTIDATA
+  -------         ENDMOD        ?C?LSTIDATA
+
+  -------         MODULE        ?C?OFFXADD
+  C:0C95H         PUBLIC        ?C?OFFXADD
+  -------         ENDMOD        ?C?OFFXADD
+
+  -------         MODULE        ?C?CCASE
+  C:0CA1H         PUBLIC        ?C?CCASE
+  -------         ENDMOD        ?C?CCASE
+
+*** WARNING L52: EVAL VERSION USED BEFORE, REBUILD ALL *.OBJ FILES
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2C_INIT?IIC_FUNCTION
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CALIBRATIONCACULATE?IIC_FUNCTION
+
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: ?DT?HMC5983_IIC
+    LENGTH:  002FH
+
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: _DATA_GROUP_
+    LENGTH:  0020H
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 43
+
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  RX3
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROZ_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROY_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROX_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROMODE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  SENSOR_TYPE_NAME
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  READCOMMANDFLAG
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCZ_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCY_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCX_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ONEBYTE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  Z_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  Y_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  X_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 44
+
+
+    SYMBOL:  T_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCMODE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  MODE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  INCOUNT
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  INLINE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 19DDH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 19FCH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A26H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A45H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A6FH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A8EH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Address.obj (IIC_ADDRESS)
+    ADDRESS: 1B85H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Address.obj (IIC_ADDRESS)
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 45
+
+
+    ADDRESS: 1B87H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Address.obj (IIC_ADDRESS)
+    ADDRESS: 1B89H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1ACAH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1ACCH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1ACEH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AD8H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AE2H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AECH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AF6H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B00H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B0AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B16H
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 46
+
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B18H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B1FH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B21H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B28H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B2AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B44H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B46H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B5AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B5CH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B70H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B72H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 47
+
+
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 21FFH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2201H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2203H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 220DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2217H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2223H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2225H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DC2H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DC4H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DC6H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DD0H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DDAH
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 48
+
+
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DE4H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DEEH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DF8H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E02H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E19H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E1BH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E2FH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E31H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E45H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E47H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C59H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 49
+
+
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C5BH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C5DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C67H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C71H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C7BH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C85H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C8FH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C99H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CB5H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CB7H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CCBH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 50
+
+
+    ADDRESS: 1CCDH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CE1H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CE3H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2196H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2198H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 219AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2249H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2251H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2255H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2259H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 225DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2271H
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 51
+
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2279H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 227DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2281H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2285H
+
+******************************************************************************
+* RESTRICTED VERSION WITH 0800H BYTE CODE SIZE LIMIT; USED: 1AFEH BYTE (337%) *
+******************************************************************************
+
+Program Size: data=288.2 xdata=0 code=8262
+LINK/LOCATE RUN COMPLETE.  11 WARNING(S),  95 ERROR(S)
+
+*** WARNING L52: EVAL VERSION USED BEFORE, REBUILD ALL *.OBJ FILES
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?TIMER0_INIT?HMC5983_IIC
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?I2C_INIT?IIC_FUNCTION
+
+*** WARNING L16: UNCALLED SEGMENT, IGNORED FOR OVERLAY PROCESS
+    SEGMENT: ?PR?_CALIBRATIONCACULATE?IIC_FUNCTION
+
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: ?DT?HMC5983_IIC
+    LENGTH:  002FH
+
+*** ERROR L107: ADDRESS SPACE OVERFLOW
+    SPACE:   DATA    
+    SEGMENT: _DATA_GROUP_
+    LENGTH:  0020H
+
+*** WARNING L1: UNRESOLVED EXTERNAL SYMBOL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  RX3
+    SEGMENT: ?DT?HMC5983_IIC
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 52
+
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROZ_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROY_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROX_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  GYROMODE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  SENSOR_TYPE_NAME
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  READCOMMANDFLAG
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCZ_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCY_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ACCX_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  ONEBYTE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  Z_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  Y_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  X_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  T_DATA
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 53
+
+
+    SYMBOL:  ACCMODE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  MODE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  INCOUNT
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** ERROR L105: PUBLIC REFERS TO IGNORED SEGMENT
+    SYMBOL:  INLINE
+    SEGMENT: ?DT?HMC5983_IIC
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 19DDH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 19FCH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A26H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A45H
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A6FH
+
+*** WARNING L2: REFERENCE MADE TO UNRESOLVED EXTERNAL
+    SYMBOL:  _I2CREADTRM2
+    MODULE:  .\output\HMC5983_IIC.obj (HMC5983_IIC)
+    ADDRESS: 1A8EH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Address.obj (IIC_ADDRESS)
+    ADDRESS: 1B85H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Address.obj (IIC_ADDRESS)
+    ADDRESS: 1B87H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 54
+
+
+    MODULE:  .\output\IIC_Address.obj (IIC_ADDRESS)
+    ADDRESS: 1B89H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1ACAH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1ACCH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1ACEH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AD8H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AE2H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AECH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1AF6H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B00H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B0AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B16H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B18H
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 55
+
+
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B1FH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B21H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B28H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B2AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B44H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B46H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B5AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Y_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B5CH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B70H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1B72H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 21FFH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 56
+
+
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2201H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2203H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 220DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2217H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2223H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  T_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2225H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DC2H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DC4H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DC6H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DD0H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DDAH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 57
+
+
+    ADDRESS: 1DE4H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DEEH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1DF8H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E02H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E19H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E1BH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E2FH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E31H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E45H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  GYROZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1E47H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C59H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C5BH
+
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 58
+
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C5DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C67H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C71H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C7BH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C85H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C8FH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1C99H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CB5H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCX_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CB7H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CCBH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCY_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CCDH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 59
+
+
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CE1H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  ACCZ_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 1CE3H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2196H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2198H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  SENSOR_TYPE_NAME
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 219AH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2249H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2251H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2255H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2259H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  X_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 225DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2271H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2279H
+BL51 BANKED LINKER/LOCATER V6.22.2.0                                                  10/18/2021  10:43:41  PAGE 60
+
+
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 227DH
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2281H
+
+*** ERROR L118: REFERENCE MADE TO ERRONEOUS EXTERNAL
+    SYMBOL:  Z_DATA
+    MODULE:  .\output\IIC_Function.obj (IIC_FUNCTION)
+    ADDRESS: 2285H
+
+*** FATAL ERROR L250: CODE SIZE LIMIT IN RESTRICTED VERSION EXCEEDED
+    MODULE:  .\output\IIC_Function.obj (-----)
+    LIMIT:   0800H BYTES
