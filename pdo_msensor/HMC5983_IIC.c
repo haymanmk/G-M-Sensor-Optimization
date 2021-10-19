@@ -12,6 +12,7 @@
 //===========================//
 //#define HMC5983 0
 //#define MMC5883MA 1
+#define ACK 0x06
 
 //===========================//
 //=== Address parameters ====//
@@ -682,6 +683,8 @@ void COM_Command(void)
 				// 	}
 				// 	break;
 				case ('W'): //Write gain and offset matrix
+					putchar(ACK);
+					break;
 					//EW32=0.123;
 					// if(inline[2]>='0' && inline[2]<=
 					// '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
@@ -695,18 +698,18 @@ void COM_Command(void)
 					// 		 //fail
 					// 	 }
 					// }
-					else{
-						//fail
-					}
+					// else{
+						// fail
+					// }
 					break;
 
-				case ('R'): //Read gain and offset matrix
-					char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
-					break;
-				case ('?'):
-					putline("EEPROM operation introduction.", 30);
-					EOL();
-					break;
+				// case ('R'): //Read gain and offset matrix
+				// 	char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
+				// 	break;
+				// case ('?'):
+				// 	putline("EEPROM operation introduction.", 30);
+				// 	EOL();
+				// 	break;
 				default:
 					break;
 			}
