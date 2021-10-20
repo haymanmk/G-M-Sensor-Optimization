@@ -408,6 +408,15 @@ void main(void)
 			COM_Command();
 			RY4_ON;
 		}
+		//=== MODE 6 ===//
+		/**
+		 * Continuously write data into EEPROM until all the elements in array are refreshed.
+		 */
+
+		if (MODE == 6)
+		{
+			COM_Command();
+		}
 
 		//--------------------------------------------------------------------
 
@@ -570,6 +579,9 @@ void COM_Command(void)
 	}
 	if (ReadCommandFlag == 1)
 	{
+		if (MODE == 6) {
+
+		}
 		switch (inline[0])
 		{
 
@@ -683,7 +695,11 @@ void COM_Command(void)
 				// 	}
 				// 	break;
 				case ('W'): //Write gain and offset matrix
-					putchar(ACK);
+					// Procedure: PC sends ['EW'] -> MCU returns [<ACK>] -> PC writes datas recursively -> MCU returns [<ACK>]
+					// -> until all elements refreshed -> MCU replies [<ACK>] and ['Done']
+					putchar(ACK);	// acknowledge pc request has been received,
+									// and it is ready to receive array data sequentially.
+					MODE = 6;
 					break;
 					//EW32=0.123;
 					// if(inline[2]>='0' && inline[2]<=
