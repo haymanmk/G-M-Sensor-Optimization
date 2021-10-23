@@ -14,72 +14,72 @@
 //#define MMC5883MA 1
 #define ACK 0x06
 
-//===========================//
-//=== Address parameters ====//
-//===========================//
-idata char ADD_I2C;		 //I2C control address
-idata char ADD_CONFIG_A; //Configuration Register A   Read/Write
-idata char ADD_CONFIG_B; //Configuration Register B   Read/Write
-idata char ADD_MODE;	 //Mode Register  Read/Write
-idata char ADD_X_MSB;	 //Data Output X MSB Register  Read
-idata char ADD_X_LSB;	 //Data Output X LSB Register  Read
-idata char ADD_Z_MSB;	 //Data Output Z MSB Register  Read
-idata char ADD_Z_LSB;	 //Data Output Z LSB Register  Read
-idata char ADD_Y_MSB;	 //Data Output Y MSB Register  Read
-idata char ADD_Y_LSB;	 //Data Output Y LSB Register  Read
-idata char ADD_STATUS;	 //Status Register  Read
-idata char ADD_ID_A;	 //Identification Register A  Read
-idata char ADD_ID_B;	 //Identification Register B  Read
-idata char ADD_ID_C;	 //Identification Register C  Read
-idata char ADD_TMP_MSB;	 //Temperature Output MSB Register  Read
-idata char ADD_TMP_LSB;	 //Temperature Output LSB Register  Read
-idata char ADD_ID;		 //Product ID 0b0010 1111
+// //===========================//
+// //=== Address parameters ====//
+// //===========================//
+// idata char ADD_I2C;		 //I2C control address
+// idata char ADD_CONFIG_A; //Configuration Register A   Read/Write
+// idata char ADD_CONFIG_B; //Configuration Register B   Read/Write
+// idata char ADD_MODE;	 //Mode Register  Read/Write
+// idata char ADD_X_MSB;	 //Data Output X MSB Register  Read
+// idata char ADD_X_LSB;	 //Data Output X LSB Register  Read
+// idata char ADD_Z_MSB;	 //Data Output Z MSB Register  Read
+// idata char ADD_Z_LSB;	 //Data Output Z LSB Register  Read
+// idata char ADD_Y_MSB;	 //Data Output Y MSB Register  Read
+// idata char ADD_Y_LSB;	 //Data Output Y LSB Register  Read
+// idata char ADD_STATUS;	 //Status Register  Read
+// idata char ADD_ID_A;	 //Identification Register A  Read
+// idata char ADD_ID_B;	 //Identification Register B  Read
+// idata char ADD_ID_C;	 //Identification Register C  Read
+// idata char ADD_TMP_MSB;	 //Temperature Output MSB Register  Read
+// idata char ADD_TMP_LSB;	 //Temperature Output LSB Register  Read
+// idata char ADD_ID;		 //Product ID 0b0010 1111
 
-/**********************************************************************/
-//#define MMC5883MA
-idata char ADD_CONFIG_0; //Control register 0
-idata char ADD_CONFIG_1; //Control register 1
-idata char ADD_CONFIG_2; //Control register 2
-//extern char ADD_X_THR;    //Motion detection threshold of X
-//extern char ADD_Y_THR;    //Motion detection threshold of Y
-//extern char ADD_Z_THR;    //Motion detection threshold of Z
-/**********************************************************************/
-//#define MAG_LSM9DS1
-idata char CTRL_REG1_M; //Control register 1
-idata char CTRL_REG2_M; //Control register 2
-idata char CTRL_REG3_M; //Control register 3
-idata char CTRL_REG4_M; //Control register 4
-idata char CTRL_REG5_M; //Control register 5
+// /**********************************************************************/
+// //#define MMC5883MA
+// idata char ADD_CONFIG_0; //Control register 0
+// idata char ADD_CONFIG_1; //Control register 1
+// idata char ADD_CONFIG_2; //Control register 2
+// //extern char ADD_X_THR;    //Motion detection threshold of X
+// //extern char ADD_Y_THR;    //Motion detection threshold of Y
+// //extern char ADD_Z_THR;    //Motion detection threshold of Z
+// /**********************************************************************/
+// //#define MAG_LSM9DS1
+// idata char CTRL_REG1_M; //Control register 1
+// idata char CTRL_REG2_M; //Control register 2
+// idata char CTRL_REG3_M; //Control register 3
+// idata char CTRL_REG4_M; //Control register 4
+// idata char CTRL_REG5_M; //Control register 5
 
-//#define ACGY_LSM9DS1
-idata char ACGY_ADD_I2C;	 //I2C control address 0x60 0110 0000
-idata char ACGY_GYR_ADD_X_LSB;	 //Xout LSB
-idata char ACGY_GYR_ADD_X_MSB;	 //Xout MSB
-idata char ACGY_GYR_ADD_Y_LSB;	 //Yout LSB
-idata char ACGY_GYR_ADD_Y_MSB;	 //Yout MSB
-idata char ACGY_GYR_ADD_Z_LSB;	 //Zout LSB
-idata char ACGY_GYR_ADD_Z_MSB;	 //Zout MSB
-idata char ACGY_ADD_STATUS;	 //Device status
-idata char ACGY_CTRL_REG1_G;	 //Angular rate sensor Control Register1
-idata char ACGY_ORIENT_CFG_G; //Angular rate sensor sign & orientation
-idata char ACGY_CTRL_REG4;	 //GYRO XYZ enable
-idata char ACGY_CTRL_REG5;	 //ACC XYZ enable
-idata char ACGY_CTRL_REG6;	 //ACC full-scale, bandwidth
-idata char ACGY_CTRL_REG7;	 //ACC high resolution mode
-idata char ACGY_CTRL_REG8;	 //Control register 8 >> reset all registers SW_reset
-idata char ACGY_CTRL_REG9;	 //FIFO enable
-idata char ACGY_ADD_TMP_MSB;	 //Temperature Output MSB Register  Read
-idata char ACGY_ADD_TMP_LSB;	 //Temperature Output LSB Register  Read
-idata char ACGY_ADD_ID;		 //Product ID 0b0011 1101
+// //#define ACGY_LSM9DS1
+// idata char ACGY_ADD_I2C;	 //I2C control address 0x60 0110 0000
+// idata char ACGY_GYR_ADD_X_LSB;	 //Xout LSB
+// idata char ACGY_GYR_ADD_X_MSB;	 //Xout MSB
+// idata char ACGY_GYR_ADD_Y_LSB;	 //Yout LSB
+// idata char ACGY_GYR_ADD_Y_MSB;	 //Yout MSB
+// idata char ACGY_GYR_ADD_Z_LSB;	 //Zout LSB
+// idata char ACGY_GYR_ADD_Z_MSB;	 //Zout MSB
+// idata char ACGY_ADD_STATUS;	 //Device status
+// idata char ACGY_CTRL_REG1_G;	 //Angular rate sensor Control Register1
+// idata char ACGY_ORIENT_CFG_G; //Angular rate sensor sign & orientation
+// idata char ACGY_CTRL_REG4;	 //GYRO XYZ enable
+// idata char ACGY_CTRL_REG5;	 //ACC XYZ enable
+// idata char ACGY_CTRL_REG6;	 //ACC full-scale, bandwidth
+// idata char ACGY_CTRL_REG7;	 //ACC high resolution mode
+// idata char ACGY_CTRL_REG8;	 //Control register 8 >> reset all registers SW_reset
+// idata char ACGY_CTRL_REG9;	 //FIFO enable
+// idata char ACGY_ADD_TMP_MSB;	 //Temperature Output MSB Register  Read
+// idata char ACGY_ADD_TMP_LSB;	 //Temperature Output LSB Register  Read
+// idata char ACGY_ADD_ID;		 //Product ID 0b0011 1101
 
-//#define ACC_LSM9DS1
-idata char ACGY_ACC_ADD_X_LSB;  //Xout LSB
-idata char ACGY_ACC_ADD_X_MSB;  //Xout MSB
-idata char ACGY_ACC_ADD_Y_LSB;  //Yout LSB
-idata char ACGY_ACC_ADD_Y_MSB;  //Yout MSB
-idata char ACGY_ACC_ADD_Z_LSB;  //Zout LSB
-idata char ACGY_ACC_ADD_Z_MSB;  //Zout MSB
-idata char ACGY_FIFO_CTRL; //FIFO mode select
+// //#define ACC_LSM9DS1
+// idata char ACGY_ACC_ADD_X_LSB;  //Xout LSB
+// idata char ACGY_ACC_ADD_X_MSB;  //Xout MSB
+// idata char ACGY_ACC_ADD_Y_LSB;  //Yout LSB
+// idata char ACGY_ACC_ADD_Y_MSB;  //Yout MSB
+// idata char ACGY_ACC_ADD_Z_LSB;  //Zout LSB
+// idata char ACGY_ACC_ADD_Z_MSB;  //Zout MSB
+// idata char ACGY_FIFO_CTRL; //FIFO mode select
 
 //For RS232 Communication
 unsigned char incount;
@@ -111,8 +111,9 @@ bit Acc_DRY_Bit;
 char MODE = 0;
 char GyroMODE = 0;
 char AccMODE = 0;
-char *sensor_type_name;
+// char *sensor_type_name;
 bit ReadHighResolution;
+unsigned short indexEEPROM; //used to record current index when reading/ writing data in EEPROM
 
 struct SENSOR_TYPE
 {
@@ -123,14 +124,14 @@ struct SENSOR_TYPE
 	char ID[3]; //ID data
 };
 
-code struct SENSOR_TYPE sensor_type[] = {
-	// {"HMC5983", 0x3C, 0x0A, 3, "H43"},
-	// {"MMC5883MA", 0x60, 0x2F, 1, 0x0C},
-	{"MAG_LSM9DS1", 0x38, 0x0F, 1, 0x3D},
-	{"ACGY_LSM9DS1", 0xD4, 0x0F, 1, 0x68},
-	{"LSM9DS1", 0, 0, 0, 0},
+// code struct SENSOR_TYPE sensor_type[] = {
+// 	// {"HMC5983", 0x3C, 0x0A, 3, "H43"},
+// 	// {"MMC5883MA", 0x60, 0x2F, 1, 0x0C},
+// 	{"MAG_LSM9DS1", 0x38, 0x0F, 1, 0x3D},
+// 	{"ACGY_LSM9DS1", 0xD4, 0x0F, 1, 0x68},
+// 	{"LSM9DS1", 0, 0, 0, 0},
 
-};
+// };
 
 /******************************************************************************/
 /*       Test	                                                                */
@@ -141,7 +142,6 @@ typedef union{
 	idata float _float;
 }test1;
 */
-
 
 /******************************************************************************/
 /*       Initialize                                                           */
@@ -174,7 +174,7 @@ void ControlAlertLight(unsigned char idata *_inline);
 void ReadSensorID(unsigned char idata *_inline);
 void SetReadingTempMode(void);
 //void DetectConnectedSensor(unsigned char xdata *_inline);
-char CheckSensorCorrect(void);
+// char CheckSensorCorrect(void);
 bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID);
 
 /******************************************************************************/
@@ -187,7 +187,7 @@ void main(void)
 	unsigned int GyroiRx3;
 	unsigned int AcciRx3;
 	char index_sensor_type_struct;
-	
+
 	Initial_board();
 	Initial_relay();
 
@@ -205,11 +205,11 @@ void main(void)
 	delay(10000);
 
 	// detect the connected type of sensor
-	index_sensor_type_struct = CheckSensorCorrect();
+	// index_sensor_type_struct = CheckSensorCorrect();
 
-	sensor_type_name = &sensor_type[index_sensor_type_struct].type;
+	// sensor_type_name = &sensor_type[index_sensor_type_struct].type;
 
-	SetI2CParameters();
+	// SetI2CParameters();
 	Initial_register();
 
 	putline("READY", 5);
@@ -284,9 +284,8 @@ void main(void)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 				// else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
-				
 			}
-			
+
 			if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
 			{
 				//reset all registers
@@ -299,7 +298,7 @@ void main(void)
 			// }
 			// else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
 			// 	I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x03); //Go to Sleep
-			
+
 			putline("ACK", 3);
 			EOL();
 			putline("READY", 5);
@@ -343,7 +342,6 @@ void main(void)
 					DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
 				// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 				// 	DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
-				
 
 				if (DRY_Bit == 0)
 				{
@@ -372,7 +370,6 @@ void main(void)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 				// else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
-				
 			}
 
 			//I2C_ByteWrite(0x3C,0x02,0x03); //Go to Sleep
@@ -575,12 +572,16 @@ void COM_Command(void)
 
 	if (CheckCommandFlag == 1)
 	{
-		command_count = ReadCommand()-2; // -2 means ignore CRLF
+		command_count = ReadCommand() - 2; // -2 means ignore CRLF
 	}
 	if (ReadCommandFlag == 1)
 	{
-		if (MODE == 6) {
-
+		if (MODE == 6 && command_count >= 2 && indexEEPROM < 12)
+		{
+			//push in bytes in little-endian approach
+			write(indexEEPROM, inline[0]);
+			indexEEPROM++;
+			putchar(ACK);
 		}
 		switch (inline[0])
 		{
@@ -653,14 +654,14 @@ void COM_Command(void)
 			break;
 
 		case ('D'):
-			if (inline[1] == 'S')
-			{
-				_index = CheckSensorCorrect();
-				sensor_type_name = &sensor_type[_index].type;
-				SetI2CParameters();
-				putline(sensor_type[_index].type, sizeof(sensor_type[_index].type));
-				EOL();
-			}
+			// if (inline[1] == 'S')
+			// {
+			// 	_index = CheckSensorCorrect();
+			// 	sensor_type_name = &sensor_type[_index].type;
+			// 	SetI2CParameters();
+			// 	putline(sensor_type[_index].type, sizeof(sensor_type[_index].type));
+			// 	EOL();
+			// }
 			break;
 
 		case ('G'):
@@ -671,71 +672,70 @@ void COM_Command(void)
 		case ('E'):
 			switch (inline[1])
 			{
-				// case ('A'): //EEPROM W/R
-				// 	switch (inline[2])
-				// 	{		
-				// 		case ('R'):
-				// 			if(command_count >= 7 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
-				// 				char_float_conv._float = read(16*(inline[5]-'0')+(inline[6]-'0'));
-				// 				EOL();
-				// 			}
-				// 			break;
-				// 		case ('W'):
-				// 			if(command_count >= 8 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
-				// 				write(16*(inline[5]-'0')+(inline[6]-'0'), inline[7]);
-				// 				putline("Write 0x", 8);
-				// 				putline(inline+5, 2);
-				// 				EOL();
-				// 			}
-				// 			break;
-				// 		default:
-				// 			putline("Invalid command for EEPROM R/W.", 31);
-				// 			EOL();
-				// 			break;
-				// 	}
-				// 	break;
-				case ('W'): //Write gain and offset matrix
-					// Procedure: PC sends ['EW'] -> MCU returns [<ACK>] -> PC writes datas recursively -> MCU returns [<ACK>]
-					// -> until all elements refreshed -> MCU replies [<ACK>] and ['Done']
-					putchar(ACK);	// acknowledge pc request has been received,
-									// and it is ready to receive array data sequentially.
-					MODE = 6;
-					break;
-					//EW32=0.123;
-					// if(inline[2]>='0' && inline[2]<=
-					// '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
-					// 	 char_float_conv._float = byte_to_float(inline, 5, 15);
-					// 	 if(char_float_conv._float != -999.0){
-					// 		write_gain_and_offset_matrix(inline[2]-'0', inline[3]-'0', char_float_conv._float);
-					// 	 	putline("Write success", 13);
-					// 	 }
-					// 	 else{
-					// 		 putline("Write failure", 13);
-					// 		 //fail
-					// 	 }
-					// }
-					// else{
-						// fail
-					// }
-					break;
+			// case ('A'): //EEPROM W/R
+			// 	switch (inline[2])
+			// 	{
+			// 		case ('R'):
+			// 			if(command_count >= 7 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
+			// 				char_float_conv._float = read(16*(inline[5]-'0')+(inline[6]-'0'));
+			// 				EOL();
+			// 			}
+			// 			break;
+			// 		case ('W'):
+			// 			if(command_count >= 8 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
+			// 				write(16*(inline[5]-'0')+(inline[6]-'0'), inline[7]);
+			// 				putline("Write 0x", 8);
+			// 				putline(inline+5, 2);
+			// 				EOL();
+			// 			}
+			// 			break;
+			// 		default:
+			// 			putline("Invalid command for EEPROM R/W.", 31);
+			// 			EOL();
+			// 			break;
+			// 	}
+			// 	break;
+			case ('W'): //Write gain and offset matrix
+				// Procedure: PC sends ['EW'] -> MCU returns [<ACK>] -> PC writes datas recursively -> MCU returns [<ACK>]
+				// -> until all elements refreshed -> MCU replies [<ACK>] and ['Done']
+				putchar(ACK); // acknowledge pc request has been received,
+							  // and it is ready to receive array data sequentially.
+				MODE = 6;
+				indexEEPROM = 0;
+				break;
+				//EW32=0.123;
+				// if(inline[2]>='0' && inline[2]<=
+				// '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
+				// 	 char_float_conv._float = byte_to_float(inline, 5, 15);
+				// 	 if(char_float_conv._float != -999.0){
+				// 		write_gain_and_offset_matrix(inline[2]-'0', inline[3]-'0', char_float_conv._float);
+				// 	 	putline("Write success", 13);
+				// 	 }
+				// 	 else{
+				// 		 putline("Write failure", 13);
+				// 		 //fail
+				// 	 }
+				// }
+				// else{
+				// fail
+				// }
+				// break;
 
-				// case ('R'): //Read gain and offset matrix
-				// 	char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
-				// 	break;
-				// case ('?'):
-				// 	putline("EEPROM operation introduction.", 30);
-				// 	EOL();
-				// 	break;
-				default:
-					break;
+			// case ('R'): //Read gain and offset matrix
+			// 	char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
+			// 	break;
+			// case ('?'):
+			// 	putline("EEPROM operation introduction.", 30);
+			// 	EOL();
+			// 	break;
+			default:
+				break;
 			}
 		} //switch 1
 
 		ReadCommandFlag = 0;
 	} // if(ReadCommandFlag  == 1)
 }
-
-
 
 //MODE = 0 Nothing /= 1 Pass/= 2 MR Output /=3 Contiue MR Output
 //----------------------------------------------------------------------------
@@ -1182,53 +1182,53 @@ void DetectConnectedSensor(unsigned char xdata *_inline)
 }
 */
 
-char CheckSensorCorrect(void)
-{
-	// This function is used to find the correct type of sensor connected with 8051 board.
-	// If there is a sensor defined in the sensor_type struct table found out,
-	// it will return the index of the sensor in sensor_type variable.
-	// If not, return 255, the size of char.
+// char CheckSensorCorrect(void)
+// {
+// 	// This function is used to find the correct type of sensor connected with 8051 board.
+// 	// If there is a sensor defined in the sensor_type struct table found out,
+// 	// it will return the index of the sensor in sensor_type variable.
+// 	// If not, return 255, the size of char.
 
-	short len_sensor_type = sizeof(sensor_type) / sizeof(sensor_type[0]);
-	char _i;
-	unsigned char _data[3];
-	unsigned char _data2[3];
-	unsigned char ID_Byte;
-	unsigned char ID2_Byte;
+// 	short len_sensor_type = sizeof(sensor_type) / sizeof(sensor_type[0]);
+// 	char _i;
+// 	unsigned char _data[3];
+// 	unsigned char _data2[3];
+// 	unsigned char ID_Byte;
+// 	unsigned char ID2_Byte;
 
-	for (_i = 0; _i < len_sensor_type; _i++)
-	{
-		if (sensor_type[_i].Num_Registers > 1)
-		{
-			I2CReadMultiBytes(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address, &_data, sensor_type[_i].Num_Registers);
-			I2CReadMultiBytes(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address, &_data2, sensor_type[_i + 1].Num_Registers);
-			if (CheckArrayEqual(_data, &sensor_type[_i].ID))
-			{
-				if (CheckArrayEqual(_data2, &sensor_type[_i + 1].ID)) //inorder to check the LSM9DS1 mag(i) && acc/gyro(i+1) sensor
-					return _i + 2;	//return LSM9DS1 (i+2)
-				else
-					return _i;
-			}
-		}
-		else
-		{
-			ID_Byte = I2C_ByteRead(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address);
-			ID2_Byte = I2C_ByteRead(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address);
-			if (ID_Byte == sensor_type[_i].ID[0])
-			{
-				if (ID2_Byte == sensor_type[_i + 1].ID[0])	//inorder to check the LSM9DS1 mag(i) && acc/gyro(i+1) sensor
-				{
-					return _i + 2;	//return LSM9DS1 (i+2)
-				}
-				else
-				{
-					return _i;
-				}
-			}
-		}
-	}
-	return 0xFF;
-}
+// 	for (_i = 0; _i < len_sensor_type; _i++)
+// 	{
+// 		if (sensor_type[_i].Num_Registers > 1)
+// 		{
+// 			I2CReadMultiBytes(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address, &_data, sensor_type[_i].Num_Registers);
+// 			I2CReadMultiBytes(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address, &_data2, sensor_type[_i + 1].Num_Registers);
+// 			if (CheckArrayEqual(_data, &sensor_type[_i].ID))
+// 			{
+// 				if (CheckArrayEqual(_data2, &sensor_type[_i + 1].ID)) //inorder to check the LSM9DS1 mag(i) && acc/gyro(i+1) sensor
+// 					return _i + 2;									  //return LSM9DS1 (i+2)
+// 				else
+// 					return _i;
+// 			}
+// 		}
+// 		else
+// 		{
+// 			ID_Byte = I2C_ByteRead(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address);
+// 			ID2_Byte = I2C_ByteRead(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address);
+// 			if (ID_Byte == sensor_type[_i].ID[0])
+// 			{
+// 				if (ID2_Byte == sensor_type[_i + 1].ID[0]) //inorder to check the LSM9DS1 mag(i) && acc/gyro(i+1) sensor
+// 				{
+// 					return _i + 2; //return LSM9DS1 (i+2)
+// 				}
+// 				else
+// 				{
+// 					return _i;
+// 				}
+// 			}
+// 		}
+// 	}
+// 	return 0xFF;
+// }
 
 bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID)
 {
@@ -1273,13 +1273,13 @@ void Initial_register(void)
 		I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); //0b00000000 >> Z Low-power mode
 		I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); //0b00000000 >> data continue update
 
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0); //0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz 
+		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0);  //0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz
 		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); //0b00000000 >> GYO sign postive
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);	 //0b00111000 >> Gyro output enable
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);	 //0b1100 0000>> FIFO mode >> continuos mode
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);	 //ACC XYZ enable
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);	 //ACC +-2g, ODR=952Hz, BW=408Hz
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);	 //0b00011010 >> Gyro Temp FIFO enable
+		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);	  //0b00111000 >> Gyro output enable
+		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);	  //0b1100 0000>> FIFO mode >> continuos mode
+		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);	  //ACC XYZ enable
+		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);	  //ACC +-2g, ODR=952Hz, BW=408Hz
+		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);	  //0b00011010 >> Gyro Temp FIFO enable
 		putline("LSM", 3);
 		EOL();
 	}
@@ -1299,7 +1299,7 @@ void Initial_register(void)
 	// }
 }
 
-void EOL(void){
+void EOL(void)
+{
 	putline(Ending, 2);
 }
-
