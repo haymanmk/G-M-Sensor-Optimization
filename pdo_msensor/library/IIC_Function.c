@@ -29,7 +29,7 @@ extern unsigned char AccX_Data[2];
 extern unsigned char AccY_Data[2];
 extern unsigned char AccZ_Data[2];
 
-unsigned char ID[3];
+// unsigned char ID[3];
 
 short R1[3] = {100, 200, 300};
 short R2[3] = {400, 500, 600};
@@ -398,33 +398,58 @@ void I2C_M_Data(unsigned char device, unsigned char address, bit ReadHighResolut
 		}
 	}
 	*/
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
+	SendAcknowledge(0);
+	X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
+	SendAcknowledge(0);
+
+	Y_Data[1] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+	Y_Data[0] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+
+	Z_Data[1] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+	Z_Data[0] = I2C_ReceiveByte();
+	SendAcknowledge(1); //ending
+
+	if (!ReadHighResolution)
 	{
-		X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
-		SendAcknowledge(0);
-		X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
-		SendAcknowledge(0);
-
-		Y_Data[1] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-		Y_Data[0] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-
-		Z_Data[1] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-		Z_Data[0] = I2C_ReceiveByte();
-		SendAcknowledge(1); //ending
-
-		if (!ReadHighResolution)
-		{
-			//lower the resolution of M-sensor to be in compliance with the old version of software.
-			LowerResolution2MatchOldSensor(&X_Data);
-			LowerResolution2MatchOldSensor(&Y_Data);
-			LowerResolution2MatchOldSensor(&Z_Data);
-			//render sign inverse at X and Z data
-			SignInvertor2SComplement(3);
-		}
+		//lower the resolution of M-sensor to be in compliance with the old version of software.
+		LowerResolution2MatchOldSensor(&X_Data);
+		LowerResolution2MatchOldSensor(&Y_Data);
+		LowerResolution2MatchOldSensor(&Z_Data);
+		//render sign inverse at X and Z data
+		SignInvertor2SComplement(3);
 	}
+
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// {
+	// 	X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
+	// 	SendAcknowledge(0);
+	// 	X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
+	// 	SendAcknowledge(0);
+
+	// 	Y_Data[1] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+	// 	Y_Data[0] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+
+	// 	Z_Data[1] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+	// 	Z_Data[0] = I2C_ReceiveByte();
+	// 	SendAcknowledge(1); //ending
+
+	// 	if (!ReadHighResolution)
+	// 	{
+	// 		//lower the resolution of M-sensor to be in compliance with the old version of software.
+	// 		LowerResolution2MatchOldSensor(&X_Data);
+	// 		LowerResolution2MatchOldSensor(&Y_Data);
+	// 		LowerResolution2MatchOldSensor(&Z_Data);
+	// 		//render sign inverse at X and Z data
+	// 		SignInvertor2SComplement(3);
+	// 	}
+	// }
 
 	I2C_Stop();
 
@@ -506,25 +531,39 @@ void I2C_Gyro_Data(unsigned char device, unsigned char address)
 	I2C_Start();
 	ack = I2C_SentByte(device | 0x01); //Write-->Read
 
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-	{
-		GyroX_Data[1] = I2C_ReceiveByte(); //LSB
-		SendAcknowledge(0);
-		GyroX_Data[0] = I2C_ReceiveByte(); //MSB
-		SendAcknowledge(0);
+	GyroX_Data[1] = I2C_ReceiveByte(); //LSB
+	SendAcknowledge(0);
+	GyroX_Data[0] = I2C_ReceiveByte(); //MSB
+	SendAcknowledge(0);
 
-		GyroY_Data[1] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-		GyroY_Data[0] = I2C_ReceiveByte();
-		SendAcknowledge(0);
+	GyroY_Data[1] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+	GyroY_Data[0] = I2C_ReceiveByte();
+	SendAcknowledge(0);
 
-		GyroZ_Data[1] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-		GyroZ_Data[0] = I2C_ReceiveByte();
-		SendAcknowledge(1); //ending
+	GyroZ_Data[1] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+	GyroZ_Data[0] = I2C_ReceiveByte();
+	SendAcknowledge(1); //ending
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// {
+	// 	GyroX_Data[1] = I2C_ReceiveByte(); //LSB
+	// 	SendAcknowledge(0);
+	// 	GyroX_Data[0] = I2C_ReceiveByte(); //MSB
+	// 	SendAcknowledge(0);
 
-		//SignInvertor2SComplement(1);
-	}
+	// 	GyroY_Data[1] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+	// 	GyroY_Data[0] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+
+	// 	GyroZ_Data[1] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+	// 	GyroZ_Data[0] = I2C_ReceiveByte();
+	// 	SendAcknowledge(1); //ending
+
+	// 	//SignInvertor2SComplement(1);
+	// }
 
 	I2C_Stop();
 
@@ -558,25 +597,41 @@ void I2C_Acc_Data(unsigned char device, unsigned char address)
 	I2C_Start();
 	ack = I2C_SentByte(device | 0x01); //Write-->Read
 
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-	{
-		AccX_Data[1] = I2C_ReceiveByte(); //LSB
-		SendAcknowledge(0);
-		AccX_Data[0] = I2C_ReceiveByte(); //MSB
-		SendAcknowledge(0);
+	AccX_Data[1] = I2C_ReceiveByte(); //LSB
+	SendAcknowledge(0);
+	AccX_Data[0] = I2C_ReceiveByte(); //MSB
+	SendAcknowledge(0);
 
-		AccY_Data[1] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-		AccY_Data[0] = I2C_ReceiveByte();
-		SendAcknowledge(0);
+	AccY_Data[1] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+	AccY_Data[0] = I2C_ReceiveByte();
+	SendAcknowledge(0);
 
-		AccZ_Data[1] = I2C_ReceiveByte();
-		SendAcknowledge(0);
-		AccZ_Data[0] = I2C_ReceiveByte();
-		SendAcknowledge(1); //ending
+	AccZ_Data[1] = I2C_ReceiveByte();
+	SendAcknowledge(0);
+	AccZ_Data[0] = I2C_ReceiveByte();
+	SendAcknowledge(1); //ending
 
-		SignInvertor2SComplement(2);
-	}
+	SignInvertor2SComplement(2);
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// {
+	// 	AccX_Data[1] = I2C_ReceiveByte(); //LSB
+	// 	SendAcknowledge(0);
+	// 	AccX_Data[0] = I2C_ReceiveByte(); //MSB
+	// 	SendAcknowledge(0);
+
+	// 	AccY_Data[1] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+	// 	AccY_Data[0] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+
+	// 	AccZ_Data[1] = I2C_ReceiveByte();
+	// 	SendAcknowledge(0);
+	// 	AccZ_Data[0] = I2C_ReceiveByte();
+	// 	SendAcknowledge(1); //ending
+
+	// 	SignInvertor2SComplement(2);
+	// }
 
 	I2C_Stop();
 
@@ -628,6 +683,8 @@ void LowerResolution2MatchOldSensor(unsigned char *DataArray)
 	float TransFactor;
 	short TransformedSignedTwoBytesInt;
 
+	SignedTwoBytesInt = TwoBytesInt; //origin LSB range -32768 ~ 32767
+	TransFactor = 1370.0 / 3448.0;	 //LSM resolution: 0.29 mgauss/LSB >> 3448 LSB/gauss
 	/*
 	if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 	{
@@ -635,11 +692,11 @@ void LowerResolution2MatchOldSensor(unsigned char *DataArray)
 		TransFactor =  1370.0 / 4096.0;				//MMC resolution:4096LSB/gauss
 	}
 	*/
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-	{
-		SignedTwoBytesInt = TwoBytesInt; //origin LSB range -32768 ~ 32767
-		TransFactor = 1370.0 / 3448.0;	 //LSM resolution: 0.29 mgauss/LSB >> 3448 LSB/gauss
-	}
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// {
+	// 	SignedTwoBytesInt = TwoBytesInt; //origin LSB range -32768 ~ 32767
+	// 	TransFactor = 1370.0 / 3448.0;	 //LSM resolution: 0.29 mgauss/LSB >> 3448 LSB/gauss
+	// }
 
 	TransformedSignedTwoBytesInt = (short)((float)SignedTwoBytesInt * TransFactor);
 	DataArray[1] = (char)(TransformedSignedTwoBytesInt);	  //Low byte
@@ -649,7 +706,6 @@ void LowerResolution2MatchOldSensor(unsigned char *DataArray)
 void CalibrationCaculate(unsigned char *Xorigin, unsigned char *Yorigin, unsigned char *Zorigin,
 						 unsigned char *Xcal, unsigned char *Ycal, unsigned char *Zcal)
 {
-
 
 	// unsigned short TwoBytesIntX = TwoBytes2Int(Xorigin[0], Xorigin[1]);
 	// unsigned short TwoBytesIntY = TwoBytes2Int(Yorigin[0], Yorigin[1]);
@@ -663,13 +719,16 @@ void CalibrationCaculate(unsigned char *Xorigin, unsigned char *Yorigin, unsigne
 	SignedTwoBytesIntZ = (short)TwoBytes2Int(Zorigin[0], Zorigin[1]);
 
 	TransformedSignedTwoBytesIntX = (SignedTwoBytesIntX * R1[0] +
-											SignedTwoBytesIntY * R2[0] + SignedTwoBytesIntZ * R3[0] + R4[0])/100;
+									 SignedTwoBytesIntY * R2[0] + SignedTwoBytesIntZ * R3[0] + R4[0]) /
+									100;
 
 	TransformedSignedTwoBytesIntY = (SignedTwoBytesIntX * R1[1] +
-											SignedTwoBytesIntY * R2[1] + SignedTwoBytesIntZ * R3[1] + R4[1])/100;
+									 SignedTwoBytesIntY * R2[1] + SignedTwoBytesIntZ * R3[1] + R4[1]) /
+									100;
 
 	TransformedSignedTwoBytesIntZ = (SignedTwoBytesIntX * R1[2] +
-											SignedTwoBytesIntY * R2[2] + SignedTwoBytesIntZ * R3[2] + R4[2])/100;
+									 SignedTwoBytesIntY * R2[2] + SignedTwoBytesIntZ * R3[2] + R4[2]) /
+									100;
 
 	Xcal[1] = (char)(TransformedSignedTwoBytesIntX);	  //Low byte
 	Xcal[0] = (char)(TransformedSignedTwoBytesIntX >> 8); //High byte
