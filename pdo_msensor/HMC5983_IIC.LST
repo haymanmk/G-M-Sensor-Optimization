@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 1   
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE HMC5983_IIC
@@ -22,1353 +22,1463 @@ line level    source
   12          //===========================//
   13          //#define HMC5983 0
   14          //#define MMC5883MA 1
-  15          
-  16          //===========================//
-  17          //=== Address parameters ====//
-  18          //===========================//
-  19          idata char ADD_I2C;    //I2C control address
-  20          idata char ADD_CONFIG_A; //Configuration Register A   Read/Write
-  21          idata char ADD_CONFIG_B; //Configuration Register B   Read/Write
-  22          idata char ADD_MODE;   //Mode Register  Read/Write
-  23          idata char ADD_X_MSB;  //Data Output X MSB Register  Read
-  24          idata char ADD_X_LSB;  //Data Output X LSB Register  Read
-  25          idata char ADD_Z_MSB;  //Data Output Z MSB Register  Read
-  26          idata char ADD_Z_LSB;  //Data Output Z LSB Register  Read
-  27          idata char ADD_Y_MSB;  //Data Output Y MSB Register  Read
-  28          idata char ADD_Y_LSB;  //Data Output Y LSB Register  Read
-  29          idata char ADD_STATUS;   //Status Register  Read
-  30          idata char ADD_ID_A;   //Identification Register A  Read
-  31          idata char ADD_ID_B;   //Identification Register B  Read
-  32          idata char ADD_ID_C;   //Identification Register C  Read
-  33          idata char ADD_TMP_MSB;  //Temperature Output MSB Register  Read
-  34          idata char ADD_TMP_LSB;  //Temperature Output LSB Register  Read
-  35          idata char ADD_ID;     //Product ID 0b0010 1111
-  36          
-  37          /**********************************************************************/
-  38          //#define MMC5883MA
-  39          idata char ADD_CONFIG_0; //Control register 0
-  40          idata char ADD_CONFIG_1; //Control register 1
-  41          idata char ADD_CONFIG_2; //Control register 2
-  42          //extern char ADD_X_THR;    //Motion detection threshold of X
-  43          //extern char ADD_Y_THR;    //Motion detection threshold of Y
-  44          //extern char ADD_Z_THR;    //Motion detection threshold of Z
-  45          /**********************************************************************/
-  46          //#define MAG_LSM9DS1
-  47          idata char CTRL_REG1_M; //Control register 1
-  48          idata char CTRL_REG2_M; //Control register 2
-  49          idata char CTRL_REG3_M; //Control register 3
-  50          idata char CTRL_REG4_M; //Control register 4
-  51          idata char CTRL_REG5_M; //Control register 5
-  52          
-  53          //#define ACGY_LSM9DS1
-  54          idata char ACGY_ADD_I2C;   //I2C control address 0x60 0110 0000
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 2   
+  15          #define ACK 0x06
+  16          
+  17          // //===========================//
+  18          // //=== Address parameters ====//
+  19          // //===========================//
+  20          // idata char ADD_I2C;     //I2C control address
+  21          // idata char ADD_CONFIG_A; //Configuration Register A   Read/Write
+  22          // idata char ADD_CONFIG_B; //Configuration Register B   Read/Write
+  23          // idata char ADD_MODE;  //Mode Register  Read/Write
+  24          // idata char ADD_X_MSB;   //Data Output X MSB Register  Read
+  25          // idata char ADD_X_LSB;   //Data Output X LSB Register  Read
+  26          // idata char ADD_Z_MSB;   //Data Output Z MSB Register  Read
+  27          // idata char ADD_Z_LSB;   //Data Output Z LSB Register  Read
+  28          // idata char ADD_Y_MSB;   //Data Output Y MSB Register  Read
+  29          // idata char ADD_Y_LSB;   //Data Output Y LSB Register  Read
+  30          // idata char ADD_STATUS;  //Status Register  Read
+  31          // idata char ADD_ID_A;  //Identification Register A  Read
+  32          // idata char ADD_ID_B;  //Identification Register B  Read
+  33          // idata char ADD_ID_C;  //Identification Register C  Read
+  34          // idata char ADD_TMP_MSB;   //Temperature Output MSB Register  Read
+  35          // idata char ADD_TMP_LSB;   //Temperature Output LSB Register  Read
+  36          // idata char ADD_ID;    //Product ID 0b0010 1111
+  37          
+  38          // /**********************************************************************/
+  39          // //#define MMC5883MA
+  40          // idata char ADD_CONFIG_0; //Control register 0
+  41          // idata char ADD_CONFIG_1; //Control register 1
+  42          // idata char ADD_CONFIG_2; //Control register 2
+  43          // //extern char ADD_X_THR;    //Motion detection threshold of X
+  44          // //extern char ADD_Y_THR;    //Motion detection threshold of Y
+  45          // //extern char ADD_Z_THR;    //Motion detection threshold of Z
+  46          // /**********************************************************************/
+  47          // //#define MAG_LSM9DS1
+  48          // idata char CTRL_REG1_M; //Control register 1
+  49          // idata char CTRL_REG2_M; //Control register 2
+  50          // idata char CTRL_REG3_M; //Control register 3
+  51          // idata char CTRL_REG4_M; //Control register 4
+  52          // idata char CTRL_REG5_M; //Control register 5
+  53          
+  54          // //#define ACGY_LSM9DS1
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 2   
 
-  55          idata char ACGY_GYR_ADD_X_LSB;   //Xout LSB
-  56          idata char ACGY_GYR_ADD_X_MSB;   //Xout MSB
-  57          idata char ACGY_GYR_ADD_Y_LSB;   //Yout LSB
-  58          idata char ACGY_GYR_ADD_Y_MSB;   //Yout MSB
-  59          idata char ACGY_GYR_ADD_Z_LSB;   //Zout LSB
-  60          idata char ACGY_GYR_ADD_Z_MSB;   //Zout MSB
-  61          idata char ACGY_ADD_STATUS;  //Device status
-  62          idata char ACGY_CTRL_REG1_G;   //Angular rate sensor Control Register1
-  63          idata char ACGY_ORIENT_CFG_G; //Angular rate sensor sign & orientation
-  64          idata char ACGY_CTRL_REG4;   //GYRO XYZ enable
-  65          idata char ACGY_CTRL_REG5;   //ACC XYZ enable
-  66          idata char ACGY_CTRL_REG6;   //ACC full-scale, bandwidth
-  67          idata char ACGY_CTRL_REG7;   //ACC high resolution mode
-  68          idata char ACGY_CTRL_REG8;   //Control register 8 >> reset all registers SW_reset
-  69          idata char ACGY_CTRL_REG9;   //FIFO enable
-  70          idata char ACGY_ADD_TMP_MSB;   //Temperature Output MSB Register  Read
-  71          idata char ACGY_ADD_TMP_LSB;   //Temperature Output LSB Register  Read
-  72          idata char ACGY_ADD_ID;    //Product ID 0b0011 1101
-  73          
-  74          //#define ACC_LSM9DS1
-  75          idata char ACGY_ACC_ADD_X_LSB;  //Xout LSB
-  76          idata char ACGY_ACC_ADD_X_MSB;  //Xout MSB
-  77          idata char ACGY_ACC_ADD_Y_LSB;  //Yout LSB
-  78          idata char ACGY_ACC_ADD_Y_MSB;  //Yout MSB
-  79          idata char ACGY_ACC_ADD_Z_LSB;  //Zout LSB
-  80          idata char ACGY_ACC_ADD_Z_MSB;  //Zout MSB
-  81          idata char ACGY_FIFO_CTRL; //FIFO mode select
-  82          
-  83          //For RS232 Communication
-  84          unsigned char incount;
-  85          unsigned char inline[16];          /* storage for command input line    */
-  86          unsigned char code Ending[2] = {0x0D, 0x0A}; /* Ending char CR, LF                */
-  87          unsigned char ReadCommandFlag;         /*  set flag when command is read     */
-  88          
-  89          unsigned char OneByte[1];
-  90          //unsigned char TempByte[2];
-  91          
-  92          //unsigned char M_Data[9];
-  93          unsigned char T_Data[3]; /* storage for temperature data T[T,,]    */
-  94          unsigned char X_Data[2]; /* storage for magnet X data X[MSB,LSB]    */
-  95          unsigned char Y_Data[2]; /* storage for magnet Y data Y[MSB,LSB]    */
-  96          unsigned char Z_Data[2]; /* storage for magnet Z data Z[MSB,LSB]    */
-  97          unsigned char Rx3;     /* count times  */
-  98          
-  99          unsigned char GyroX_Data[2]; /* storage for gyro X data X[MSB,LSB]    */
- 100          unsigned char GyroY_Data[2]; /* storage for gyro Y data Y[MSB,LSB]    */
- 101          unsigned char GyroZ_Data[2]; /* storage for gyro Z data Z[MSB,LSB]    */
- 102          
- 103          unsigned char AccX_Data[2]; /* storage for acc X data X[MSB,LSB]    */
- 104          unsigned char AccY_Data[2]; /* storage for acc Y data Y[MSB,LSB]    */
- 105          unsigned char AccZ_Data[2]; /* storage for acc Z data Z[MSB,LSB]    */
- 106          
- 107          bit DRY_Bit;
- 108          bit Gyro_DRY_Bit;
- 109          bit Acc_DRY_Bit;
- 110          char MODE = 0;
- 111          char GyroMODE = 0;
- 112          char AccMODE = 0;
- 113          char *sensor_type_name;
- 114          bit ReadHighResolution;
- 115          
- 116          struct SENSOR_TYPE
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 3   
+  55          // idata char ACGY_ADD_I2C;  //I2C control address 0x60 0110 0000
+  56          // idata char ACGY_GYR_ADD_X_LSB;  //Xout LSB
+  57          // idata char ACGY_GYR_ADD_X_MSB;  //Xout MSB
+  58          // idata char ACGY_GYR_ADD_Y_LSB;  //Yout LSB
+  59          // idata char ACGY_GYR_ADD_Y_MSB;  //Yout MSB
+  60          // idata char ACGY_GYR_ADD_Z_LSB;  //Zout LSB
+  61          // idata char ACGY_GYR_ADD_Z_MSB;  //Zout MSB
+  62          // idata char ACGY_ADD_STATUS;   //Device status
+  63          // idata char ACGY_CTRL_REG1_G;  //Angular rate sensor Control Register1
+  64          // idata char ACGY_ORIENT_CFG_G; //Angular rate sensor sign & orientation
+  65          // idata char ACGY_CTRL_REG4;  //GYRO XYZ enable
+  66          // idata char ACGY_CTRL_REG5;  //ACC XYZ enable
+  67          // idata char ACGY_CTRL_REG6;  //ACC full-scale, bandwidth
+  68          // idata char ACGY_CTRL_REG7;  //ACC high resolution mode
+  69          // idata char ACGY_CTRL_REG8;  //Control register 8 >> reset all registers SW_reset
+  70          // idata char ACGY_CTRL_REG9;  //FIFO enable
+  71          // idata char ACGY_ADD_TMP_MSB;  //Temperature Output MSB Register  Read
+  72          // idata char ACGY_ADD_TMP_LSB;  //Temperature Output LSB Register  Read
+  73          // idata char ACGY_ADD_ID;     //Product ID 0b0011 1101
+  74          
+  75          // //#define ACC_LSM9DS1
+  76          // idata char ACGY_ACC_ADD_X_LSB;  //Xout LSB
+  77          // idata char ACGY_ACC_ADD_X_MSB;  //Xout MSB
+  78          // idata char ACGY_ACC_ADD_Y_LSB;  //Yout LSB
+  79          // idata char ACGY_ACC_ADD_Y_MSB;  //Yout MSB
+  80          // idata char ACGY_ACC_ADD_Z_LSB;  //Zout LSB
+  81          // idata char ACGY_ACC_ADD_Z_MSB;  //Zout MSB
+  82          // idata char ACGY_FIFO_CTRL; //FIFO mode select
+  83          
+  84          // For RS232 Communication
+  85          unsigned char incount;
+  86          unsigned char inline[16];          /* storage for command input line    */
+  87          unsigned char code Ending[2] = {0x0D, 0x0A}; /* Ending char CR, LF                */
+  88          unsigned char ReadCommandFlag;         /*  set flag when command is read     */
+  89          
+  90          unsigned char OneByte[1];
+  91          // unsigned char TempByte[2];
+  92          
+  93          // unsigned char M_Data[9];
+  94          unsigned char T_Data[3]; /* storage for temperature data T[T,,]    */
+  95          unsigned char X_Data[2]; /* storage for magnet X data X[MSB,LSB]    */
+  96          unsigned char Y_Data[2]; /* storage for magnet Y data Y[MSB,LSB]    */
+  97          unsigned char Z_Data[2]; /* storage for magnet Z data Z[MSB,LSB]    */
+  98          unsigned char Rx3;     /* count times  */
+  99          
+ 100          unsigned char GyroX_Data[2]; /* storage for gyro X data X[MSB,LSB]    */
+ 101          unsigned char GyroY_Data[2]; /* storage for gyro Y data Y[MSB,LSB]    */
+ 102          unsigned char GyroZ_Data[2]; /* storage for gyro Z data Z[MSB,LSB]    */
+ 103          
+ 104          unsigned char AccX_Data[2]; /* storage for acc X data X[MSB,LSB]    */
+ 105          unsigned char AccY_Data[2]; /* storage for acc Y data Y[MSB,LSB]    */
+ 106          unsigned char AccZ_Data[2]; /* storage for acc Z data Z[MSB,LSB]    */
+ 107          
+ 108          /**
+ 109           *    Gain  * X + Offset
+ 110           * [0;  1;  2 ] [X]   [3]
+ 111           * [4;  5;  6 ] [Y] + [7]
+ 112           * [8;  9;  10  ] [Z]   [11]
+ 113           */ 
+ 114          /**
+ 115           * M-sensor
+ 116           */ 
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 3   
 
- 117          {
- 118            char type[15];     //sensor name
- 119            char Device_Address; //sensor address
- 120            char ID_Address;   //ID address
- 121            char Num_Registers;
- 122            char ID[3]; //ID data
- 123          };
- 124          
- 125          code struct SENSOR_TYPE sensor_type[] = {
- 126            // {"HMC5983", 0x3C, 0x0A, 3, "H43"},
- 127            // {"MMC5883MA", 0x60, 0x2F, 1, 0x0C},
- 128            {"MAG_LSM9DS1", 0x38, 0x0F, 1, 0x3D},
- 129            {"ACGY_LSM9DS1", 0xD4, 0x0F, 1, 0x68},
- 130            {"LSM9DS1", 0, 0, 0, 0},
- 131          
- 132          };
+ 117          idata short GainMatrix_M[12];
+ 118          /**
+ 119           * Gyro
+ 120           */
+ 121          idata short GainMatrix_G[12];
+ 122          
+ 123          
+ 124          bit DRY_Bit;
+ 125          bit Gyro_DRY_Bit;
+ 126          bit Acc_DRY_Bit;
+ 127          char MODE = 0;
+ 128          char GyroMODE = 0;
+ 129          char AccMODE = 0;
+ 130          // char *sensor_type_name;
+ 131          bit ReadHighResolution;
+ 132          unsigned short indexEEPROM; // used to record current index when reading/ writing data in EEPROM
  133          
- 134          /******************************************************************************/
- 135          /*       Test                                                                 */
- 136          /******************************************************************************/
- 137          /*
- 138          typedef union{
- 139            idata char _char[4];
- 140            idata float _float;
- 141          }test1;
- 142          */
- 143          
- 144          
- 145          /******************************************************************************/
- 146          /*       Initialize                                                           */
- 147          /******************************************************************************/
- 148          void serial_init(void);
- 149          void timer0_init(void);
- 150          void Initial_board(void);
- 151          void Initial_relay(void);
- 152          void Initial_register(void);
- 153          
+ 134          struct SENSOR_TYPE
+ 135          {
+ 136            char type[15];     // sensor name
+ 137            char Device_Address; // sensor address
+ 138            char ID_Address;   // ID address
+ 139            char Num_Registers;
+ 140            char ID[3]; // ID data
+ 141          };
+ 142          
+ 143          // code struct SENSOR_TYPE sensor_type[] = {
+ 144          //  // {"HMC5983", 0x3C, 0x0A, 3, "H43"},
+ 145          //  // {"MMC5883MA", 0x60, 0x2F, 1, 0x0C},
+ 146          //  {"MAG_LSM9DS1", 0x38, 0x0F, 1, 0x3D},
+ 147          //  {"ACGY_LSM9DS1", 0xD4, 0x0F, 1, 0x68},
+ 148          //  {"LSM9DS1", 0, 0, 0, 0},
+ 149          
+ 150          // };
+ 151          
+ 152          /******************************************************************************/
+ 153          /*       Test                                                                 */
  154          /******************************************************************************/
- 155          /*       ReadCommand                                                          */
- 156          /******************************************************************************/
- 157          unsigned char ReadCommand(void);
- 158          void COM_Command(void);
- 159          void EOL(void);
- 160          
- 161          /******************************************************************************/
- 162          /*       Sub-Function for COM port command                                    */
- 163          /******************************************************************************/
- 164          
- 165          void ChangeMeasurementMode(unsigned char idata *_inline);
- 166          void ReadXYZDataSequentially(void);
- 167          void RelayControl_1(unsigned char idata *_inline);
- 168          void RelayControl_2(unsigned char idata *_inline);
- 169          void SetReadingOutputMode(unsigned char idata *_inline);
- 170          void SetReadingAccOutputMode(unsigned char idata *_inline);
- 171          void SetReadingGyroOutputMode(unsigned char idata *_inline);
- 172          void ControlAlertLight(unsigned char idata *_inline);
- 173          void ReadSensorID(unsigned char idata *_inline);
- 174          void SetReadingTempMode(void);
- 175          //void DetectConnectedSensor(unsigned char xdata *_inline);
- 176          char CheckSensorCorrect(void);
- 177          bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID);
- 178          
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 4   
+ 155          /*
+ 156          typedef union{
+ 157            idata char _char[4];
+ 158            idata float _float;
+ 159          }test1;
+ 160          */
+ 161          
+ 162          /******************************************************************************/
+ 163          /*       Initialize                                                           */
+ 164          /******************************************************************************/
+ 165          void serial_init(void);
+ 166          void timer0_init(void);
+ 167          void Initial_board(void);
+ 168          void Initial_relay(void);
+ 169          void Initial_register(void);
+ 170          
+ 171          /******************************************************************************/
+ 172          /*       ReadCommand                                                          */
+ 173          /******************************************************************************/
+ 174          unsigned char ReadCommand(void);
+ 175          void COM_Command(void);
+ 176          void EOL(void);
+ 177          
+ 178          /******************************************************************************/
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 4   
 
- 179          /******************************************************************************/
- 180          /*       Main                                                                 */
- 181          /******************************************************************************/
- 182          void main(void)
- 183          {
- 184   1        unsigned int i; //Loop counter
- 185   1        unsigned int iRx3;
- 186   1        unsigned int GyroiRx3;
- 187   1        unsigned int AcciRx3;
- 188   1        char index_sensor_type_struct;
- 189   1        
- 190   1        Initial_board();
- 191   1        Initial_relay();
- 192   1      
- 193   1        LED1_ON;
- 194   1        delay(10000);
- 195   1        LED1_OFF;
- 196   1        delay(10000);
- 197   1        LED2_ON;
- 198   1        delay(10000);
- 199   1        LED2_OFF;
- 200   1        delay(10000);
- 201   1        LED3_ON;
- 202   1        delay(10000);
- 203   1        LED3_OFF;
- 204   1        delay(10000);
- 205   1      
- 206   1        // detect the connected type of sensor
- 207   1        index_sensor_type_struct = CheckSensorCorrect();
- 208   1      
- 209   1        sensor_type_name = &sensor_type[index_sensor_type_struct].type;
- 210   1      
- 211   1        SetI2CParameters();
- 212   1        Initial_register();
- 213   1      
- 214   1        putline("READY", 5);
- 215   1        EOL();
- 216   1      
- 217   1        //M_Data[0]='X';M_Data[3]='Y';M_Data[6]='Z';
- 218   1        T_Data[0] = 'T';
- 219   1      
- 220   1        //===================================//
- 221   1        //============ Main Loop ============//
- 222   1        //===================================//
- 223   1        while (1)
- 224   1        {
- 225   2      
- 226   2          COM_Command();
- 227   2          //--------------------------------------------------------------------
- 228   2      
- 229   2          //=== MODE 3 ===//
- 230   2      
- 231   2          while (MODE == 3) //MCK<CR><LF>
- 232   2          {
- 233   3            RY4_ON;
- 234   3            putline("MCK", 3);
- 235   3            EOL();
- 236   3            if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 236 OF HMC5983_IIC.c: pointer to different objects
- 237   3            {
- 238   4              I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x00); //REG3 0b00000000 bit6 bit7>> operation mode>>continuous mo
+ 179          /*       Sub-Function for COM port command                                    */
+ 180          /******************************************************************************/
+ 181          
+ 182          void ChangeMeasurementMode(unsigned char idata *_inline);
+ 183          void ReadXYZDataSequentially(void);
+ 184          void RelayControl_1(unsigned char idata *_inline);
+ 185          void RelayControl_2(unsigned char idata *_inline);
+ 186          void SetReadingOutputMode(unsigned char idata *_inline);
+ 187          void SetReadingAccOutputMode(unsigned char idata *_inline);
+ 188          void SetReadingGyroOutputMode(unsigned char idata *_inline);
+ 189          void ControlAlertLight(unsigned char idata *_inline);
+ 190          void ReadSensorID(unsigned char idata *_inline);
+ 191          void SetReadingTempMode(void);
+ 192          // void DetectConnectedSensor(unsigned char xdata *_inline);
+ 193          //  char CheckSensorCorrect(void);
+ 194          bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID);
+ 195          
+ 196          /******************************************************************************/
+ 197          /*       Main                                                                 */
+ 198          /******************************************************************************/
+ 199          void main(void)
+ 200          {
+ 201   1        unsigned int i; // Loop counter
+ 202   1        unsigned int iRx3;
+ 203   1        unsigned int GyroiRx3;
+ 204   1        unsigned int AcciRx3;
+ 205   1        char index_sensor_type_struct;
+ 206   1      
+ 207   1        Initial_board();
+ 208   1        Initial_relay();
+ 209   1      
+ 210   1        LED1_ON;
+ 211   1        delay(10000);
+ 212   1        LED1_OFF;
+ 213   1        delay(10000);
+ 214   1        LED2_ON;
+ 215   1        delay(10000);
+ 216   1        LED2_OFF;
+ 217   1        delay(10000);
+ 218   1        LED3_ON;
+ 219   1        delay(10000);
+ 220   1        LED3_OFF;
+ 221   1        delay(10000);
+ 222   1      
+ 223   1        // detect the connected type of sensor
+ 224   1        // index_sensor_type_struct = CheckSensorCorrect();
+ 225   1      
+ 226   1        // sensor_type_name = &sensor_type[index_sensor_type_struct].type;
+ 227   1      
+ 228   1        // SetI2CParameters();
+ 229   1        Initial_register();
+ 230   1      
+ 231   1        putline("READY", 5);
+ 232   1        EOL();
+ 233   1      
+ 234   1        // M_Data[0]='X';M_Data[3]='Y';M_Data[6]='Z';
+ 235   1        T_Data[0] = 'T';
+ 236   1      
+ 237   1        //===================================//
+ 238   1        //============ Main Loop ============//
+ 239   1        //===================================//
+ 240   1        while (1)
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 5   
+
+ 241   1        {
+ 242   2      
+ 243   2          COM_Command();
+ 244   2          //--------------------------------------------------------------------
+ 245   2      
+ 246   2          //=== MODE 3 ===//
+ 247   2      
+ 248   2          while (MODE == 3) // MCK<CR><LF>
+ 249   2          {
+ 250   3            RY4_ON;
+ 251   3            putline("MCK", 3);
+ 252   3            EOL();
+ 253   3            I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x00); // REG3 0b00000000 bit6 bit7>> operation mode>>continuous mo
              -de
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 5   
-
- 239   4            }
- 240   3            // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 241   3            // {
- 242   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x01); //Internal control 0 >> Initiate magnetic field measure
+ 254   3      
+ 255   3            // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 256   3            // {
+ 257   3            //  I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x00); //REG3 0b00000000 bit6 bit7>> operation mode>>continuous
+             - mode
+ 258   3            // }
+ 259   3            // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 260   3            // {
+ 261   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x01); //Internal control 0 >> Initiate magnetic field measure
              -ment
- 243   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_1, 0x00); //Internal control 1 >> 0b00000000, turning SW_RST on w
+ 262   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_1, 0x00); //Internal control 1 >> 0b00000000, turning SW_RST on w
              -ill reset all registers
- 244   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_2, 0x41); //Internal control 2 >> 0b0100 0001=0x41 Continuous Mod
+ 263   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_2, 0x41); //Internal control 2 >> 0b0100 0001=0x41 Continuous Mod
              -e at sampling rate 14Hz
- 245   3            // }
- 246   3            // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 247   3            // {
- 248   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_A, 0xFC); //CRA  >> Temp Enable, 8 AVG per Sample, output rate: 2
+ 264   3            // }
+ 265   3            // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 266   3            // {
+ 267   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_A, 0xFC); //CRA  >> Temp Enable, 8 AVG per Sample, output rate: 2
              -20 Hz 0xFC, 15Hz 0xF0
- 249   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_B, 0x00); //CRB  >> +/- 0.88 Gauss  0.73 mG/LSB
- 250   3            //  I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x00);   //Mode >> Continuous Mode
- 251   3            // }
- 252   3            LED2_ON;
- 253   3      
- 254   3            while (MODE == 3)
- 255   3            {
- 256   4              if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 256 OF HMC5983_IIC.c: pointer to different objects
- 257   4              {
- 258   5                DRY_Bit = 0;
- 259   5                while (DRY_Bit == 0)
- 260   5                {
- 261   6                  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08; //0b00001000 polling to check the magnetic field
+ 268   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_B, 0x00); //CRB  >> +/- 0.88 Gauss  0.73 mG/LSB
+ 269   3            //  I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x00);   //Mode >> Continuous Mode
+ 270   3            // }
+ 271   3            LED2_ON;
+ 272   3      
+ 273   3            while (MODE == 3)
+ 274   3            {
+ 275   4              DRY_Bit = 0;
+ 276   4              while (DRY_Bit == 0)
+ 277   4              {
+ 278   5                DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08; // 0b00001000 polling to check the magnetic field
              - measurement ready
- 262   6                }
- 263   5              }
- 264   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 265   4              // {
- 266   4              //  DRY_Bit = 0;
- 267   4              //  while (DRY_Bit == 0)
- 268   4              //  {
- 269   4              //    DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01; //polling to check the magnetic field measure
+ 279   5              }
+ 280   4              // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 281   4              // {
+ 282   4              //  DRY_Bit = 0;
+ 283   4              //  while (DRY_Bit == 0)
+ 284   4              //  {
+ 285   4              //    DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08; //0b00001000 polling to check the magnetic fi
+             -eld measurement ready
+ 286   4              //  }
+ 287   4              // }
+ 288   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 289   4              // {
+ 290   4              //  DRY_Bit = 0;
+ 291   4              //  while (DRY_Bit == 0)
+ 292   4              //  {
+ 293   4              //    DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01; //polling to check the magnetic field measure
              -ment ready
- 270   4              //  }
- 271   4              // }
- 272   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 273   4              // {
- 274   4              //  while (DRDY == 0)
- 275   4              //  {
- 276   4              //    _nop_();
- 277   4              //  }
- 278   4              // }
- 279   4              COM_Command();
- 280   4              if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 280 OF HMC5983_IIC.c: pointer to different objects
- 281   4                I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
- 282   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 283   4              //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
- 284   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 285   4              //  I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
- 286   4              
- 287   4            }
- 288   3            
- 289   3            if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 289 OF HMC5983_IIC.c: pointer to different objects
- 290   3            {
- 291   4              //reset all registers
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 6   
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 6   
 
- 292   4              I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all re
+ 294   4              //  }
+ 295   4              // }
+ 296   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 297   4              // {
+ 298   4              //  while (DRDY == 0)
+ 299   4              //  {
+ 300   4              //    _nop_();
+ 301   4              //  }
+ 302   4              // }
+ 303   4              COM_Command();
+ 304   4              I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 305   4      
+ 306   4              // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 307   4              //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 308   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 309   4              //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 310   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 311   4              //  I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
+ 312   4            }
+ 313   3      
+ 314   3            I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); // REG2 >> 0b00100100, turning SOFT_RST on will reset all re
              -gisters
- 293   4            }
- 294   3            // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 295   3            // {
- 296   3            //  //reset all registers
- 297   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_1, 0x80); //Internal control 1 >> 0b10000000, turning SW_RST on w
-             -ill reset all registers
- 298   3            // }
- 299   3            // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 300   3            //  I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x03); //Go to Sleep
- 301   3            
- 302   3            putline("ACK", 3);
- 303   3            EOL();
- 304   3            putline("READY", 5);
- 305   3            EOL();
- 306   3          } //while(MODE == 3)
- 307   2      
- 308   2          //----------------------------------------------------------------------------
- 309   2      
- 310   2          //=== MODE 2 ===//
- 311   2          // read specified number, Rx3, of magnetic field measurement which is defined by external controller.
- 312   2          if (MODE == 2) //MR
- 313   2          {
- 314   3            RY4_ON;
  315   3      
- 316   3            putline("MRN", 3);
- 317   3            EOL();
- 318   3      
- 319   3            iRx3 = Rx3 * 6;
- 320   3      
- 321   3            for (i = 0; i <= iRx3; i++)
- 322   3            {
- 323   4              if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 323 OF HMC5983_IIC.c: pointer to different objects
- 324   4              {
- 325   5                I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x01); //REG3 0b00000001 bit6 bit7>> operation mode>>single mode
- 326   5              }
- 327   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 328   4              // {
- 329   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x01); //Internal control 0
- 330   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_1, 0x00); //Internal control 1 >> 0b00000000, turning SW_RST on 
+ 316   3            // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 317   3            // {
+ 318   3            //  //reset all registers
+ 319   3            //  I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all
+             - registers
+ 320   3            // }
+ 321   3            // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 322   3            // {
+ 323   3            //  //reset all registers
+ 324   3            //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_1, 0x80); //Internal control 1 >> 0b10000000, turning SW_RST on w
+             -ill reset all registers
+ 325   3            // }
+ 326   3            // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 327   3            //  I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x03); //Go to Sleep
+ 328   3      
+ 329   3            putline("ACK", 3);
+ 330   3            EOL();
+ 331   3            putline("READY", 5);
+ 332   3            EOL();
+ 333   3          } // while(MODE == 3)
+ 334   2      
+ 335   2          //----------------------------------------------------------------------------
+ 336   2      
+ 337   2          //=== MODE 2 ===//
+ 338   2          // read specified number, Rx3, of magnetic field measurement which is defined by external controller.
+ 339   2          if (MODE == 2) // MR
+ 340   2          {
+ 341   3            RY4_ON;
+ 342   3      
+ 343   3            putline("MRN", 3);
+ 344   3            EOL();
+ 345   3      
+ 346   3            iRx3 = Rx3 * 6;
+ 347   3      
+ 348   3            for (i = 0; i <= iRx3; i++)
+ 349   3            {
+ 350   4              I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x01); // REG3 0b00000001 bit6 bit7>> operation mode>>single mode
+ 351   4      
+ 352   4              // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 7   
+
+ 353   4              // {
+ 354   4              //  I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x01); //REG3 0b00000001 bit6 bit7>> operation mode>>single mo
+             -de
+ 355   4              // }
+ 356   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 357   4              // {
+ 358   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x01); //Internal control 0
+ 359   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_1, 0x00); //Internal control 1 >> 0b00000000, turning SW_RST on 
              -will reset all registers
- 331   4              //                        //I2C_ByteWrite(ADD_I2C,ADD_CONFIG_2,0x41); //Internal control 2 >> 0b0100 0001=0x41 Co
+ 360   4              //                        //I2C_ByteWrite(ADD_I2C,ADD_CONFIG_2,0x41); //Internal control 2 >> 0b0100 0001=0x41 Co
              -ntinuous Mode at sampling rate 14Hz
- 332   4              // }
- 333   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 334   4              // {
- 335   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_A, 0xF0); //CRA  >> Temp Enable, 8 AVG per Sample, output rate: 
+ 361   4              // }
+ 362   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 363   4              // {
+ 364   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_A, 0xF0); //CRA  >> Temp Enable, 8 AVG per Sample, output rate: 
              -220 Hz 0xFC, 15Hz 0xF0
- 336   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_B, 0x00); //CRB  >> +/- 0.88 Gauss  0.73 mG/LSB
- 337   4              //  I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x80);   //Mode >> Continuous Mode >> Enable the I2C high speed mo
+ 365   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_B, 0x00); //CRB  >> +/- 0.88 Gauss  0.73 mG/LSB
+ 366   4              //  I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x80);   //Mode >> Continuous Mode >> Enable the I2C high speed mo
              -de, 3400 kHz.
- 338   4              // }
- 339   4              //COM_Command();
- 340   4      
- 341   4              if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 341 OF HMC5983_IIC.c: pointer to different objects
- 342   4                DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
- 343   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 344   4              //  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
- 345   4              
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 7   
+ 367   4              // }
+ 368   4              // COM_Command();
+ 369   4              DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+ 370   4      
+ 371   4              // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 372   4              //  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+ 373   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 374   4              //  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
+ 375   4      
+ 376   4              if (DRY_Bit == 0)
+ 377   4              {
+ 378   5                LED2_ON;
+ 379   5                delay(1000);
+ 380   5              }
+ 381   4      
+ 382   4              while (DRY_Bit == 0)
+ 383   4              {
+ 384   5                DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+ 385   5      
+ 386   5                // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 387   5                //  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+ 388   5                // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 389   5                //  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
+ 390   5      
+ 391   5                // if (DRY_Bit == 1)
+ 392   5                if (DRY_Bit == 1)
+ 393   5                {
+ 394   6                  LED2_OFF;
+ 395   6                }
+ 396   5      
+ 397   5                delay(1000);
+ 398   5              }
+ 399   4              I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 400   4      
+ 401   4              // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 402   4              //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 403   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 404   4              //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 405   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 406   4              //  I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
+ 407   4            }
+ 408   3      
+ 409   3            // I2C_ByteWrite(0x3C,0x02,0x03); //Go to Sleep
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 8   
 
- 346   4      
- 347   4              if (DRY_Bit == 0)
- 348   4              {
- 349   5                LED2_ON;
- 350   5                delay(1000);
- 351   5              }
- 352   4      
- 353   4              while (DRY_Bit == 0)
- 354   4              {
- 355   5                if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 355 OF HMC5983_IIC.c: pointer to different objects
- 356   5                  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
- 357   5                // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 358   5                //  DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
- 359   5      
- 360   5                //if (DRY_Bit == 1)
- 361   5                if (DRY_Bit == 1)
- 362   5                {
- 363   6                  LED2_OFF;
- 364   6                }
- 365   5      
- 366   5                delay(1000);
- 367   5              }
- 368   4              if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 368 OF HMC5983_IIC.c: pointer to different objects
- 369   4                I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
- 370   4              // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 371   4              //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
- 372   4              // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 373   4              //  I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
- 374   4              
- 375   4            }
- 376   3      
- 377   3            //I2C_ByteWrite(0x3C,0x02,0x03); //Go to Sleep
- 378   3      
- 379   3            putline("ACK", 3);
- 380   3            EOL();
- 381   3            putline("READY", 5);
- 382   3            EOL();
- 383   3      
- 384   3            MODE = 0;
- 385   3          }
- 386   2      
- 387   2          //=== MODE 1 ===//
- 388   2          while (MODE == 1) //AL Pass
- 389   2          {
- 390   3            COM_Command();
- 391   3            RY4_ON;
- 392   3            delay(15000);
- 393   3            RY4_OFF;
- 394   3            delay(20000);
- 395   3          }
- 396   2      
- 397   2          //=== MODE 4 ===//
- 398   2          while (MODE == 4) //AL Fail
- 399   2          {
- 400   3            COM_Command();
- 401   3            RY4_OFF;
- 402   3          }
- 403   2      
- 404   2          //=== MODE 5 ===//
- 405   2          while (MODE == 5) //AL Test
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 8   
-
- 406   2          {
- 407   3            COM_Command();
- 408   3            RY4_ON;
- 409   3          }
- 410   2      
- 411   2          //--------------------------------------------------------------------
- 412   2      
- 413   2          //=== MODE 3 ===//
- 414   2      
- 415   2          while (GyroMODE == 3) //MCK<CR><LF>
- 416   2          {
- 417   3      
- 418   3            putline("YCK", 3);
- 419   3            EOL();
- 420   3      
- 421   3            while (GyroMODE == 3)
- 422   3            {
- 423   4      
- 424   4              Gyro_DRY_Bit = 0;
- 425   4      
- 426   4              while (Gyro_DRY_Bit == 0)
- 427   4              {
- 428   5                Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02; //0b00000010 polling to check gyro
-             - measurement ready
- 429   5              }
- 430   4      
- 431   4              COM_Command();
- 432   4      
- 433   4              I2C_Gyro_Data(ACGY_ADD_I2C, ACGY_GYR_ADD_X_LSB);
- 434   4            }
- 435   3      
- 436   3            //reset all registers
- 437   3            I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all reg
-             -isters
- 438   3      
- 439   3            putline("ACK", 3);
- 440   3            EOL();
- 441   3            putline("READY", 5);
- 442   3            EOL();
- 443   3          } //while(MODE == 3)
- 444   2      
- 445   2          //----------------------------------------------------------------------------
+ 410   3      
+ 411   3            putline("ACK", 3);
+ 412   3            EOL();
+ 413   3            putline("READY", 5);
+ 414   3            EOL();
+ 415   3      
+ 416   3            MODE = 0;
+ 417   3          }
+ 418   2      
+ 419   2          //=== MODE 1 ===//
+ 420   2          while (MODE == 1) // AL Pass
+ 421   2          {
+ 422   3            COM_Command();
+ 423   3            RY4_ON;
+ 424   3            delay(15000);
+ 425   3            RY4_OFF;
+ 426   3            delay(20000);
+ 427   3          }
+ 428   2      
+ 429   2          //=== MODE 4 ===//
+ 430   2          while (MODE == 4) // AL Fail
+ 431   2          {
+ 432   3            COM_Command();
+ 433   3            RY4_OFF;
+ 434   3          }
+ 435   2      
+ 436   2          //=== MODE 5 ===//
+ 437   2          while (MODE == 5) // AL Test
+ 438   2          {
+ 439   3            COM_Command();
+ 440   3            RY4_ON;
+ 441   3          }
+ 442   2          //=== MODE 6 ===//
+ 443   2          /**
+ 444   2           * Continuously write data into EEPROM until all the elements in array are refreshed.
+ 445   2           */
  446   2      
- 447   2          //=== MODE 2 ===//
- 448   2          // read specified number, Rx3, of magnetic field measurement which is defined by external controller.
- 449   2          if (GyroMODE == 2) //GR
- 450   2          {
- 451   3      
- 452   3            putline("YRN", 3);
- 453   3            EOL();
- 454   3      
- 455   3            GyroiRx3 = Rx3 * 6;
- 456   3      
- 457   3            for (i = 0; i <= GyroiRx3; i++)
- 458   3            {
- 459   4              Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02; // 0b00000010
- 460   4      
- 461   4              if (Gyro_DRY_Bit == 0)
- 462   4              {
- 463   5                delay(1000);
- 464   5              }
- 465   4      
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 9   
-
- 466   4              while (Gyro_DRY_Bit == 0)
- 467   4              {
- 468   5                Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02;
- 469   5                delay(1000);
+ 447   2          if (MODE == 6)
+ 448   2          {
+ 449   3            COM_Command();
+ 450   3          }
+ 451   2      
+ 452   2          //--------------------------------------------------------------------
+ 453   2      
+ 454   2          //=== MODE 3 ===//
+ 455   2      
+ 456   2          while (GyroMODE == 3) // MCK<CR><LF>
+ 457   2          {
+ 458   3      
+ 459   3            putline("YCK", 3);
+ 460   3            EOL();
+ 461   3      
+ 462   3            while (GyroMODE == 3)
+ 463   3            {
+ 464   4      
+ 465   4              Gyro_DRY_Bit = 0;
+ 466   4      
+ 467   4              while (Gyro_DRY_Bit == 0)
+ 468   4              {
+ 469   5                Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02; // 0b00000010 polling to check gyr
+             -o measurement ready
  470   5              }
- 471   4              I2C_Gyro_Data(ACGY_ADD_I2C, ACGY_GYR_ADD_X_LSB);
- 472   4            }
- 473   3      
- 474   3            putline("ACK", 3);
- 475   3            EOL();
- 476   3            putline("READY", 5);
- 477   3            EOL();
- 478   3      
- 479   3            GyroMODE = 0;
- 480   3          }
- 481   2      
- 482   2          //--------------------------------------------------------------------
- 483   2      
- 484   2          //=== MODE 3 ===//
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 9   
+
+ 471   4      
+ 472   4              COM_Command();
+ 473   4      
+ 474   4              I2C_Gyro_Data(ACGY_ADD_I2C, ACGY_GYR_ADD_X_LSB);
+ 475   4            }
+ 476   3      
+ 477   3            // reset all registers
+ 478   3            I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); // REG2 >> 0b00100100, turning SOFT_RST on will reset all re
+             -gisters
+ 479   3      
+ 480   3            putline("ACK", 3);
+ 481   3            EOL();
+ 482   3            putline("READY", 5);
+ 483   3            EOL();
+ 484   3          } // while(MODE == 3)
  485   2      
- 486   2          while (AccMODE == 3) //MCK<CR><LF>
- 487   2          {
- 488   3      
- 489   3            putline("ACCK", 4);
- 490   3            EOL();
- 491   3      
- 492   3            while (AccMODE == 3)
- 493   3            {
- 494   4      
- 495   4              Acc_DRY_Bit = 0;
- 496   4      
- 497   4              while (Acc_DRY_Bit == 0)
- 498   4              {
- 499   5                Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01; //0b00000010 polling to check acc r
-             -eady
- 500   5              }
+ 486   2          //----------------------------------------------------------------------------
+ 487   2      
+ 488   2          //=== MODE 2 ===//
+ 489   2          // read specified number, Rx3, of magnetic field measurement which is defined by external controller.
+ 490   2          if (GyroMODE == 2) // GR
+ 491   2          {
+ 492   3      
+ 493   3            putline("YRN", 3);
+ 494   3            EOL();
+ 495   3      
+ 496   3            GyroiRx3 = Rx3 * 6;
+ 497   3      
+ 498   3            for (i = 0; i <= GyroiRx3; i++)
+ 499   3            {
+ 500   4              Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02; // 0b00000010
  501   4      
- 502   4              COM_Command();
- 503   4      
- 504   4              I2C_Acc_Data(ACGY_ADD_I2C, ACGY_ACC_ADD_X_LSB);
- 505   4            }
- 506   3      
- 507   3            //reset all registers
- 508   3            I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all reg
-             -isters
- 509   3      
- 510   3            putline("ACK", 3);
- 511   3            EOL();
- 512   3            putline("READY", 5);
- 513   3            EOL();
- 514   3          } //while(MODE == 3)
- 515   2      
- 516   2          //----------------------------------------------------------------------------
- 517   2      
- 518   2          //=== MODE 2 ===//
- 519   2          // read specified number, Rx3, of magnetic field measurement which is defined by external controller.
- 520   2          if (AccMODE == 2) //GR
- 521   2          {
- 522   3      
- 523   3            putline("ACRN", 4);
- 524   3            EOL();
- 525   3      
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 10  
+ 502   4              if (Gyro_DRY_Bit == 0)
+ 503   4              {
+ 504   5                delay(1000);
+ 505   5              }
+ 506   4      
+ 507   4              while (Gyro_DRY_Bit == 0)
+ 508   4              {
+ 509   5                Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02;
+ 510   5                delay(1000);
+ 511   5              }
+ 512   4              I2C_Gyro_Data(ACGY_ADD_I2C, ACGY_GYR_ADD_X_LSB);
+ 513   4            }
+ 514   3      
+ 515   3            putline("ACK", 3);
+ 516   3            EOL();
+ 517   3            putline("READY", 5);
+ 518   3            EOL();
+ 519   3      
+ 520   3            GyroMODE = 0;
+ 521   3          }
+ 522   2      
+ 523   2          //--------------------------------------------------------------------
+ 524   2      
+ 525   2          //=== MODE 3 ===//
+ 526   2      
+ 527   2          while (AccMODE == 3) // MCK<CR><LF>
+ 528   2          {
+ 529   3      
+ 530   3            putline("ACCK", 4);
+ 531   3            EOL();
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 10  
 
- 526   3            AcciRx3 = Rx3 * 6;
- 527   3      
- 528   3            for (i = 0; i <= AcciRx3; i++)
- 529   3            {
- 530   4              Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01; // 0b00000010
- 531   4      
- 532   4              if (Acc_DRY_Bit == 0)
- 533   4              {
- 534   5                delay(1000);
- 535   5              }
- 536   4      
- 537   4              while (Acc_DRY_Bit == 0)
- 538   4              {
- 539   5                Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01;
- 540   5                delay(1000);
+ 532   3      
+ 533   3            while (AccMODE == 3)
+ 534   3            {
+ 535   4      
+ 536   4              Acc_DRY_Bit = 0;
+ 537   4      
+ 538   4              while (Acc_DRY_Bit == 0)
+ 539   4              {
+ 540   5                Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01; // 0b00000010 polling to check acc 
+             -ready
  541   5              }
- 542   4              I2C_Acc_Data(ACGY_ADD_I2C, ACGY_ACC_ADD_X_LSB);
- 543   4            }
- 544   3      
- 545   3            putline("ACK", 3);
- 546   3            EOL();
- 547   3            putline("READY", 5);
- 548   3            EOL();
- 549   3      
- 550   3            AccMODE = 0;
- 551   3          }
- 552   2      
- 553   2        } //Main loop
- 554   1      }
- 555          
- 556          /******************************************************************************/
- 557          /*     Command from COM Port                                                  */
- 558          /******************************************************************************/
- 559          
- 560          void COM_Command(void)
- 561          {
- 562   1        char _index;
- 563   1        unsigned char command_count = 0;
- 564   1        // CHAR_TO_FLOAT idata char_float_conv;
- 565   1        CHAR_TO_FLOAT idata char_float_conv;
-*** ERROR C202 IN LINE 565 OF HMC5983_IIC.c: 'CHAR_TO_FLOAT': undefined identifier
-*** ERROR C141 IN LINE 565 OF HMC5983_IIC.c: syntax error near 'idata', expected ';'
- 566   1      
- 567   1        if (CheckCommandFlag == 1)
- 568   1        {
- 569   2          command_count = ReadCommand()-2; // -2 means ignore CRLF
- 570   2        }
- 571   1        if (ReadCommandFlag == 1)
- 572   1        {
- 573   2          switch (inline[0])
- 574   2          {
- 575   3      
- 576   3          case ('S'):
- 577   3            ChangeMeasurementMode(inline);
- 578   3            break;
- 579   3      
- 580   3          case ('X'):
- 581   3            ReadXYZDataSequentially();
- 582   3            break;
- 583   3      
- 584   3          case ('T'):
- 585   3            SetReadingTempMode();
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 11  
+ 542   4      
+ 543   4              COM_Command();
+ 544   4      
+ 545   4              I2C_Acc_Data(ACGY_ADD_I2C, ACGY_ACC_ADD_X_LSB);
+ 546   4            }
+ 547   3      
+ 548   3            // reset all registers
+ 549   3            I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); // REG2 >> 0b00100100, turning SOFT_RST on will reset all re
+             -gisters
+ 550   3      
+ 551   3            putline("ACK", 3);
+ 552   3            EOL();
+ 553   3            putline("READY", 5);
+ 554   3            EOL();
+ 555   3          } // while(MODE == 3)
+ 556   2      
+ 557   2          //----------------------------------------------------------------------------
+ 558   2      
+ 559   2          //=== MODE 2 ===//
+ 560   2          // read specified number, Rx3, of magnetic field measurement which is defined by external controller.
+ 561   2          if (AccMODE == 2) // GR
+ 562   2          {
+ 563   3      
+ 564   3            putline("ACRN", 4);
+ 565   3            EOL();
+ 566   3      
+ 567   3            AcciRx3 = Rx3 * 6;
+ 568   3      
+ 569   3            for (i = 0; i <= AcciRx3; i++)
+ 570   3            {
+ 571   4              Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01; // 0b00000010
+ 572   4      
+ 573   4              if (Acc_DRY_Bit == 0)
+ 574   4              {
+ 575   5                delay(1000);
+ 576   5              }
+ 577   4      
+ 578   4              while (Acc_DRY_Bit == 0)
+ 579   4              {
+ 580   5                Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01;
+ 581   5                delay(1000);
+ 582   5              }
+ 583   4              I2C_Acc_Data(ACGY_ADD_I2C, ACGY_ACC_ADD_X_LSB);
+ 584   4            }
+ 585   3      
+ 586   3            putline("ACK", 3);
+ 587   3            EOL();
+ 588   3            putline("READY", 5);
+ 589   3            EOL();
+ 590   3      
+ 591   3            AccMODE = 0;
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 11  
 
- 586   3            break;
- 587   3      
- 588   3          case ('R'): //Read Register
- 589   3            if (inline[1] == 'S')
- 590   3            {
- 591   4              // if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 592   4              // {
- 593   4              //  // SET the sensor momentarily to restore the sensor characteristic.
- 594   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x08);
- 595   4              //  delay(10000);
- 596   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x00);
- 597   4              // }
- 598   4              // putline("RS", 2);
- 599   4              // EOL();
- 600   4            }
- 601   3            else
- 602   3            {
- 603   4              putline("R", 1);
- 604   4              OneByte[0] = I2C_ByteRead(ADD_I2C, inline[1]);
- 605   4              putline(OneByte, 1);
- 606   4              EOL();
- 607   4            }
- 608   3      
- 609   3            break;
- 610   3      
- 611   3          case ('W'): //WRITE Register
- 612   3            I2C_ByteWrite(ADD_I2C, inline[1], inline[2]);
- 613   3            putline("WRITE BYTE", 10);
- 614   3            EOL();
- 615   3            break;
- 616   3      
- 617   3          case ('F'): //FFF, FFN, FNF, FNN, where F for OFF and N for ON.
- 618   3            RelayControl_1(inline);
- 619   3            break;
- 620   3      
- 621   3          case ('N'): //NFF, NFN, NNF, NNN, where F for OFF and N for ON.
- 622   3            RelayControl_2(inline);
- 623   3            break;
- 624   3      
- 625   3          case ('A'):
- 626   3            if (inline[1] == 'C')
- 627   3              SetReadingAccOutputMode(inline); //Read acc data
- 628   3            else
- 629   3              ControlAlertLight(inline);
- 630   3            break;
- 631   3      
- 632   3          case ('M'):
- 633   3            SetReadingOutputMode(inline); //Read magnet data
- 634   3            break;
- 635   3          case ('Y'):
- 636   3            SetReadingGyroOutputMode(inline); //Read gyro data
- 637   3            break;
+ 592   3          }
+ 593   2      
+ 594   2        } // Main loop
+ 595   1      }
+*** WARNING C280 IN LINE 205 OF HMC5983_IIC.c: 'index_sensor_type_struct': unreferenced local variable
+ 596          
+ 597          /******************************************************************************/
+ 598          /*     Command from COM Port                                                  */
+ 599          /******************************************************************************/
+ 600          
+ 601          void COM_Command(void)
+ 602          {
+ 603   1        char _index;
+ 604   1        unsigned char command_count = 0;
+ 605   1        // CHAR_TO_FLOAT idata char_float_conv;
+ 606   1      
+ 607   1        if (CheckCommandFlag == 1)
+ 608   1        {
+ 609   2          command_count = ReadCommand() - 2; // -2 means ignore CRLF
+ 610   2        }
+ 611   1        if (ReadCommandFlag == 1)
+ 612   1        {
+ 613   2          /**
+ 614   2           * In MODE 6, the calibration matrix is written into EEPROM in elemental basis.
+ 615   2           */
+ 616   2          if (MODE == 6 && command_count >= 2 && indexEEPROM < 12)
+ 617   2          {
+ 618   3            // push 2 bytes, which represents a variable in short type, into EEPROM in little-endian manner
+ 619   3            write(indexEEPROM, inline[0]);
+ 620   3            indexEEPROM++;
+ 621   3            write(indexEEPROM, inline[1]);
+ 622   3            indexEEPROM++;
+ 623   3            GainMatrix_M[indexEEPROM/2] = inline[0] | inline[1]<<8;
+ 624   3            putchar(ACK);
+ 625   3          }
+ 626   2          else if (MODE == 7 && command_count >= 2 && indexEEPROM < 12)
+ 627   2          {
+ 628   3            // push 2 bytes, which represents a variable in short type, into EEPROM in little-endian manner
+ 629   3            write(indexEEPROM+11, inline[0]);
+ 630   3            indexEEPROM++;
+ 631   3            write(indexEEPROM+11, inline[1]);
+ 632   3            indexEEPROM++;
+ 633   3            GainMatrix_G[indexEEPROM/2] = inline[0] | inline[1]<<8;
+ 634   3            putchar(ACK);
+ 635   3          }
+ 636   2          switch (inline[0])
+ 637   2          {
  638   3      
- 639   3          case ('I'):
- 640   3            ReadSensorID(inline);
+ 639   3          case ('S'):
+ 640   3            ChangeMeasurementMode(inline);
  641   3            break;
  642   3      
- 643   3          case ('D'):
- 644   3            if (inline[1] == 'S')
- 645   3            {
- 646   4              _index = CheckSensorCorrect();
- 647   4              sensor_type_name = &sensor_type[_index].type;
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 12  
+ 643   3          case ('X'):
+ 644   3            ReadXYZDataSequentially();
+ 645   3            break;
+ 646   3      
+ 647   3          case ('T'):
+ 648   3            SetReadingTempMode();
+ 649   3            break;
+ 650   3      
+ 651   3          case ('R'): // Read Register
+ 652   3            if (inline[1] == 'S')
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 12  
 
- 648   4              SetI2CParameters();
- 649   4              putline(sensor_type[_index].type, sizeof(sensor_type[_index].type));
- 650   4              EOL();
- 651   4            }
- 652   3            break;
- 653   3      
- 654   3          case ('G'):
- 655   3            ReadSensorID(inline);
- 656   3            break;
- 657   3      
- 658   3          /* For gain matrix operation */
- 659   3          case ('E'):
- 660   3            switch (inline[1])
- 661   3            {
- 662   4              // case ('A'): //EEPROM W/R
- 663   4              //  switch (inline[2])
- 664   4              //  {   
- 665   4              //    case ('R'):
- 666   4              //      if(command_count >= 7 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
- 667   4              //        char_float_conv._float = read(16*(inline[5]-'0')+(inline[6]-'0'));
- 668   4              //        EOL();
- 669   4              //      }
- 670   4              //      break;
- 671   4              //    case ('W'):
- 672   4              //      if(command_count >= 8 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
- 673   4              //        write(16*(inline[5]-'0')+(inline[6]-'0'), inline[7]);
- 674   4              //        putline("Write 0x", 8);
- 675   4              //        putline(inline+5, 2);
- 676   4              //        EOL();
- 677   4              //      }
- 678   4              //      break;
- 679   4              //    default:
- 680   4              //      putline("Invalid command for EEPROM R/W.", 31);
- 681   4              //      EOL();
- 682   4              //      break;
- 683   4              //  }
- 684   4              //  break;
- 685   4              case ('W'): //Write gain and offset matrix
- 686   4                //EW32=0.123;
- 687   4                // if(inline[2]>='0' && inline[2]<=
- 688   4                // '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
- 689   4                //   char_float_conv._float = byte_to_float(inline, 5, 15);
- 690   4                //   if(char_float_conv._float != -999.0){
- 691   4                //    write_gain_and_offset_matrix(inline[2]-'0', inline[3]-'0', char_float_conv._float);
- 692   4                //    putline("Write success", 13);
- 693   4                //   }
- 694   4                //   else{
- 695   4                //     putline("Write failure", 13);
- 696   4                //     //fail
- 697   4                //   }
- 698   4                // }
- 699   4                else{
-*** ERROR C141 IN LINE 699 OF HMC5983_IIC.c: syntax error near 'else', expected '__asm'
- 700   5                  //fail
- 701   5                }
- 702   4                break;
- 703   4      
- 704   4              case ('R'): //Read gain and offset matrix
- 705   4                char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
- 706   4                break;
- 707   4              case ('?'):
- 708   4                putline("EEPROM operation introduction.", 30);
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 13  
+ 653   3            {
+ 654   4              // if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 655   4              // {
+ 656   4              //  // SET the sensor momentarily to restore the sensor characteristic.
+ 657   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x08);
+ 658   4              //  delay(10000);
+ 659   4              //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x00);
+ 660   4              // }
+ 661   4              // putline("RS", 2);
+ 662   4              // EOL();
+ 663   4            }
+ 664   3            else
+ 665   3            {
+ 666   4              putline("R", 1);
+ 667   4              OneByte[0] = I2C_ByteRead(ADD_I2C, inline[1]);
+ 668   4              putline(OneByte, 1);
+ 669   4              EOL();
+ 670   4            }
+ 671   3      
+ 672   3            break;
+ 673   3      
+ 674   3          case ('W'): // WRITE Register
+ 675   3            I2C_ByteWrite(ADD_I2C, inline[1], inline[2]);
+ 676   3            putline("WRITE BYTE", 10);
+ 677   3            EOL();
+ 678   3            break;
+ 679   3      
+ 680   3          case ('F'): // FFF, FFN, FNF, FNN, where F for OFF and N for ON.
+ 681   3            RelayControl_1(inline);
+ 682   3            break;
+ 683   3      
+ 684   3          case ('N'): // NFF, NFN, NNF, NNN, where F for OFF and N for ON.
+ 685   3            RelayControl_2(inline);
+ 686   3            break;
+ 687   3      
+ 688   3          case ('A'):
+ 689   3            if (inline[1] == 'C')
+ 690   3              SetReadingAccOutputMode(inline); // Read acc data
+ 691   3            else
+ 692   3              ControlAlertLight(inline);
+ 693   3            break;
+ 694   3      
+ 695   3          case ('M'):
+ 696   3            SetReadingOutputMode(inline); // Read magnet data
+ 697   3            break;
+ 698   3          case ('Y'):
+ 699   3            SetReadingGyroOutputMode(inline); // Read gyro data
+ 700   3            break;
+ 701   3      
+ 702   3          case ('I'):
+ 703   3            ReadSensorID(inline);
+ 704   3            break;
+ 705   3      
+ 706   3          case ('D'):
+ 707   3            // if (inline[1] == 'S')
+ 708   3            // {
+ 709   3            //  _index = CheckSensorCorrect();
+ 710   3            //  sensor_type_name = &sensor_type[_index].type;
+ 711   3            //  SetI2CParameters();
+ 712   3            //  putline(sensor_type[_index].type, sizeof(sensor_type[_index].type));
+ 713   3            //  EOL();
+ 714   3            // }
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 13  
 
- 709   4                EOL();
- 710   4                break;
- 711   4              default:
- 712   4                break;
- 713   4            }
- 714   3          } //switch 1
- 715   2      
- 716   2          ReadCommandFlag = 0;
- 717   2        } // if(ReadCommandFlag  == 1)
- 718   1      }
- 719          
- 720          
- 721          
- 722          //MODE = 0 Nothing /= 1 Pass/= 2 MR Output /=3 Contiue MR Output
- 723          //----------------------------------------------------------------------------
- 724          
- 725          /******************************************************************************/
- 726          /*     Relay Initial Status                                                   */
- 727          /******************************************************************************/
- 728          void Initial_relay(void)
- 729          {
- 730   1        RY1_OFF;
- 731   1        RY2_OFF;
- 732   1        RY3_OFF;
- 733   1        RY4_ON;
- 734   1      }
- 735          
- 736          /******************************************************************************/
- 737          /*       serial_init: initialize serial interface                             */
- 738          /******************************************************************************/
- 739          void serial_init(void)
- 740          {
- 741   1      
- 742   1        SCON = 0x52; // SCON=01010011 SM0=0 SM1=1 SM2=0 REN=1 TB8=0 RB8=0 TI= 1 RI= 0
- 743   1        TMOD = 0x21;
- 744   1        TH1 = 256 - (28800 / 9600); //Fosc=11.059M   baudrate=9600
- 745   1        TR1 = 1;          //TIMRE 1 star Up
- 746   1      }
- 747          
- 748          /******************************************************************************/
- 749          /*       timer_init: initialize timer interrupt                               */
- 750          /******************************************************************************/
- 751          void timer0_init(void)
- 752          {
- 753   1      
- 754   1        TMOD = (TMOD & 0xF0) | 0x01; /* Set T/C0 Mode */
- 755   1      
- 756   1        ET0 = 1; /* Enable Timer 0 Interrupts */
- 757   1        TR0 = 1; /* Start Timer 0 Running */
- 758   1      
- 759   1        //TH0=0xDB;TL0=0xFF;//0.01sec
- 760   1        TH0 = 0x4B;
- 761   1        TL0 = 0xFF; //0.05sec
- 762   1      
- 763   1        EA = 1; /* Global Interrupt Enable */ //Later
- 764   1      }
- 765          
- 766          /******************************************************************************/
- 767          /*      Timer 0 Interrupt Service Routine.                                    */
- 768          /******************************************************************************/
- 769          void timer0_ISR(void) interrupt 1
- 770          {
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 14  
+ 715   3            break;
+ 716   3      
+ 717   3          case ('G'):
+ 718   3            ReadSensorID(inline);
+ 719   3            break;
+ 720   3      
+ 721   3          /* For gain matrix operation */
+ 722   3          case ('E'):
+ 723   3            switch (inline[1])
+ 724   3            {
+ 725   4            // case ('A'): //EEPROM W/R
+ 726   4            //  switch (inline[2])
+ 727   4            //  {
+ 728   4            //    case ('R'):
+ 729   4            //      if(command_count >= 7 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
+ 730   4            //        char_float_conv._float = read(16*(inline[5]-'0')+(inline[6]-'0'));
+ 731   4            //        EOL();
+ 732   4            //      }
+ 733   4            //      break;
+ 734   4            //    case ('W'):
+ 735   4            //      if(command_count >= 8 && inline[3] == '0' && (inline[4] == 'X' || inline[4] == 'x')){
+ 736   4            //        write(16*(inline[5]-'0')+(inline[6]-'0'), inline[7]);
+ 737   4            //        putline("Write 0x", 8);
+ 738   4            //        putline(inline+5, 2);
+ 739   4            //        EOL();
+ 740   4            //      }
+ 741   4            //      break;
+ 742   4            //    default:
+ 743   4            //      putline("Invalid command for EEPROM R/W.", 31);
+ 744   4            //      EOL();
+ 745   4            //      break;
+ 746   4            //  }
+ 747   4            //  break;
+ 748   4            case ('W'): // Write gain and offset matrix
+ 749   4              // Procedure: PC sends ['EW'] -> MCU returns [<ACK>] -> PC writes datas recursively -> MCU returns [<A
+             -CK>]
+ 750   4              // -> until all elements refreshed -> MCU replies [<ACK>] and ['Done']
+ 751   4              putchar(ACK); // acknowledge pc request has been received,
+ 752   4                      // and it is ready to receive array data sequentially.
+ 753   4              if (inline[2]=='M') MODE = 6;   //M-sensor
+ 754   4              else if (inline[2]=='G') MODE = 7;  //Gyro
+ 755   4              indexEEPROM = 0;
+ 756   4              break;
+ 757   4              // EW32=0.123;
+ 758   4              //  if(inline[2]>='0' && inline[2]<=
+ 759   4              //  '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
+ 760   4              //     char_float_conv._float = byte_to_float(inline, 5, 15);
+ 761   4              //     if(char_float_conv._float != -999.0){
+ 762   4              //      write_gain_and_offset_matrix(inline[2]-'0', inline[3]-'0', char_float_conv._float);
+ 763   4              //      putline("Write success", 13);
+ 764   4              //     }
+ 765   4              //     else{
+ 766   4              //       putline("Write failure", 13);
+ 767   4              //       //fail
+ 768   4              //     }
+ 769   4              //  }
+ 770   4              //  else{
+ 771   4              //  fail
+ 772   4              //  }
+ 773   4              //  break;
+ 774   4      
+ 775   4            // case ('R'): //Read gain and offset matrix
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 14  
 
- 771   1        TR0 = 0; // STOP TIMER
- 772   1        //TH0=0xDB;TL0=0xFF;//0.01 sec
- 773   1        TH0 = 0x4B;
- 774   1        TL0 = 0xFF; //0.05sec
- 775   1      
- 776   1        TR0 = 1; //START TIMER
- 777   1      }
- 778          
- 779          /******************************************************************************/
- 780          /*       Initialize                                                           */
- 781          /******************************************************************************/
- 782          void Initial_board(void)
- 783          {
- 784   1      
- 785   1        serial_init(); /* Initialize the serial interface  */
- 786   1                 // timer0_init ();   /* Initialize the timer0 interface  */
- 787   1      
- 788   1        ES = 1; /* Enable serial interrupts */
- 789   1        PS = 1; /* Set serial interrupts to Hign priority */
- 790   1      
- 791   1        EA = 1; /* Enable Global interrupt*/
- 792   1      }
+ 776   4            //  char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
+ 777   4            //  break;
+ 778   4            // case ('?'):
+ 779   4            //  putline("EEPROM operation introduction.", 30);
+ 780   4            //  EOL();
+ 781   4            //  break;
+ 782   4            default:
+ 783   4              break;
+ 784   4            }
+ 785   3          } // switch 1
+ 786   2      
+ 787   2          ReadCommandFlag = 0;
+ 788   2        } // if(ReadCommandFlag  == 1)
+ 789   1      }
+*** WARNING C280 IN LINE 603 OF HMC5983_IIC.c: '_index': unreferenced local variable
+ 790          
+ 791          // MODE = 0 Nothing /= 1 Pass/= 2 MR Output /=3 Contiue MR Output
+ 792          //----------------------------------------------------------------------------
  793          
  794          /******************************************************************************/
- 795          /*       ReadCommand                                                          */
+ 795          /*     Relay Initial Status                                                   */
  796          /******************************************************************************/
- 797          unsigned char ReadCommand(void)
+ 797          void Initial_relay(void)
  798          {
- 799   1      
- 800   1        unsigned char index = 0;
- 801   1      
- 802   1        ES = 0; //disable UART interrupt
- 803   1      
- 804   1        incount = GetSerialCount();
- 805   1      
- 806   1        while (index != incount)
- 807   1        {
- 808   2          inline[index] = GetCommandByte(index);
- 809   2          index = index + 1;
- 810   2        }
- 811   1      
- 812   1        CheckCommandFlag = 0; //Command is checkec and then clear flag
- 813   1        ReadCommandFlag = 1;  //Command is in inline now, then set new flag
- 814   1      
- 815   1        ES = 1; //enable UART interrupt
- 816   1      
- 817   1        return index;
- 818   1      }
- 819          
- 820          /****************************************************************************/
- 821          /*   Sub-Function for COM port command                                      */
- 822          /****************************************************************************/
- 823          
- 824          void ChangeMeasurementMode(unsigned char idata *_inline)
- 825          {
- 826   1        if (_inline[1] == '0') //'S0'
- 827   1        {
- 828   2          I2C_ByteWrite(ADD_I2C, 0x00, 0xF0);
- 829   2          I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
- 830   2          I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
- 831   2        }
- 832   1        else if (_inline[1] == '1') //'S1'
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 15  
+ 799   1        RY1_OFF;
+ 800   1        RY2_OFF;
+ 801   1        RY3_OFF;
+ 802   1        RY4_ON;
+ 803   1      }
+ 804          
+ 805          /******************************************************************************/
+ 806          /*       serial_init: initialize serial interface                             */
+ 807          /******************************************************************************/
+ 808          void serial_init(void)
+ 809          {
+ 810   1      
+ 811   1        SCON = 0x52; // SCON=01010011 SM0=0 SM1=1 SM2=0 REN=1 TB8=0 RB8=0 TI= 1 RI= 0
+ 812   1        TMOD = 0x21;
+ 813   1        TH1 = 256 - (28800 / 9600); // Fosc=11.059M   baudrate=9600
+ 814   1        TR1 = 1;          // TIMRE 1 star Up
+ 815   1      }
+ 816          
+ 817          /******************************************************************************/
+ 818          /*       timer_init: initialize timer interrupt                               */
+ 819          /******************************************************************************/
+ 820          void timer0_init(void)
+ 821          {
+ 822   1      
+ 823   1        TMOD = (TMOD & 0xF0) | 0x01; /* Set T/C0 Mode */
+ 824   1      
+ 825   1        ET0 = 1; /* Enable Timer 0 Interrupts */
+ 826   1        TR0 = 1; /* Start Timer 0 Running */
+ 827   1      
+ 828   1        // TH0=0xDB;TL0=0xFF;//0.01sec
+ 829   1        TH0 = 0x4B;
+ 830   1        TL0 = 0xFF; // 0.05sec
+ 831   1      
+ 832   1        EA = 1; /* Global Interrupt Enable */ // Later
+ 833   1      }
+ 834          
+ 835          /******************************************************************************/
+ 836          /*      Timer 0 Interrupt Service Routine.                                    */
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 15  
 
- 833   1        {
- 834   2          I2C_ByteWrite(ADD_I2C, 0x00, 0xF1); //poisitive bias
- 835   2          I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
- 836   2          I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
- 837   2        }
- 838   1        else if (_inline[1] == '2') //'S2'
- 839   1        {
- 840   2          I2C_ByteWrite(ADD_I2C, 0x00, 0xF2); //Negative bias
- 841   2          I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
- 842   2          I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
- 843   2        }
- 844   1      }
- 845          
- 846          void ReadXYZDataSequentially(void)
- 847          {
- 848   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
- 849   1          I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
- 850   1        // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 851   1        //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
- 852   1        // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 853   1        //  I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
- 854   1      
- 855   1        putline("X", 1);
- 856   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_X_MSB);
- 857   1        putline(OneByte, 1);
- 858   1        delay(10);
- 859   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_X_LSB);
- 860   1        putline(OneByte, 1);
- 861   1        delay(10);
- 862   1        putline("Y", 1);
- 863   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Y_MSB);
- 864   1        putline(OneByte, 1);
- 865   1        delay(10);
- 866   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Y_LSB);
- 867   1        putline(OneByte, 1);
- 868   1        delay(10);
- 869   1        putline("Z", 1);
- 870   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Z_MSB);
- 871   1        putline(OneByte, 1);
- 872   1        delay(10);
- 873   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Z_LSB);
- 874   1        putline(OneByte, 1);
- 875   1        delay(10);
- 876   1      }
- 877          
- 878          void RelayControl_1(unsigned char idata *_inline)
- 879          {
- 880   1        switch (_inline[1])
- 881   1        {
- 882   2        case ('F'):
- 883   2          switch (_inline[2])
- 884   2          {
- 885   3          case ('F'): //FFF
- 886   3            RY1_OFF;
- 887   3            RY2_OFF;
- 888   3            RY3_OFF;
- 889   3            putline("FFF", 3);
- 890   3            EOL();
- 891   3            putline("ACK", 3);
- 892   3            EOL();
- 893   3            putline("READY", 5);
- 894   3            EOL();
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 16  
+ 837          /******************************************************************************/
+ 838          void timer0_ISR(void) interrupt 1
+ 839          {
+ 840   1        TR0 = 0; // STOP TIMER
+ 841   1        // TH0=0xDB;TL0=0xFF;//0.01 sec
+ 842   1        TH0 = 0x4B;
+ 843   1        TL0 = 0xFF; // 0.05sec
+ 844   1      
+ 845   1        TR0 = 1; // START TIMER
+ 846   1      }
+ 847          
+ 848          /******************************************************************************/
+ 849          /*       Initialize                                                           */
+ 850          /******************************************************************************/
+ 851          void Initial_board(void)
+ 852          {
+ 853   1      
+ 854   1        serial_init(); /* Initialize the serial interface  */
+ 855   1                 // timer0_init ();   /* Initialize the timer0 interface  */
+ 856   1      
+ 857   1        ES = 1; /* Enable serial interrupts */
+ 858   1        PS = 1; /* Set serial interrupts to Hign priority */
+ 859   1      
+ 860   1        EA = 1; /* Enable Global interrupt*/
+ 861   1      }
+ 862          
+ 863          /******************************************************************************/
+ 864          /*       ReadCommand                                                          */
+ 865          /******************************************************************************/
+ 866          unsigned char ReadCommand(void)
+ 867          {
+ 868   1      
+ 869   1        unsigned char index = 0;
+ 870   1      
+ 871   1        ES = 0; // disable UART interrupt
+ 872   1      
+ 873   1        incount = GetSerialCount();
+ 874   1      
+ 875   1        while (index != incount)
+ 876   1        {
+ 877   2          inline[index] = GetCommandByte(index);
+ 878   2          index = index + 1;
+ 879   2        }
+ 880   1      
+ 881   1        CheckCommandFlag = 0; // Command is checkec and then clear flag
+ 882   1        ReadCommandFlag = 1;  // Command is in inline now, then set new flag
+ 883   1      
+ 884   1        ES = 1; // enable UART interrupt
+ 885   1      
+ 886   1        return index;
+ 887   1      }
+ 888          
+ 889          /****************************************************************************/
+ 890          /*   Sub-Function for COM port command                                      */
+ 891          /****************************************************************************/
+ 892          
+ 893          void ChangeMeasurementMode(unsigned char idata *_inline)
+ 894          {
+ 895   1        if (_inline[1] == '0') //'S0'
+ 896   1        {
+ 897   2          I2C_ByteWrite(ADD_I2C, 0x00, 0xF0);
+ 898   2          I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 16  
 
- 895   3            break;
- 896   3      
- 897   3          case ('N'): //FFN
- 898   3            RY1_OFF;
- 899   3            RY2_OFF;
- 900   3            RY3_ON;
- 901   3            putline("FFN", 3);
- 902   3            EOL();
- 903   3            putline("ACK", 3);
- 904   3            EOL();
- 905   3            putline("READY", 5);
- 906   3            EOL();
- 907   3            break;
- 908   3          } //switch 3
- 909   2          break;
- 910   2      
- 911   2        case ('N'):
- 912   2          switch (_inline[2])
- 913   2          {
- 914   3          case ('F'): //FNF
- 915   3            RY1_OFF;
- 916   3            RY2_ON;
- 917   3            RY3_OFF;
- 918   3            putline("FNF", 3);
- 919   3            EOL();
- 920   3            putline("ACK", 3);
- 921   3            EOL();
- 922   3            putline("READY", 5);
- 923   3            EOL();
- 924   3            break;
- 925   3      
- 926   3          case ('N'): //FNN
- 927   3            RY1_OFF;
- 928   3            RY2_ON;
- 929   3            RY3_ON;
- 930   3            putline("FNN", 3);
- 931   3            EOL();
- 932   3            putline("ACK", 3);
- 933   3            EOL();
- 934   3            putline("READY", 5);
- 935   3            EOL();
- 936   3            break;
- 937   3          } //switch 3
- 938   2          break;
- 939   2        } //switch 2
- 940   1      }
- 941          
- 942          void RelayControl_2(unsigned char idata *_inline)
- 943          {
- 944   1        switch (_inline[1])
- 945   1        {
- 946   2        case ('F'):
- 947   2          switch (inline[2])
- 948   2          {
- 949   3          case ('F'): //NFF
- 950   3            RY1_ON;
- 951   3            RY2_OFF;
- 952   3            RY3_OFF;
- 953   3            putline("NFF", 3);
- 954   3            EOL();
- 955   3            putline("ACK", 3);
- 956   3            EOL();
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 17  
+ 899   2          I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
+ 900   2        }
+ 901   1        else if (_inline[1] == '1') //'S1'
+ 902   1        {
+ 903   2          I2C_ByteWrite(ADD_I2C, 0x00, 0xF1); // poisitive bias
+ 904   2          I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
+ 905   2          I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
+ 906   2        }
+ 907   1        else if (_inline[1] == '2') //'S2'
+ 908   1        {
+ 909   2          I2C_ByteWrite(ADD_I2C, 0x00, 0xF2); // Negative bias
+ 910   2          I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
+ 911   2          I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
+ 912   2        }
+ 913   1      }
+ 914          
+ 915          void ReadXYZDataSequentially(void)
+ 916          {
+ 917   1        I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 918   1      
+ 919   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 920   1        //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 921   1        // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 922   1        //  I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+ 923   1        // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 924   1        //  I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
+ 925   1      
+ 926   1        putline("X", 1);
+ 927   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_X_MSB);
+ 928   1        putline(OneByte, 1);
+ 929   1        delay(10);
+ 930   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_X_LSB);
+ 931   1        putline(OneByte, 1);
+ 932   1        delay(10);
+ 933   1        putline("Y", 1);
+ 934   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Y_MSB);
+ 935   1        putline(OneByte, 1);
+ 936   1        delay(10);
+ 937   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Y_LSB);
+ 938   1        putline(OneByte, 1);
+ 939   1        delay(10);
+ 940   1        putline("Z", 1);
+ 941   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Z_MSB);
+ 942   1        putline(OneByte, 1);
+ 943   1        delay(10);
+ 944   1        OneByte[0] = I2cReadTrm2(ADD_I2C, ADD_Z_LSB);
+ 945   1        putline(OneByte, 1);
+ 946   1        delay(10);
+ 947   1      }
+ 948          
+ 949          void RelayControl_1(unsigned char idata *_inline)
+ 950          {
+ 951   1        switch (_inline[1])
+ 952   1        {
+ 953   2        case ('F'):
+ 954   2          switch (_inline[2])
+ 955   2          {
+ 956   3          case ('F'): // FFF
+ 957   3            RY1_OFF;
+ 958   3            RY2_OFF;
+ 959   3            RY3_OFF;
+ 960   3            putline("FFF", 3);
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 17  
 
- 957   3            putline("READY", 5);
- 958   3            EOL();
- 959   3            break;
- 960   3      
- 961   3          case ('N'): //NFN
- 962   3            RY1_ON;
- 963   3            RY2_OFF;
- 964   3            RY3_ON;
- 965   3            putline("NFN", 3);
- 966   3            EOL();
- 967   3            putline("ACK", 3);
- 968   3            EOL();
- 969   3            putline("READY", 5);
- 970   3            EOL();
- 971   3            break;
- 972   3          } //switch 3
- 973   2          break;
- 974   2      
- 975   2        case ('N'):
- 976   2          switch (inline[2])
- 977   2          {
- 978   3          case ('F'): //NNF
- 979   3            RY1_ON;
- 980   3            RY2_ON;
- 981   3            RY3_OFF;
- 982   3            putline("NNF", 3);
- 983   3            EOL();
- 984   3            putline("ACK", 3);
- 985   3            EOL();
- 986   3            putline("READY", 5);
- 987   3            EOL();
- 988   3            break;
- 989   3      
- 990   3          case ('N'): //NNN
- 991   3            RY1_ON;
- 992   3            RY2_ON;
- 993   3            RY3_ON;
- 994   3            putline("NNN", 3);
- 995   3            EOL();
- 996   3            putline("ACK", 3);
- 997   3            EOL();
- 998   3            putline("READY", 5);
- 999   3            EOL();
-1000   3            break;
-1001   3          } //switch 3
-1002   2          break;
-1003   2        } //switch 2
-1004   1      }
-1005          
-1006          void SetReadingOutputMode(unsigned char idata *_inline)
-1007          {
-1008   1        switch (_inline[1])
-1009   1        {
-1010   2        case ('H'): //MH >> read data in high resolution for MMC5883MA
-1011   2          ReadHighResolution = 1;
-1012   2          putline("MH", 2);
-1013   2          EOL();
-1014   2          break;
-1015   2      
-1016   2        case ('L'): //ML >> read data in low resolution for MMC5883MA
-1017   2          ReadHighResolution = 0;
-1018   2          putline("ML", 2);
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 18  
+ 961   3            EOL();
+ 962   3            putline("ACK", 3);
+ 963   3            EOL();
+ 964   3            putline("READY", 5);
+ 965   3            EOL();
+ 966   3            break;
+ 967   3      
+ 968   3          case ('N'): // FFN
+ 969   3            RY1_OFF;
+ 970   3            RY2_OFF;
+ 971   3            RY3_ON;
+ 972   3            putline("FFN", 3);
+ 973   3            EOL();
+ 974   3            putline("ACK", 3);
+ 975   3            EOL();
+ 976   3            putline("READY", 5);
+ 977   3            EOL();
+ 978   3            break;
+ 979   3          } // switch 3
+ 980   2          break;
+ 981   2      
+ 982   2        case ('N'):
+ 983   2          switch (_inline[2])
+ 984   2          {
+ 985   3          case ('F'): // FNF
+ 986   3            RY1_OFF;
+ 987   3            RY2_ON;
+ 988   3            RY3_OFF;
+ 989   3            putline("FNF", 3);
+ 990   3            EOL();
+ 991   3            putline("ACK", 3);
+ 992   3            EOL();
+ 993   3            putline("READY", 5);
+ 994   3            EOL();
+ 995   3            break;
+ 996   3      
+ 997   3          case ('N'): // FNN
+ 998   3            RY1_OFF;
+ 999   3            RY2_ON;
+1000   3            RY3_ON;
+1001   3            putline("FNN", 3);
+1002   3            EOL();
+1003   3            putline("ACK", 3);
+1004   3            EOL();
+1005   3            putline("READY", 5);
+1006   3            EOL();
+1007   3            break;
+1008   3          } // switch 3
+1009   2          break;
+1010   2        } // switch 2
+1011   1      }
+1012          
+1013          void RelayControl_2(unsigned char idata *_inline)
+1014          {
+1015   1        switch (_inline[1])
+1016   1        {
+1017   2        case ('F'):
+1018   2          switch (inline[2])
+1019   2          {
+1020   3          case ('F'): // NFF
+1021   3            RY1_ON;
+1022   3            RY2_OFF;
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 18  
 
-1019   2          EOL();
-1020   2          break;
-1021   2      
-1022   2        case ('R'): //MR >> counting mode
-1023   2          Rx3 = _inline[2];
-1024   2          MODE = 2;
-1025   2          GyroMODE = 0;
-1026   2          AccMODE = 0;
-1027   2          break;
-1028   2      
-1029   2        case ('C'): //MC >> continue mode
-1030   2          MODE = 3;
-1031   2          GyroMODE = 0;
-1032   2          AccMODE = 0;
-1033   2          break;
-1034   2        } //switch 2
-1035   1      }
-1036          void SetReadingAccOutputMode(unsigned char idata *_inline)
-1037          {
-1038   1        switch (_inline[2])
-1039   1        {
-1040   2        case ('R'): //ACR >> counting mode
-1041   2          Rx3 = _inline[3];
-1042   2          MODE = 0;
-1043   2          GyroMODE = 0;
-1044   2          AccMODE = 2;
-1045   2          break;
-1046   2      
-1047   2        case ('C'): //ACC >> continue mode
-1048   2          MODE = 0;
-1049   2          GyroMODE = 0;
-1050   2          AccMODE = 3;
-1051   2          break;
-1052   2        } //switch 2
-1053   1      }
-1054          void SetReadingTempMode(void)
-1055          {
-1056   1        char T_status = 0;
-1057   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-1058   1        {
-1059   2          T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04; //0b00000100 polling to check temperature
+1023   3            RY3_OFF;
+1024   3            putline("NFF", 3);
+1025   3            EOL();
+1026   3            putline("ACK", 3);
+1027   3            EOL();
+1028   3            putline("READY", 5);
+1029   3            EOL();
+1030   3            break;
+1031   3      
+1032   3          case ('N'): // NFN
+1033   3            RY1_ON;
+1034   3            RY2_OFF;
+1035   3            RY3_ON;
+1036   3            putline("NFN", 3);
+1037   3            EOL();
+1038   3            putline("ACK", 3);
+1039   3            EOL();
+1040   3            putline("READY", 5);
+1041   3            EOL();
+1042   3            break;
+1043   3          } // switch 3
+1044   2          break;
+1045   2      
+1046   2        case ('N'):
+1047   2          switch (inline[2])
+1048   2          {
+1049   3          case ('F'): // NNF
+1050   3            RY1_ON;
+1051   3            RY2_ON;
+1052   3            RY3_OFF;
+1053   3            putline("NNF", 3);
+1054   3            EOL();
+1055   3            putline("ACK", 3);
+1056   3            EOL();
+1057   3            putline("READY", 5);
+1058   3            EOL();
+1059   3            break;
+1060   3      
+1061   3          case ('N'): // NNN
+1062   3            RY1_ON;
+1063   3            RY2_ON;
+1064   3            RY3_ON;
+1065   3            putline("NNN", 3);
+1066   3            EOL();
+1067   3            putline("ACK", 3);
+1068   3            EOL();
+1069   3            putline("READY", 5);
+1070   3            EOL();
+1071   3            break;
+1072   3          } // switch 3
+1073   2          break;
+1074   2        } // switch 2
+1075   1      }
+1076          
+1077          void SetReadingOutputMode(unsigned char idata *_inline)
+1078          {
+1079   1        switch (_inline[1])
+1080   1        {
+1081   2        case ('H'): // MH >> read data in high resolution for MMC5883MA
+1082   2          ReadHighResolution = 1;
+1083   2          putline("MH", 2);
+1084   2          EOL();
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 19  
+
+1085   2          break;
+1086   2      
+1087   2        case ('L'): // ML >> read data in low resolution for MMC5883MA
+1088   2          ReadHighResolution = 0;
+1089   2          putline("ML", 2);
+1090   2          EOL();
+1091   2          break;
+1092   2      
+1093   2        case ('R'): // MR >> counting mode
+1094   2          Rx3 = _inline[2];
+1095   2          MODE = 2;
+1096   2          GyroMODE = 0;
+1097   2          AccMODE = 0;
+1098   2          break;
+1099   2      
+1100   2        case ('C'): // MC >> continue mode
+1101   2          MODE = 3;
+1102   2          GyroMODE = 0;
+1103   2          AccMODE = 0;
+1104   2          break;
+1105   2        } // switch 2
+1106   1      }
+1107          void SetReadingAccOutputMode(unsigned char idata *_inline)
+1108          {
+1109   1        switch (_inline[2])
+1110   1        {
+1111   2        case ('R'): // ACR >> counting mode
+1112   2          Rx3 = _inline[3];
+1113   2          MODE = 0;
+1114   2          GyroMODE = 0;
+1115   2          AccMODE = 2;
+1116   2          break;
+1117   2      
+1118   2        case ('C'): // ACC >> continue mode
+1119   2          MODE = 0;
+1120   2          GyroMODE = 0;
+1121   2          AccMODE = 3;
+1122   2          break;
+1123   2        } // switch 2
+1124   1      }
+1125          void SetReadingTempMode(void)
+1126          {
+1127   1        char T_status = 0;
+1128   1      
+1129   1        T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04; // 0b00000100 polling to check temperature
              - ready
-1060   2          while (T_status == 0)
-1061   2          {
-1062   3            T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04;
-1063   3          }
-1064   2      
-1065   2          I2C_T_Data(ACGY_ADD_I2C, ACGY_ADD_TMP_LSB); //read temperature data
-1066   2        }
-1067   1        else
-1068   1        {
-1069   2          I2C_T_Data(ADD_I2C, ADD_TMP_MSB);
-1070   2        }
-1071   1      }
-1072          
-1073          void SetReadingGyroOutputMode(unsigned char idata *_inline)
-1074          {
-1075   1        switch (_inline[1])
-1076   1        {
-1077   2        case ('R'): //YR >> gyro counting mode
-1078   2          Rx3 = _inline[2];
-1079   2          MODE = 0;
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 19  
+1130   1        while (T_status == 0)
+1131   1        {
+1132   2          T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04;
+1133   2        }
+1134   1      
+1135   1        I2C_T_Data(ACGY_ADD_I2C, ACGY_ADD_TMP_LSB); 
+1136   1        // read temperature data
+1137   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+1138   1        // {
+1139   1        //  T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04; // 0b00000100 polling to check tempera
+             -ture ready
+1140   1        //  while (T_status == 0)
+1141   1        //  {
+1142   1        //    T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04;
+1143   1                              //  }
+1144   1      
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 20  
 
-1080   2          GyroMODE = 2;
-1081   2          AccMODE = 0;
-1082   2          break;
-1083   2      
-1084   2        case ('C'): //YC >> gyro continue mode
-1085   2          MODE = 0;
-1086   2          GyroMODE = 3;
-1087   2          AccMODE = 0;
-1088   2          break;
-1089   2        } //switch 2
-1090   1      }
-1091          
-1092          void ControlAlertLight(unsigned char idata *_inline)
-1093          {
-1094   1        switch (_inline[2])
-1095   1        {
-1096   2        case ('F'): //A_F >> Fail
-1097   2          MODE = 4;
-1098   2          GyroMODE = 0;
-1099   2          AccMODE = 0;
-1100   2          //RY4_OFF;
-1101   2          putline("ALF", 3);
-1102   2          EOL();
-1103   2          putline("ACK", 3);
-1104   2          EOL();
-1105   2          putline("READY", 5);
-1106   2          EOL();
-1107   2          break;
-1108   2      
-1109   2        case ('P'): //A_P >> Pass
-1110   2          MODE = 1;
-1111   2          GyroMODE = 0;
-1112   2          AccMODE = 0;
-1113   2          putline("ALP", 3);
-1114   2          EOL();
-1115   2          putline("ACK", 3);
-1116   2          EOL();
-1117   2          putline("READY", 5);
-1118   2          EOL();
-1119   2          break;
-1120   2      
-1121   2        case ('T'): //A_T >> Test, Turn on the green alert lamp
-1122   2          MODE = 5;
-1123   2          GyroMODE = 0;
-1124   2          AccMODE = 0;
-1125   2          //RY4_ON;
-1126   2          putline("ALT", 3);
-1127   2          EOL();
-1128   2          putline("ACK", 3);
-1129   2          EOL();
-1130   2          putline("READY", 5);
-1131   2          EOL();
-1132   2          break;
-1133   2        } //switch 2
-1134   1      }
-1135          
-1136          void ReadSensorID(unsigned char idata *_inline)
-1137          {
-1138   1        //unsigned char* _data[3];
-1139   1        unsigned char ID_Byte;
-1140   1      
-1141   1        if (_inline[1] == 'D')
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 20  
-
-1142   1        {
-1143   2      
-1144   2          //I2CReadMultiBytes(ADD_I2C, ADD_ID, *_data, 3);
-1145   2          ID_Byte = I2C_ByteRead(ADD_I2C, ADD_ID);
-1146   2          putline("ID:", 3);
-1147   2          putchar(ID_Byte);
-1148   2          EOL();
-1149   2        }
-1150   1      }
-1151          
-1152          /*
-1153          void DetectConnectedSensor(unsigned char xdata *_inline)
+1145   1        //  I2C_T_Data(ACGY_ADD_I2C, ACGY_ADD_TMP_LSB); // read temperature data
+1146   1        // }
+1147   1        // else
+1148   1        // {
+1149   1        //  I2C_T_Data(ADD_I2C, ADD_TMP_MSB);
+1150   1        // }
+1151   1      }
+1152          
+1153          void SetReadingGyroOutputMode(unsigned char idata *_inline)
 1154          {
-1155            char _index;
-1156            
-1157            if (_inline[1]=='S')
-1158            {
-1159              _index = CheckSensorCorrect();
-1160              *sensor_type_name = sensor_type[_index].type;
-1161              SetI2CParameters(sensor_type_name);
-1162              putline(sensor_type[_index].type, sizeof(sensor_type[_index].type)); EOL();
-1163            }
-1164          }
-1165          */
-1166          
-1167          char CheckSensorCorrect(void)
-1168          {
-1169   1        // This function is used to find the correct type of sensor connected with 8051 board.
-1170   1        // If there is a sensor defined in the sensor_type struct table found out,
-1171   1        // it will return the index of the sensor in sensor_type variable.
-1172   1        // If not, return 255, the size of char.
-1173   1      
-1174   1        short len_sensor_type = sizeof(sensor_type) / sizeof(sensor_type[0]);
-1175   1        char _i;
-1176   1        unsigned char _data[3];
-1177   1        unsigned char _data2[3];
-1178   1        unsigned char ID_Byte;
-1179   1        unsigned char ID2_Byte;
-1180   1      
-1181   1        for (_i = 0; _i < len_sensor_type; _i++)
-1182   1        {
-1183   2          if (sensor_type[_i].Num_Registers > 1)
-1184   2          {
-1185   3            I2CReadMultiBytes(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address, &_data, sensor_type[_i].N
-             -um_Registers);
-1186   3            I2CReadMultiBytes(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address, &_data2, sensor_t
-             -ype[_i + 1].Num_Registers);
-1187   3            if (CheckArrayEqual(_data, &sensor_type[_i].ID))
-1188   3            {
-1189   4              if (CheckArrayEqual(_data2, &sensor_type[_i + 1].ID)) //inorder to check the LSM9DS1 mag(i) && acc/gyr
-             -o(i+1) sensor
-1190   4                return _i + 2;  //return LSM9DS1 (i+2)
-1191   4              else
-1192   4                return _i;
-1193   4            }
-1194   3          }
-1195   2          else
-1196   2          {
-1197   3            ID_Byte = I2C_ByteRead(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address);
-1198   3            ID2_Byte = I2C_ByteRead(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address);
-1199   3            if (ID_Byte == sensor_type[_i].ID[0])
-1200   3            {
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 21  
+1155   1        switch (_inline[1])
+1156   1        {
+1157   2        case ('R'): // YR >> gyro counting mode
+1158   2          Rx3 = _inline[2];
+1159   2          MODE = 0;
+1160   2          GyroMODE = 2;
+1161   2          AccMODE = 0;
+1162   2          break;
+1163   2      
+1164   2        case ('C'): // YC >> gyro continue mode
+1165   2          MODE = 0;
+1166   2          GyroMODE = 3;
+1167   2          AccMODE = 0;
+1168   2          break;
+1169   2        } // switch 2
+1170   1      }
+1171          
+1172          void ControlAlertLight(unsigned char idata *_inline)
+1173          {
+1174   1        switch (_inline[2])
+1175   1        {
+1176   2        case ('F'): // A_F >> Fail
+1177   2          MODE = 4;
+1178   2          GyroMODE = 0;
+1179   2          AccMODE = 0;
+1180   2          // RY4_OFF;
+1181   2          putline("ALF", 3);
+1182   2          EOL();
+1183   2          putline("ACK", 3);
+1184   2          EOL();
+1185   2          putline("READY", 5);
+1186   2          EOL();
+1187   2          break;
+1188   2      
+1189   2        case ('P'): // A_P >> Pass
+1190   2          MODE = 1;
+1191   2          GyroMODE = 0;
+1192   2          AccMODE = 0;
+1193   2          putline("ALP", 3);
+1194   2          EOL();
+1195   2          putline("ACK", 3);
+1196   2          EOL();
+1197   2          putline("READY", 5);
+1198   2          EOL();
+1199   2          break;
+1200   2      
+1201   2        case ('T'): // A_T >> Test, Turn on the green alert lamp
+1202   2          MODE = 5;
+1203   2          GyroMODE = 0;
+1204   2          AccMODE = 0;
+1205   2          // RY4_ON;
+1206   2          putline("ALT", 3);
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 21  
 
-1201   4              if (ID2_Byte == sensor_type[_i + 1].ID[0])  //inorder to check the LSM9DS1 mag(i) && acc/gyro(i+1) sens
-             -or
-1202   4              {
-1203   5                return _i + 2;  //return LSM9DS1 (i+2)
-1204   5              }
-1205   4              else
-1206   4              {
-1207   5                return _i;
-1208   5              }
-1209   4            }
-1210   3          }
-1211   2        }
-1212   1        return 0xFF;
-1213   1      }
-1214          
-1215          bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID)
-1216          {
-1217   1        char len_data = sizeof(_data);
-1218   1        char _i;
-1219   1      
-1220   1        for (_i = 0; _i < len_data; _i++)
-1221   1        {
-1222   2          if (_data[_i] != *(sensor_ID + _i))
-1223   2            return 0;
-1224   2        }
-1225   1        return 1;
-1226   1      }
-1227          
-1228          bit StringCompare(char idata **strA, char idata strB[], char num_char)
-1229          {
-1230   1      
-1231   1        char _i;
-1232   1        char len_str = sizeof(strB);
-1233   1      
-1234   1        if (num_char > len_str)
-1235   1          num_char = len_str;
-1236   1      
-1237   1        for (_i = 0; _i < num_char; _i++)
-1238   1        {
-1239   2          char *_c = (strA + _i);
-1240   2          if (*_c != strB[_i])
-1241   2            return 0;
-1242   2        }
-1243   1      
-1244   1        return 1;
-1245   1      }
+1207   2          EOL();
+1208   2          putline("ACK", 3);
+1209   2          EOL();
+1210   2          putline("READY", 5);
+1211   2          EOL();
+1212   2          break;
+1213   2        } // switch 2
+1214   1      }
+1215          
+1216          void ReadSensorID(unsigned char idata *_inline)
+1217          {
+1218   1        // unsigned char* _data[3];
+1219   1        unsigned char ID_Byte;
+1220   1      
+1221   1        if (_inline[1] == 'D')
+1222   1        {
+1223   2      
+1224   2          // I2CReadMultiBytes(ADD_I2C, ADD_ID, *_data, 3);
+1225   2          ID_Byte = I2C_ByteRead(ADD_I2C, ADD_ID);
+1226   2          putline("ID:", 3);
+1227   2          putchar(ID_Byte);
+1228   2          EOL();
+1229   2        }
+1230   1      }
+1231          
+1232          /*
+1233          void DetectConnectedSensor(unsigned char xdata *_inline)
+1234          {
+1235            char _index;
+1236          
+1237            if (_inline[1]=='S')
+1238            {
+1239              _index = CheckSensorCorrect();
+1240              *sensor_type_name = sensor_type[_index].type;
+1241              SetI2CParameters(sensor_type_name);
+1242              putline(sensor_type[_index].type, sizeof(sensor_type[_index].type)); EOL();
+1243            }
+1244          }
+1245          */
 1246          
-1247          void Initial_register(void)
-1248          {
-1249   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-1250   1        {
-1251   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG8, 0x05); //SW_RESET on
-1252   2      
-1253   2          I2C_ByteWrite(ADD_I2C, CTRL_REG1_M, 0x10); //0b00010000 >> ODR=10Hz
-1254   2          I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x20); //0b00100000 >> +-8 gauss, bit5 → SOFT_RST
-1255   2          I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); //0b00000000 >> Z Low-power mode
-1256   2          I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); //0b00000000 >> data continue update
-1257   2      
-1258   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0); //0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz 
-1259   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); //0b00000000 >> GYO sign postive
-1260   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);   //0b00111000 >> Gyro output enable
-1261   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);   //0b1100 0000>> FIFO mode >> continuos mode
-C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/18/2021 11:21:35 PAGE 22  
+1247          // char CheckSensorCorrect(void)
+1248          // {
+1249          //  // This function is used to find the correct type of sensor connected with 8051 board.
+1250          //  // If there is a sensor defined in the sensor_type struct table found out,
+1251          //  // it will return the index of the sensor in sensor_type variable.
+1252          //  // If not, return 255, the size of char.
+1253          
+1254          //  short len_sensor_type = sizeof(sensor_type) / sizeof(sensor_type[0]);
+1255          //  char _i;
+1256          //  unsigned char _data[3];
+1257          //  unsigned char _data2[3];
+1258          //  unsigned char ID_Byte;
+1259          //  unsigned char ID2_Byte;
+1260          
+1261          //  for (_i = 0; _i < len_sensor_type; _i++)
+1262          //  {
+1263          //    if (sensor_type[_i].Num_Registers > 1)
+1264          //    {
+1265          //      I2CReadMultiBytes(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address, &_data, sensor_type[_i
+             -].Num_Registers);
+1266          //      I2CReadMultiBytes(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address, &_data2, senso
+             -r_type[_i + 1].Num_Registers);
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 22  
 
-1262   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);   //ACC XYZ enable
-1263   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);   //ACC +-2g, ODR=952Hz, BW=408Hz
-1264   2          I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);   //0b00011010 >> Gyro Temp FIFO enable
-1265   2          putline("LSM", 3);
-1266   2          EOL();
-1267   2        }
-1268   1        // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
-1269   1        // {
-1270   1        //  // SET the sensor momentarily to restore the sensor characteristic.
-1271   1        //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x08); //Set on 0000 1000
-1272   1        //  delay(10000);
-1273   1        //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x00);
-1274   1        //  putline("MMC", 3);
-1275   1        //  EOL();
-1276   1        // }
-1277   1        // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
-1278   1        // {
-1279   1        //  putline("HMC", 3);
-1280   1        //  EOL();
-1281   1        // }
-1282   1      }
-1283          
-1284          void EOL(void){
-1285   1        putline(Ending, 2);
-1286   1      }
-1287          
+1267          //      if (CheckArrayEqual(_data, &sensor_type[_i].ID))
+1268          //      {
+1269          //        if (CheckArrayEqual(_data2, &sensor_type[_i + 1].ID)) //inorder to check the LSM9DS1 mag(i) && acc/
+             -gyro(i+1) sensor
+1270          //          return _i + 2;                    //return LSM9DS1 (i+2)
+1271          //        else
+1272          //          return _i;
+1273          //      }
+1274          //    }
+1275          //    else
+1276          //    {
+1277          //      ID_Byte = I2C_ByteRead(sensor_type[_i].Device_Address, sensor_type[_i].ID_Address);
+1278          //      ID2_Byte = I2C_ByteRead(sensor_type[_i + 1].Device_Address, sensor_type[_i + 1].ID_Address);
+1279          //      if (ID_Byte == sensor_type[_i].ID[0])
+1280          //      {
+1281          //        if (ID2_Byte == sensor_type[_i + 1].ID[0]) //inorder to check the LSM9DS1 mag(i) && acc/gyro(i+1) s
+             -ensor
+1282          //        {
+1283          //          return _i + 2; //return LSM9DS1 (i+2)
+1284          //        }
+1285          //        else
+1286          //        {
+1287          //          return _i;
+1288          //        }
+1289          //      }
+1290          //    }
+1291          //  }
+1292          //  return 0xFF;
+1293          // }
+1294          
+1295          bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID)
+1296          {
+1297   1        char len_data = sizeof(_data);
+1298   1        char _i;
+1299   1      
+1300   1        for (_i = 0; _i < len_data; _i++)
+1301   1        {
+1302   2          if (_data[_i] != *(sensor_ID + _i))
+1303   2            return 0;
+1304   2        }
+1305   1        return 1;
+1306   1      }
+1307          
+1308          // bit StringCompare(char idata **strA, char idata strB[], char num_char)
+1309          // {
+1310          
+1311          //  char _i;
+1312          //  char len_str = sizeof(strB);
+1313          
+1314          //  if (num_char > len_str)
+1315          //    num_char = len_str;
+1316          
+1317          //  for (_i = 0; _i < num_char; _i++)
+1318          //  {
+1319          //    char *_c = (strA + _i);
+1320          //    if (*_c != strB[_i])
+1321          //      return 0;
+1322          //  }
+1323          
+1324          //  return 1;
+1325          // }
+1326          
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 23  
 
-C51 COMPILATION COMPLETE.  8 WARNING(S),  3 ERROR(S)
+1327          void Initial_register(void)
+1328          {
+1329   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG8, 0x05); // SW_RESET on
+1330   1      
+1331   1        I2C_ByteWrite(ADD_I2C, CTRL_REG1_M, 0x10); // 0b00010000 >> ODR=10Hz
+1332   1        I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x20); // 0b00100000 >> +-8 gauss, bit5 → SOFT_RST
+1333   1        I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); // 0b00000000 >> Z Low-power mode
+1334   1        I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); // 0b00000000 >> data continue update
+1335   1      
+1336   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0);  // 0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz
+1337   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); // 0b00000000 >> GYO sign postive
+1338   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);    // 0b00111000 >> Gyro output enable
+1339   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);    // 0b1100 0000>> FIFO mode >> continuos mode
+1340   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);    // ACC XYZ enable
+1341   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);    // ACC +-2g, ODR=952Hz, BW=408Hz
+1342   1        I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);    // 0b00011010 >> Gyro Temp FIFO enable
+1343   1        putline("LSM", 3);
+1344   1        EOL();
+1345   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+1346   1        // {
+1347   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG8, 0x05); // SW_RESET on
+1348   1      
+1349   1        //  I2C_ByteWrite(ADD_I2C, CTRL_REG1_M, 0x10); // 0b00010000 >> ODR=10Hz
+1350   1        //  I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x20); // 0b00100000 >> +-8 gauss, bit5 → SOFT_RST
+1351   1        //  I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); // 0b00000000 >> Z Low-power mode
+1352   1        //  I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); // 0b00000000 >> data continue update
+1353   1      
+1354   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0);  // 0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:
+             -33Hz
+1355   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); // 0b00000000 >> GYO sign postive
+1356   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);    // 0b00111000 >> Gyro output enable
+1357   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);    // 0b1100 0000>> FIFO mode >> continuos mode
+1358   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);    // ACC XYZ enable
+1359   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);    // ACC +-2g, ODR=952Hz, BW=408Hz
+1360   1        //  I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);    // 0b00011010 >> Gyro Temp FIFO enable
+1361   1        //  putline("LSM", 3);
+1362   1        //  EOL();
+1363   1        // }
+1364   1        // else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+1365   1        // {
+1366   1        //  // SET the sensor momentarily to restore the sensor characteristic.
+1367   1        //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x08); //Set on 0000 1000
+1368   1        //  delay(10000);
+1369   1        //  I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x00);
+1370   1        //  putline("MMC", 3);
+1371   1        //  EOL();
+1372   1        // }
+1373   1        // else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+1374   1        // {
+1375   1        //  putline("HMC", 3);
+1376   1        //  EOL();
+1377   1        // }
+1378   1      }
+1379          
+1380          void EOL(void)
+1381          {
+1382   1        putline(Ending, 2);
+1383   1      }
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   2550    ----
+C51 COMPILER V9.60.0.0   HMC5983_IIC                                                       10/24/2021 23:25:50 PAGE 24  
+
+   CONSTANT SIZE    =    115    ----
+   XDATA SIZE       =   ----    ----
+   PDATA SIZE       =   ----    ----
+   DATA SIZE        =     46      20
+   IDATA SIZE       =     48    ----
+   BIT SIZE         =      4    ----
+END OF MODULE INFORMATION.
+
+
+C51 COMPILATION COMPLETE.  2 WARNING(S),  0 ERROR(S)

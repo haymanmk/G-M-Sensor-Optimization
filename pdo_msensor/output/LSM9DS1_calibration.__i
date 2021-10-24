@@ -1,1 +1,0 @@
-"library\LSM9DS1_calibration.c" OPTIMIZE (8,SPEED) BROWSE INCDIR(.\library;..\LSM9DS1_new sensor MCU program) DEFINE (Custom,library) DEBUG OBJECTEXTEND PRINT(.\LSM9DS1_calibration.lst) TABS (2) OBJECT(.\output\LSM9DS1_calibration.obj)

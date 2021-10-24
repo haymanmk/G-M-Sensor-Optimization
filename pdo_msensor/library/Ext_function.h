@@ -49,7 +49,9 @@ extern unsigned char I2cReadTrm2(signed char device,unsigned char address);
 extern void I2CReadMultiBytes(signed char device, unsigned char address, unsigned char* _data, char amount);
 extern unsigned short TwoBytes2Int(unsigned char HighByte, unsigned char LowByte);
 extern void LowerResolution2MatchOldSensor(unsigned char* DataArray);
-extern bit StringCompare(char idata **strA, char idata strB[], char num_char);
+extern void CalibrationCaculate(unsigned char *Xorigin, unsigned char *Yorigin, unsigned char *Zorigin,
+						 short *GainMatrix);
+// extern bit StringCompare(char idata **strA, char idata strB[], char num_char);
 //extern float Gauss_Data(unsigned char* DataArray);
 
 #endif

@@ -2,12 +2,13 @@
 #include "EXT_FUNCTION.H"
 
 /* Memory usage 2 byte*/
-idata char tempdata = 0;
+idata char tempData = 0;
 
 /**********************/
 /* Implement function */
 /**********************/
-char read(unsigned short int index){
+char read(unsigned short idata index){
+		//char tempData;
     //Write device information
     I2C_Start_EEPROM();
     I2C_SentByte_EEPROM(0xA0); //Device address
@@ -17,14 +18,14 @@ char read(unsigned short int index){
     //Read data
     I2C_Start_EEPROM();
     I2C_SentByte_EEPROM(0xA0 | 0x01); //Switch to read mode
-    tempdata = I2C_ReceiveByte_EEPROM();
+    tempData = I2C_ReceiveByte_EEPROM();
     SendAcknowledge_EEPROM(1);
     I2C_Stop_EEPROM();
     
-    return tempdata;
+    return tempData;
 }
 
-void write(unsigned short int index, char datain){
+void write(unsigned short idata index, char idata datain){
     I2C_Init_EEPROM();
     I2C_Start_EEPROM();
     I2C_SentByte_EEPROM(0xA0); //Device address

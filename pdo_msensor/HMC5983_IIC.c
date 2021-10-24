@@ -81,16 +81,16 @@
 // idata char ACGY_ACC_ADD_Z_MSB;  //Zout MSB
 // idata char ACGY_FIFO_CTRL; //FIFO mode select
 
-//For RS232 Communication
+// For RS232 Communication
 unsigned char incount;
 unsigned char inline[16];					 /* storage for command input line    */
 unsigned char code Ending[2] = {0x0D, 0x0A}; /* Ending char CR, LF                */
 unsigned char ReadCommandFlag;				 /*  set flag when command is read     */
 
 unsigned char OneByte[1];
-//unsigned char TempByte[2];
+// unsigned char TempByte[2];
 
-//unsigned char M_Data[9];
+// unsigned char M_Data[9];
 unsigned char T_Data[3]; /* storage for temperature data T[T,,]    */
 unsigned char X_Data[2]; /* storage for magnet X data X[MSB,LSB]    */
 unsigned char Y_Data[2]; /* storage for magnet Y data Y[MSB,LSB]    */
@@ -105,6 +105,22 @@ unsigned char AccX_Data[2]; /* storage for acc X data X[MSB,LSB]    */
 unsigned char AccY_Data[2]; /* storage for acc Y data Y[MSB,LSB]    */
 unsigned char AccZ_Data[2]; /* storage for acc Z data Z[MSB,LSB]    */
 
+/**
+ * 		Gain	*	X	+	Offset
+ * [0;	1;	2	]	[X]		[3]
+ * [4;	5;	6	]	[Y]	+	[7]
+ * [8;	9;	10	]	[Z]		[11]
+ */ 
+/**
+ * M-sensor
+ */ 
+idata short GainMatrix_M[12];
+/**
+ * Gyro
+ */
+idata short GainMatrix_G[12];
+
+
 bit DRY_Bit;
 bit Gyro_DRY_Bit;
 bit Acc_DRY_Bit;
@@ -113,15 +129,15 @@ char GyroMODE = 0;
 char AccMODE = 0;
 // char *sensor_type_name;
 bit ReadHighResolution;
-unsigned short indexEEPROM; //used to record current index when reading/ writing data in EEPROM
+unsigned short indexEEPROM; // used to record current index when reading/ writing data in EEPROM
 
 struct SENSOR_TYPE
 {
-	char type[15];		 //sensor name
-	char Device_Address; //sensor address
-	char ID_Address;	 //ID address
+	char type[15];		 // sensor name
+	char Device_Address; // sensor address
+	char ID_Address;	 // ID address
 	char Num_Registers;
-	char ID[3]; //ID data
+	char ID[3]; // ID data
 };
 
 // code struct SENSOR_TYPE sensor_type[] = {
@@ -173,8 +189,8 @@ void SetReadingGyroOutputMode(unsigned char idata *_inline);
 void ControlAlertLight(unsigned char idata *_inline);
 void ReadSensorID(unsigned char idata *_inline);
 void SetReadingTempMode(void);
-//void DetectConnectedSensor(unsigned char xdata *_inline);
-// char CheckSensorCorrect(void);
+// void DetectConnectedSensor(unsigned char xdata *_inline);
+//  char CheckSensorCorrect(void);
 bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID);
 
 /******************************************************************************/
@@ -182,7 +198,7 @@ bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID);
 /******************************************************************************/
 void main(void)
 {
-	unsigned int i; //Loop counter
+	unsigned int i; // Loop counter
 	unsigned int iRx3;
 	unsigned int GyroiRx3;
 	unsigned int AcciRx3;
@@ -215,7 +231,7 @@ void main(void)
 	putline("READY", 5);
 	EOL();
 
-	//M_Data[0]='X';M_Data[3]='Y';M_Data[6]='Z';
+	// M_Data[0]='X';M_Data[3]='Y';M_Data[6]='Z';
 	T_Data[0] = 'T';
 
 	//===================================//
@@ -229,15 +245,17 @@ void main(void)
 
 		//=== MODE 3 ===//
 
-		while (MODE == 3) //MCK<CR><LF>
+		while (MODE == 3) // MCK<CR><LF>
 		{
 			RY4_ON;
 			putline("MCK", 3);
 			EOL();
-			if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-			{
-				I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x00); //REG3 0b00000000 bit6 bit7>> operation mode>>continuous mode
-			}
+			I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x00); // REG3 0b00000000 bit6 bit7>> operation mode>>continuous mode
+
+			// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+			// {
+			// 	I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x00); //REG3 0b00000000 bit6 bit7>> operation mode>>continuous mode
+			// }
 			// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 			// {
 			// 	I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x01); //Internal control 0 >> Initiate magnetic field measurement
@@ -254,14 +272,19 @@ void main(void)
 
 			while (MODE == 3)
 			{
-				if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+				DRY_Bit = 0;
+				while (DRY_Bit == 0)
 				{
-					DRY_Bit = 0;
-					while (DRY_Bit == 0)
-					{
-						DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08; //0b00001000 polling to check the magnetic field measurement ready
-					}
+					DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08; // 0b00001000 polling to check the magnetic field measurement ready
 				}
+				// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+				// {
+				// 	DRY_Bit = 0;
+				// 	while (DRY_Bit == 0)
+				// 	{
+				// 		DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08; //0b00001000 polling to check the magnetic field measurement ready
+				// 	}
+				// }
 				// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 				// {
 				// 	DRY_Bit = 0;
@@ -278,19 +301,23 @@ void main(void)
 				// 	}
 				// }
 				COM_Command();
-				if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-					I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+				I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+
+				// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+				// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 				// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 				// else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
 			}
 
-			if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-			{
-				//reset all registers
-				I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
-			}
+			I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); // REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
+
+			// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+			// {
+			// 	//reset all registers
+			// 	I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
+			// }
 			// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 			// {
 			// 	//reset all registers
@@ -303,13 +330,13 @@ void main(void)
 			EOL();
 			putline("READY", 5);
 			EOL();
-		} //while(MODE == 3)
+		} // while(MODE == 3)
 
 		//----------------------------------------------------------------------------
 
 		//=== MODE 2 ===//
 		// read specified number, Rx3, of magnetic field measurement which is defined by external controller.
-		if (MODE == 2) //MR
+		if (MODE == 2) // MR
 		{
 			RY4_ON;
 
@@ -320,10 +347,12 @@ void main(void)
 
 			for (i = 0; i <= iRx3; i++)
 			{
-				if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-				{
-					I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x01); //REG3 0b00000001 bit6 bit7>> operation mode>>single mode
-				}
+				I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x01); // REG3 0b00000001 bit6 bit7>> operation mode>>single mode
+
+				// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+				// {
+				// 	I2C_ByteWrite(ADD_I2C, CTRL_REG3_M, 0x01); //REG3 0b00000001 bit6 bit7>> operation mode>>single mode
+				// }
 				// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 				// {
 				// 	I2C_ByteWrite(ADD_I2C, ADD_CONFIG_0, 0x01); //Internal control 0
@@ -336,10 +365,11 @@ void main(void)
 				// 	I2C_ByteWrite(ADD_I2C, ADD_CONFIG_B, 0x00); //CRB  >> +/- 0.88 Gauss  0.73 mG/LSB
 				// 	I2C_ByteWrite(ADD_I2C, ADD_MODE, 0x80);		//Mode >> Continuous Mode >> Enable the I2C high speed mode, 3400 kHz.
 				// }
-				//COM_Command();
+				// COM_Command();
+				DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
 
-				if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-					DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+				// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+				// 	DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
 				// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 				// 	DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
 
@@ -351,12 +381,14 @@ void main(void)
 
 				while (DRY_Bit == 0)
 				{
-					if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-						DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+					DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
+
+					// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+					// 	DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x08;
 					// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 					// 	DRY_Bit = I2C_ByteRead(ADD_I2C, ADD_STATUS) & 0x01;
 
-					//if (DRY_Bit == 1)
+					// if (DRY_Bit == 1)
 					if (DRY_Bit == 1)
 					{
 						LED2_OFF;
@@ -364,15 +396,17 @@ void main(void)
 
 					delay(1000);
 				}
-				if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-					I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+				I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+
+				// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+				// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 				// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 				// else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
 				// 	I2C_M_Data(ADD_I2C, ADD_X_MSB, ReadHighResolution);
 			}
 
-			//I2C_ByteWrite(0x3C,0x02,0x03); //Go to Sleep
+			// I2C_ByteWrite(0x3C,0x02,0x03); //Go to Sleep
 
 			putline("ACK", 3);
 			EOL();
@@ -383,7 +417,7 @@ void main(void)
 		}
 
 		//=== MODE 1 ===//
-		while (MODE == 1) //AL Pass
+		while (MODE == 1) // AL Pass
 		{
 			COM_Command();
 			RY4_ON;
@@ -393,14 +427,14 @@ void main(void)
 		}
 
 		//=== MODE 4 ===//
-		while (MODE == 4) //AL Fail
+		while (MODE == 4) // AL Fail
 		{
 			COM_Command();
 			RY4_OFF;
 		}
 
 		//=== MODE 5 ===//
-		while (MODE == 5) //AL Test
+		while (MODE == 5) // AL Test
 		{
 			COM_Command();
 			RY4_ON;
@@ -419,7 +453,7 @@ void main(void)
 
 		//=== MODE 3 ===//
 
-		while (GyroMODE == 3) //MCK<CR><LF>
+		while (GyroMODE == 3) // MCK<CR><LF>
 		{
 
 			putline("YCK", 3);
@@ -432,7 +466,7 @@ void main(void)
 
 				while (Gyro_DRY_Bit == 0)
 				{
-					Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02; //0b00000010 polling to check gyro measurement ready
+					Gyro_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x02; // 0b00000010 polling to check gyro measurement ready
 				}
 
 				COM_Command();
@@ -440,20 +474,20 @@ void main(void)
 				I2C_Gyro_Data(ACGY_ADD_I2C, ACGY_GYR_ADD_X_LSB);
 			}
 
-			//reset all registers
-			I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
+			// reset all registers
+			I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); // REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
 
 			putline("ACK", 3);
 			EOL();
 			putline("READY", 5);
 			EOL();
-		} //while(MODE == 3)
+		} // while(MODE == 3)
 
 		//----------------------------------------------------------------------------
 
 		//=== MODE 2 ===//
 		// read specified number, Rx3, of magnetic field measurement which is defined by external controller.
-		if (GyroMODE == 2) //GR
+		if (GyroMODE == 2) // GR
 		{
 
 			putline("YRN", 3);
@@ -490,7 +524,7 @@ void main(void)
 
 		//=== MODE 3 ===//
 
-		while (AccMODE == 3) //MCK<CR><LF>
+		while (AccMODE == 3) // MCK<CR><LF>
 		{
 
 			putline("ACCK", 4);
@@ -503,7 +537,7 @@ void main(void)
 
 				while (Acc_DRY_Bit == 0)
 				{
-					Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01; //0b00000010 polling to check acc ready
+					Acc_DRY_Bit = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x01; // 0b00000010 polling to check acc ready
 				}
 
 				COM_Command();
@@ -511,20 +545,20 @@ void main(void)
 				I2C_Acc_Data(ACGY_ADD_I2C, ACGY_ACC_ADD_X_LSB);
 			}
 
-			//reset all registers
-			I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); //REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
+			// reset all registers
+			I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x24); // REG2 >> 0b00100100, turning SOFT_RST on will reset all registers
 
 			putline("ACK", 3);
 			EOL();
 			putline("READY", 5);
 			EOL();
-		} //while(MODE == 3)
+		} // while(MODE == 3)
 
 		//----------------------------------------------------------------------------
 
 		//=== MODE 2 ===//
 		// read specified number, Rx3, of magnetic field measurement which is defined by external controller.
-		if (AccMODE == 2) //GR
+		if (AccMODE == 2) // GR
 		{
 
 			putline("ACRN", 4);
@@ -557,7 +591,7 @@ void main(void)
 			AccMODE = 0;
 		}
 
-	} //Main loop
+	} // Main loop
 }
 
 /******************************************************************************/
@@ -576,11 +610,27 @@ void COM_Command(void)
 	}
 	if (ReadCommandFlag == 1)
 	{
+		/**
+		 * In MODE 6, the calibration matrix is written into EEPROM in elemental basis.
+		 */
 		if (MODE == 6 && command_count >= 2 && indexEEPROM < 12)
 		{
-			//push in bytes in little-endian approach
+			// push 2 bytes, which represents a variable in short type, into EEPROM in little-endian manner
 			write(indexEEPROM, inline[0]);
 			indexEEPROM++;
+			write(indexEEPROM, inline[1]);
+			indexEEPROM++;
+			GainMatrix_M[indexEEPROM/2] = inline[0] | inline[1]<<8;
+			putchar(ACK);
+		}
+		else if (MODE == 7 && command_count >= 2 && indexEEPROM < 12)
+		{
+			// push 2 bytes, which represents a variable in short type, into EEPROM in little-endian manner
+			write(indexEEPROM+11, inline[0]);
+			indexEEPROM++;
+			write(indexEEPROM+11, inline[1]);
+			indexEEPROM++;
+			GainMatrix_G[indexEEPROM/2] = inline[0] | inline[1]<<8;
 			putchar(ACK);
 		}
 		switch (inline[0])
@@ -598,7 +648,7 @@ void COM_Command(void)
 			SetReadingTempMode();
 			break;
 
-		case ('R'): //Read Register
+		case ('R'): // Read Register
 			if (inline[1] == 'S')
 			{
 				// if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
@@ -621,32 +671,32 @@ void COM_Command(void)
 
 			break;
 
-		case ('W'): //WRITE Register
+		case ('W'): // WRITE Register
 			I2C_ByteWrite(ADD_I2C, inline[1], inline[2]);
 			putline("WRITE BYTE", 10);
 			EOL();
 			break;
 
-		case ('F'): //FFF, FFN, FNF, FNN, where F for OFF and N for ON.
+		case ('F'): // FFF, FFN, FNF, FNN, where F for OFF and N for ON.
 			RelayControl_1(inline);
 			break;
 
-		case ('N'): //NFF, NFN, NNF, NNN, where F for OFF and N for ON.
+		case ('N'): // NFF, NFN, NNF, NNN, where F for OFF and N for ON.
 			RelayControl_2(inline);
 			break;
 
 		case ('A'):
 			if (inline[1] == 'C')
-				SetReadingAccOutputMode(inline); //Read acc data
+				SetReadingAccOutputMode(inline); // Read acc data
 			else
 				ControlAlertLight(inline);
 			break;
 
 		case ('M'):
-			SetReadingOutputMode(inline); //Read magnet data
+			SetReadingOutputMode(inline); // Read magnet data
 			break;
 		case ('Y'):
-			SetReadingGyroOutputMode(inline); //Read gyro data
+			SetReadingGyroOutputMode(inline); // Read gyro data
 			break;
 
 		case ('I'):
@@ -695,31 +745,32 @@ void COM_Command(void)
 			// 			break;
 			// 	}
 			// 	break;
-			case ('W'): //Write gain and offset matrix
+			case ('W'): // Write gain and offset matrix
 				// Procedure: PC sends ['EW'] -> MCU returns [<ACK>] -> PC writes datas recursively -> MCU returns [<ACK>]
 				// -> until all elements refreshed -> MCU replies [<ACK>] and ['Done']
 				putchar(ACK); // acknowledge pc request has been received,
 							  // and it is ready to receive array data sequentially.
-				MODE = 6;
+				if (inline[2]=='M')	MODE = 6;		//M-sensor
+				else if (inline[2]=='G') MODE = 7;	//Gyro
 				indexEEPROM = 0;
 				break;
-				//EW32=0.123;
-				// if(inline[2]>='0' && inline[2]<=
-				// '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
-				// 	 char_float_conv._float = byte_to_float(inline, 5, 15);
-				// 	 if(char_float_conv._float != -999.0){
-				// 		write_gain_and_offset_matrix(inline[2]-'0', inline[3]-'0', char_float_conv._float);
-				// 	 	putline("Write success", 13);
-				// 	 }
-				// 	 else{
-				// 		 putline("Write failure", 13);
-				// 		 //fail
-				// 	 }
-				// }
-				// else{
-				// fail
-				// }
-				// break;
+				// EW32=0.123;
+				//  if(inline[2]>='0' && inline[2]<=
+				//  '3' && inline[3]>='0' && inline[3]<='2' && inline[4] == '='){
+				//  	 char_float_conv._float = byte_to_float(inline, 5, 15);
+				//  	 if(char_float_conv._float != -999.0){
+				//  		write_gain_and_offset_matrix(inline[2]-'0', inline[3]-'0', char_float_conv._float);
+				//  	 	putline("Write success", 13);
+				//  	 }
+				//  	 else{
+				//  		 putline("Write failure", 13);
+				//  		 //fail
+				//  	 }
+				//  }
+				//  else{
+				//  fail
+				//  }
+				//  break;
 
 			// case ('R'): //Read gain and offset matrix
 			// 	char_float_conv._float = read_gain_and_offset_matrix(inline[3]-'0', inline[4]-'0');
@@ -731,13 +782,13 @@ void COM_Command(void)
 			default:
 				break;
 			}
-		} //switch 1
+		} // switch 1
 
 		ReadCommandFlag = 0;
 	} // if(ReadCommandFlag  == 1)
 }
 
-//MODE = 0 Nothing /= 1 Pass/= 2 MR Output /=3 Contiue MR Output
+// MODE = 0 Nothing /= 1 Pass/= 2 MR Output /=3 Contiue MR Output
 //----------------------------------------------------------------------------
 
 /******************************************************************************/
@@ -759,8 +810,8 @@ void serial_init(void)
 
 	SCON = 0x52; // SCON=01010011 SM0=0 SM1=1 SM2=0 REN=1 TB8=0 RB8=0 TI=	1 RI= 0
 	TMOD = 0x21;
-	TH1 = 256 - (28800 / 9600); //Fosc=11.059M   baudrate=9600
-	TR1 = 1;					//TIMRE 1 star Up
+	TH1 = 256 - (28800 / 9600); // Fosc=11.059M   baudrate=9600
+	TR1 = 1;					// TIMRE 1 star Up
 }
 
 /******************************************************************************/
@@ -774,11 +825,11 @@ void timer0_init(void)
 	ET0 = 1; /* Enable Timer 0 Interrupts */
 	TR0 = 1; /* Start Timer 0 Running */
 
-	//TH0=0xDB;TL0=0xFF;//0.01sec
+	// TH0=0xDB;TL0=0xFF;//0.01sec
 	TH0 = 0x4B;
-	TL0 = 0xFF; //0.05sec
+	TL0 = 0xFF; // 0.05sec
 
-	EA = 1; /* Global Interrupt Enable */ //Later
+	EA = 1; /* Global Interrupt Enable */ // Later
 }
 
 /******************************************************************************/
@@ -787,11 +838,11 @@ void timer0_init(void)
 void timer0_ISR(void) interrupt 1
 {
 	TR0 = 0; // STOP TIMER
-	//TH0=0xDB;TL0=0xFF;//0.01 sec
+	// TH0=0xDB;TL0=0xFF;//0.01 sec
 	TH0 = 0x4B;
-	TL0 = 0xFF; //0.05sec
+	TL0 = 0xFF; // 0.05sec
 
-	TR0 = 1; //START TIMER
+	TR0 = 1; // START TIMER
 }
 
 /******************************************************************************/
@@ -817,7 +868,7 @@ unsigned char ReadCommand(void)
 
 	unsigned char index = 0;
 
-	ES = 0; //disable UART interrupt
+	ES = 0; // disable UART interrupt
 
 	incount = GetSerialCount();
 
@@ -827,10 +878,10 @@ unsigned char ReadCommand(void)
 		index = index + 1;
 	}
 
-	CheckCommandFlag = 0; //Command is checkec and then clear flag
-	ReadCommandFlag = 1;  //Command is in inline now, then set new flag
+	CheckCommandFlag = 0; // Command is checkec and then clear flag
+	ReadCommandFlag = 1;  // Command is in inline now, then set new flag
 
-	ES = 1; //enable UART interrupt
+	ES = 1; // enable UART interrupt
 
 	return index;
 }
@@ -849,13 +900,13 @@ void ChangeMeasurementMode(unsigned char idata *_inline)
 	}
 	else if (_inline[1] == '1') //'S1'
 	{
-		I2C_ByteWrite(ADD_I2C, 0x00, 0xF1); //poisitive bias
+		I2C_ByteWrite(ADD_I2C, 0x00, 0xF1); // poisitive bias
 		I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
 		I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
 	}
 	else if (_inline[1] == '2') //'S2'
 	{
-		I2C_ByteWrite(ADD_I2C, 0x00, 0xF2); //Negative bias
+		I2C_ByteWrite(ADD_I2C, 0x00, 0xF2); // Negative bias
 		I2C_ByteWrite(ADD_I2C, 0x01, 0xA0);
 		I2C_ByteWrite(ADD_I2C, 0x02, 0x00);
 	}
@@ -863,8 +914,10 @@ void ChangeMeasurementMode(unsigned char idata *_inline)
 
 void ReadXYZDataSequentially(void)
 {
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-		I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
+
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 	// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 	// 	I2C_M_Data(ADD_I2C, ADD_X_LSB, ReadHighResolution);
 	// else if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
@@ -900,7 +953,7 @@ void RelayControl_1(unsigned char idata *_inline)
 	case ('F'):
 		switch (_inline[2])
 		{
-		case ('F'): //FFF
+		case ('F'): // FFF
 			RY1_OFF;
 			RY2_OFF;
 			RY3_OFF;
@@ -912,7 +965,7 @@ void RelayControl_1(unsigned char idata *_inline)
 			EOL();
 			break;
 
-		case ('N'): //FFN
+		case ('N'): // FFN
 			RY1_OFF;
 			RY2_OFF;
 			RY3_ON;
@@ -923,13 +976,13 @@ void RelayControl_1(unsigned char idata *_inline)
 			putline("READY", 5);
 			EOL();
 			break;
-		} //switch 3
+		} // switch 3
 		break;
 
 	case ('N'):
 		switch (_inline[2])
 		{
-		case ('F'): //FNF
+		case ('F'): // FNF
 			RY1_OFF;
 			RY2_ON;
 			RY3_OFF;
@@ -941,7 +994,7 @@ void RelayControl_1(unsigned char idata *_inline)
 			EOL();
 			break;
 
-		case ('N'): //FNN
+		case ('N'): // FNN
 			RY1_OFF;
 			RY2_ON;
 			RY3_ON;
@@ -952,9 +1005,9 @@ void RelayControl_1(unsigned char idata *_inline)
 			putline("READY", 5);
 			EOL();
 			break;
-		} //switch 3
+		} // switch 3
 		break;
-	} //switch 2
+	} // switch 2
 }
 
 void RelayControl_2(unsigned char idata *_inline)
@@ -964,7 +1017,7 @@ void RelayControl_2(unsigned char idata *_inline)
 	case ('F'):
 		switch (inline[2])
 		{
-		case ('F'): //NFF
+		case ('F'): // NFF
 			RY1_ON;
 			RY2_OFF;
 			RY3_OFF;
@@ -976,7 +1029,7 @@ void RelayControl_2(unsigned char idata *_inline)
 			EOL();
 			break;
 
-		case ('N'): //NFN
+		case ('N'): // NFN
 			RY1_ON;
 			RY2_OFF;
 			RY3_ON;
@@ -987,13 +1040,13 @@ void RelayControl_2(unsigned char idata *_inline)
 			putline("READY", 5);
 			EOL();
 			break;
-		} //switch 3
+		} // switch 3
 		break;
 
 	case ('N'):
 		switch (inline[2])
 		{
-		case ('F'): //NNF
+		case ('F'): // NNF
 			RY1_ON;
 			RY2_ON;
 			RY3_OFF;
@@ -1005,7 +1058,7 @@ void RelayControl_2(unsigned char idata *_inline)
 			EOL();
 			break;
 
-		case ('N'): //NNN
+		case ('N'): // NNN
 			RY1_ON;
 			RY2_ON;
 			RY3_ON;
@@ -1016,106 +1069,115 @@ void RelayControl_2(unsigned char idata *_inline)
 			putline("READY", 5);
 			EOL();
 			break;
-		} //switch 3
+		} // switch 3
 		break;
-	} //switch 2
+	} // switch 2
 }
 
 void SetReadingOutputMode(unsigned char idata *_inline)
 {
 	switch (_inline[1])
 	{
-	case ('H'): //MH >> read data in high resolution for MMC5883MA
+	case ('H'): // MH >> read data in high resolution for MMC5883MA
 		ReadHighResolution = 1;
 		putline("MH", 2);
 		EOL();
 		break;
 
-	case ('L'): //ML >> read data in low resolution for MMC5883MA
+	case ('L'): // ML >> read data in low resolution for MMC5883MA
 		ReadHighResolution = 0;
 		putline("ML", 2);
 		EOL();
 		break;
 
-	case ('R'): //MR >> counting mode
+	case ('R'): // MR >> counting mode
 		Rx3 = _inline[2];
 		MODE = 2;
 		GyroMODE = 0;
 		AccMODE = 0;
 		break;
 
-	case ('C'): //MC >> continue mode
+	case ('C'): // MC >> continue mode
 		MODE = 3;
 		GyroMODE = 0;
 		AccMODE = 0;
 		break;
-	} //switch 2
+	} // switch 2
 }
 void SetReadingAccOutputMode(unsigned char idata *_inline)
 {
 	switch (_inline[2])
 	{
-	case ('R'): //ACR >> counting mode
+	case ('R'): // ACR >> counting mode
 		Rx3 = _inline[3];
 		MODE = 0;
 		GyroMODE = 0;
 		AccMODE = 2;
 		break;
 
-	case ('C'): //ACC >> continue mode
+	case ('C'): // ACC >> continue mode
 		MODE = 0;
 		GyroMODE = 0;
 		AccMODE = 3;
 		break;
-	} //switch 2
+	} // switch 2
 }
 void SetReadingTempMode(void)
 {
 	char T_status = 0;
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-	{
-		T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04; //0b00000100 polling to check temperature ready
-		while (T_status == 0)
-		{
-			T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04;
-		}
 
-		I2C_T_Data(ACGY_ADD_I2C, ACGY_ADD_TMP_LSB); //read temperature data
-	}
-	else
+	T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04; // 0b00000100 polling to check temperature ready
+	while (T_status == 0)
 	{
-		I2C_T_Data(ADD_I2C, ADD_TMP_MSB);
+		T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04;
 	}
+
+	I2C_T_Data(ACGY_ADD_I2C, ACGY_ADD_TMP_LSB); 
+	// read temperature data
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// {
+	// 	T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04; // 0b00000100 polling to check temperature ready
+	// 	while (T_status == 0)
+	// 	{
+	// 		T_status = I2C_ByteRead(ACGY_ADD_I2C, ACGY_ADD_STATUS) & 0x04;
+												// 	}
+
+	// 	I2C_T_Data(ACGY_ADD_I2C, ACGY_ADD_TMP_LSB); // read temperature data
+	// }
+	// else
+	// {
+	// 	I2C_T_Data(ADD_I2C, ADD_TMP_MSB);
+	// }
 }
 
 void SetReadingGyroOutputMode(unsigned char idata *_inline)
 {
 	switch (_inline[1])
 	{
-	case ('R'): //YR >> gyro counting mode
+	case ('R'): // YR >> gyro counting mode
 		Rx3 = _inline[2];
 		MODE = 0;
 		GyroMODE = 2;
 		AccMODE = 0;
 		break;
 
-	case ('C'): //YC >> gyro continue mode
+	case ('C'): // YC >> gyro continue mode
 		MODE = 0;
 		GyroMODE = 3;
 		AccMODE = 0;
 		break;
-	} //switch 2
+	} // switch 2
 }
 
 void ControlAlertLight(unsigned char idata *_inline)
 {
 	switch (_inline[2])
 	{
-	case ('F'): //A_F >> Fail
+	case ('F'): // A_F >> Fail
 		MODE = 4;
 		GyroMODE = 0;
 		AccMODE = 0;
-		//RY4_OFF;
+		// RY4_OFF;
 		putline("ALF", 3);
 		EOL();
 		putline("ACK", 3);
@@ -1124,7 +1186,7 @@ void ControlAlertLight(unsigned char idata *_inline)
 		EOL();
 		break;
 
-	case ('P'): //A_P >> Pass
+	case ('P'): // A_P >> Pass
 		MODE = 1;
 		GyroMODE = 0;
 		AccMODE = 0;
@@ -1136,11 +1198,11 @@ void ControlAlertLight(unsigned char idata *_inline)
 		EOL();
 		break;
 
-	case ('T'): //A_T >> Test, Turn on the green alert lamp
+	case ('T'): // A_T >> Test, Turn on the green alert lamp
 		MODE = 5;
 		GyroMODE = 0;
 		AccMODE = 0;
-		//RY4_ON;
+		// RY4_ON;
 		putline("ALT", 3);
 		EOL();
 		putline("ACK", 3);
@@ -1148,18 +1210,18 @@ void ControlAlertLight(unsigned char idata *_inline)
 		putline("READY", 5);
 		EOL();
 		break;
-	} //switch 2
+	} // switch 2
 }
 
 void ReadSensorID(unsigned char idata *_inline)
 {
-	//unsigned char* _data[3];
+	// unsigned char* _data[3];
 	unsigned char ID_Byte;
 
 	if (_inline[1] == 'D')
 	{
 
-		//I2CReadMultiBytes(ADD_I2C, ADD_ID, *_data, 3);
+		// I2CReadMultiBytes(ADD_I2C, ADD_ID, *_data, 3);
 		ID_Byte = I2C_ByteRead(ADD_I2C, ADD_ID);
 		putline("ID:", 3);
 		putchar(ID_Byte);
@@ -1171,7 +1233,7 @@ void ReadSensorID(unsigned char idata *_inline)
 void DetectConnectedSensor(unsigned char xdata *_inline)
 {
 	char _index;
-	
+
 	if (_inline[1]=='S')
 	{
 		_index = CheckSensorCorrect();
@@ -1243,46 +1305,62 @@ bit CheckArrayEqual(unsigned char idata *_data, char idata **sensor_ID)
 	return 1;
 }
 
-bit StringCompare(char idata **strA, char idata strB[], char num_char)
-{
+// bit StringCompare(char idata **strA, char idata strB[], char num_char)
+// {
 
-	char _i;
-	char len_str = sizeof(strB);
+// 	char _i;
+// 	char len_str = sizeof(strB);
 
-	if (num_char > len_str)
-		num_char = len_str;
+// 	if (num_char > len_str)
+// 		num_char = len_str;
 
-	for (_i = 0; _i < num_char; _i++)
-	{
-		char *_c = (strA + _i);
-		if (*_c != strB[_i])
-			return 0;
-	}
+// 	for (_i = 0; _i < num_char; _i++)
+// 	{
+// 		char *_c = (strA + _i);
+// 		if (*_c != strB[_i])
+// 			return 0;
+// 	}
 
-	return 1;
-}
+// 	return 1;
+// }
 
 void Initial_register(void)
 {
-	if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-	{
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG8, 0x05); //SW_RESET on
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG8, 0x05); // SW_RESET on
 
-		I2C_ByteWrite(ADD_I2C, CTRL_REG1_M, 0x10); //0b00010000 >> ODR=10Hz
-		I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x20); //0b00100000 >> +-8 gauss, bit5 → SOFT_RST
-		I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); //0b00000000 >> Z Low-power mode
-		I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); //0b00000000 >> data continue update
+	I2C_ByteWrite(ADD_I2C, CTRL_REG1_M, 0x10); // 0b00010000 >> ODR=10Hz
+	I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x20); // 0b00100000 >> +-8 gauss, bit5 → SOFT_RST
+	I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); // 0b00000000 >> Z Low-power mode
+	I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); // 0b00000000 >> data continue update
 
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0);  //0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); //0b00000000 >> GYO sign postive
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);	  //0b00111000 >> Gyro output enable
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);	  //0b1100 0000>> FIFO mode >> continuos mode
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);	  //ACC XYZ enable
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);	  //ACC +-2g, ODR=952Hz, BW=408Hz
-		I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);	  //0b00011010 >> Gyro Temp FIFO enable
-		putline("LSM", 3);
-		EOL();
-	}
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0);  // 0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); // 0b00000000 >> GYO sign postive
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);	  // 0b00111000 >> Gyro output enable
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);	  // 0b1100 0000>> FIFO mode >> continuos mode
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);	  // ACC XYZ enable
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);	  // ACC +-2g, ODR=952Hz, BW=408Hz
+	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);	  // 0b00011010 >> Gyro Temp FIFO enable
+	putline("LSM", 3);
+	EOL();
+	// if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+	// {
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG8, 0x05); // SW_RESET on
+
+	// 	I2C_ByteWrite(ADD_I2C, CTRL_REG1_M, 0x10); // 0b00010000 >> ODR=10Hz
+	// 	I2C_ByteWrite(ADD_I2C, CTRL_REG2_M, 0x20); // 0b00100000 >> +-8 gauss, bit5 → SOFT_RST
+	// 	I2C_ByteWrite(ADD_I2C, CTRL_REG4_M, 0x00); // 0b00000000 >> Z Low-power mode
+	// 	I2C_ByteWrite(ADD_I2C, CTRL_REG5_M, 0x00); // 0b00000000 >> data continue update
+
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG1_G, 0xC0);  // 0b11000000>> GYRO ODR:952Hz,+-245dps,Cutoff:33Hz
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_ORIENT_CFG_G, 0x00); // 0b00000000 >> GYO sign postive
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG4, 0x38);	  // 0b00111000 >> Gyro output enable
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_FIFO_CTRL, 0xC0);	  // 0b1100 0000>> FIFO mode >> continuos mode
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG5, 0x38);	  // ACC XYZ enable
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG6, 0xC0);	  // ACC +-2g, ODR=952Hz, BW=408Hz
+	// 	I2C_ByteWrite(ACGY_ADD_I2C, ACGY_CTRL_REG9, 0x1A);	  // 0b00011010 >> Gyro Temp FIFO enable
+	// 	putline("LSM", 3);
+	// 	EOL();
+	// }
 	// else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
 	// {
 	// 	// SET the sensor momentarily to restore the sensor characteristic.

@@ -9,8 +9,8 @@ extern "C" {
 extern idata char temp;
 
 /* Declare function */
-extern char read(unsigned short int index);
-extern void write(unsigned short int index, char input);
+extern char read(unsigned short idata index);
+extern void write(unsigned short idata index, char idata input);
 #ifdef __cplusplus
 }
 #endif

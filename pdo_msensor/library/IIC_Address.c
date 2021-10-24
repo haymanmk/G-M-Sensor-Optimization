@@ -1,54 +1,12 @@
-#include <AT89X52.h>
-#include <INTRINS.H>
+// #include <AT89X52.h>
+// #include <INTRINS.H>
 
-#include "IIC_Address.h"
-#include "Ext_function.h"
+// #include "IIC_Address.h"
+// #include "Ext_function.h"
 
 //char* sensor_type_name;
 
-#define ADD_I2C 0x38 //Magnet I2C control address 0x38 0011 1000 (Deven)
-//ADD_I2C = 0x3C;		//BlueBoard
-#define ADD_X_LSB 0x28	 //mag Xout LSB
-#define ADD_X_MSB 0x29	 //mag Xout MSB
-#define ADD_Y_LSB 0x2A	 //mag Yout LSB
-#define ADD_Y_MSB 0x2B	 //mag Yout MSB
-#define ADD_Z_LSB 0x2C	 //mag Zout LSB
-#define ADD_Z_MSB 0x2D	 //mag Zout MSB
-#define ADD_STATUS 0x27	 //mag Device status
-#define CTRL_REG1_M 0x20 //Control register 1 >> ODR select
-#define CTRL_REG2_M 0x21 //Control register 2 >> gauss full-scale &  reset Configuration registers and user register
-#define CTRL_REG3_M 0x22 //Control register 3 >> continue/single mode
-#define CTRL_REG4_M 0x23 //Control register 4 >> mag Z operation mode
-#define CTRL_REG5_M 0x24 //Control register 5 >> block data updata
-#define ADD_ID 0x0F		 //Product ID 0b0011 1101 >> 0x3D
 
-#define ACGY_ADD_I2C 0xD4 //Acc & Gyro I2C control address 0xD4 1101 0100 (Deven)
-//ACGY_ADD_I2C = 0xD6; //Blue Board
-#define ACGY_GYR_ADD_X_LSB 0x18 //gyro Xout LSB
-#define ACGY_GYR_ADD_X_MSB 0x19 //gyro Xout MSB
-#define ACGY_GYR_ADD_Y_LSB 0x1A //gyro Yout LSB
-#define ACGY_GYR_ADD_Y_MSB 0x1B //gyro Yout MSB
-#define ACGY_GYR_ADD_Z_LSB 0x1C //gyro Zout LSB
-#define ACGY_GYR_ADD_Z_MSB 0x1D //gyro Zout MSB
-#define ACGY_ADD_STATUS 0x17	//Device status>> bit5:Temp, bit6:Gyro, bit7:Acc
-#define ACGY_ADD_TMP_LSB 0x15	//Temperature Output LSB Register  Read
-#define ACGY_ADD_TMP_MSB 0x16	//Temperature Output MSB Register  Read
-#define ACGY_CTRL_REG1_G 0x10	//Control Register1 >> Gyro full-scale, ODR, BW
-#define ACGY_ORIENT_CFG_G 0x13	//Gyro XYZ sign
-#define ACGY_CTRL_REG4 0x1E		//Control Register4 >> GYRO XYZ enable
-#define ACGY_CTRL_REG5 0x1F		//Control Register5 >> ACC XYZ enable
-#define ACGY_CTRL_REG6 0x20		//Control Register6 >> ACC full-scale, ODR, BW
-#define ACGY_CTRL_REG7 0x21		//Control Register7 >>ACC high resolution mode
-#define ACGY_CTRL_REG8 0x22		//Control Register8 >> Softreset → claer by hardware
-#define ACGY_CTRL_REG9 0x23		//Control Register9 >> FIFO enable
-#define ACGY_FIFO_CTRL 0x2E		//FIFO mode select
-#define ACGY_ACC_ADD_X_LSB 0x28 //Acc Xout LSB
-#define ACGY_ACC_ADD_X_MSB 0x29 //Acc Xout MSB
-#define ACGY_ACC_ADD_Y_LSB 0x2A //Acc Yout LSB
-#define ACGY_ACC_ADD_Y_MSB 0x2B //Acc Yout MSB
-#define ACGY_ACC_ADD_Z_LSB 0x2C //Acc Zout LSB
-#define ACGY_ACC_ADD_Z_MSB 0x2D //Acc Zout MSB
-#define ACGY_ADD_ID 0x0F		//Product ID 0b01101000 >> 0x68
 
 // void SetI2CParameters(void)
 // {

@@ -1,4 +1,4 @@
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 1   
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 1   
 
 
 C51 COMPILER V9.60.0.0, COMPILATION OF MODULE IIC_FUNCTION
@@ -25,7 +25,7 @@ line level    source
   14          // Function protocol definition //
   15          void SignInvertor2SComplement(char axis);
   16          
-  17          //extern unsigned char M_Data[9];
+  17          // extern unsigned char M_Data[9];
   18          extern unsigned char T_Data[3];
   19          extern unsigned char X_Data[2];
   20          extern unsigned char Y_Data[2];
@@ -40,747 +40,820 @@ line level    source
   29          extern unsigned char AccY_Data[2];
   30          extern unsigned char AccZ_Data[2];
   31          
-  32          unsigned char ID[3];
+  32          // unsigned char ID[3];
   33          
-  34          float R1[3] = {0.1, 0.2, 0.3};
-  35          float R2[3] = {0.4, 0.5, 0.6};
-  36          float R3[3] = {0.7, 0.8, 0.9};
-  37          float R4[3] = {0.1, 0.2, 0.3};
-  38          
-  39          //char* sensor_type_name;
-  40          
-  41          //*************************************************************************************
-  42          //  I2C_Wate: delay time only
-  43          //*************************************************************************************
-  44          void I2C_Wait(void)
-  45          {
-  46   1        int _i;
-  47   1        for (_i = 0; _i < 2; _i++)
-  48   1        {
-  49   2          _nop_();
-  50   2        }
-  51   1      }
-  52          
+  34          /**
+  35           *    Gain      * X + Offset
+  36           * [1,0;  3,2;  5,4  ]  [X]   [19,18]
+  37           * [7,6;  9,8;  11,10]  [Y] + [21,20]
+  38           * [13,12;  15,14;  17,16]  [Z]   [23,22]
+  39           */ 
+  40          /**
+  41           * M-sensor
+  42           */ 
+  43          extern idata short GainMatrix_M[12];
+  44          /**
+  45           * Gyro
+  46           */
+  47          extern idata short GainMatrix_G[12];
+  48          
+  49          // char* sensor_type_name;
+  50          
+  51          //*************************************************************************************
+  52          //  I2C_Wate: delay time only
   53          //*************************************************************************************
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 2   
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 2   
 
-  54          //  I2C_Init: Initial status of IIC Bus
-  55          //*************************************************************************************
-  56          void I2C_Init(void)
-  57          {
-  58   1        ISDA = 1;
-  59   1        ISCL = 1;
-  60   1      }
-  61          
-  62          void I2C_Init_EEPROM(void)
-  63          {
-  64   1        ISDA2 = 1;
-  65   1        ISCL2 = 1;
-  66   1      }
-  67          
-  68          //*************************************************************************************
-  69          //
-  70          //  I2C_Star:  ISCL =0 & ISDA =0 (Star condition by Master)
-  71          //
-  72          //*************************************************************************************
-  73          void I2C_Start(void)
-  74          {
-  75   1        ISDA = 1;
-  76   1        I2C_Wait(); //modified by hayman
-  77   1        ISCL = 1;
-  78   1        I2C_Wait();
-  79   1        ISDA = 0;
-  80   1        I2C_Wait();
-  81   1        ISCL = 0;
-  82   1      }
-  83          
-  84          void I2C_Start_EEPROM(void)
-  85          {
-  86   1        ISDA2 = 1;
-  87   1        I2C_Wait();
-  88   1        ISCL2 = 1;
-  89   1        I2C_Wait();
-  90   1        ISDA2 = 0;
-  91   1        I2C_Wait();
-  92   1        ISCL2 = 0;
-  93   1      }
-  94          //*************************************************************************************
-  95          //
-  96          //  I2C_Stop:  ISCL =1 & ISDA =1 (Stop condition by Master)
-  97          //
-  98          //*************************************************************************************
-  99          void I2C_Stop(void)
- 100          {
- 101   1        ISDA = 0;
- 102   1        I2C_Wait();
- 103   1        ISCL = 1;
- 104   1        I2C_Wait();
- 105   1        ISDA = 1;
- 106   1      }
- 107          void I2C_Stop_EEPROM(void)
- 108          {
- 109   1        ISDA2 = 0;
- 110   1        I2C_Wait();
- 111   1        ISCL2 = 1;
+  54          void I2C_Wait(void)
+  55          {
+  56   1        int _i;
+  57   1        for (_i = 0; _i < 2; _i++)
+  58   1        {
+  59   2          _nop_();
+  60   2        }
+  61   1      }
+  62          
+  63          //*************************************************************************************
+  64          //  I2C_Init: Initial status of IIC Bus
+  65          //*************************************************************************************
+  66          void I2C_Init(void)
+  67          {
+  68   1        ISDA = 1;
+  69   1        ISCL = 1;
+  70   1      }
+  71          
+  72          void I2C_Init_EEPROM(void)
+  73          {
+  74   1        ISDA2 = 1;
+  75   1        ISCL2 = 1;
+  76   1      }
+  77          
+  78          //*************************************************************************************
+  79          //
+  80          //  I2C_Star:  ISCL =0 & ISDA =0 (Star condition by Master)
+  81          //
+  82          //*************************************************************************************
+  83          void I2C_Start(void)
+  84          {
+  85   1        ISDA = 1;
+  86   1        I2C_Wait(); // modified by hayman
+  87   1        ISCL = 1;
+  88   1        I2C_Wait();
+  89   1        ISDA = 0;
+  90   1        I2C_Wait();
+  91   1        ISCL = 0;
+  92   1      }
+  93          
+  94          void I2C_Start_EEPROM(void)
+  95          {
+  96   1        ISDA2 = 1;
+  97   1        I2C_Wait();
+  98   1        ISCL2 = 1;
+  99   1        I2C_Wait();
+ 100   1        ISDA2 = 0;
+ 101   1        I2C_Wait();
+ 102   1        ISCL2 = 0;
+ 103   1      }
+ 104          //*************************************************************************************
+ 105          //
+ 106          //  I2C_Stop:  ISCL =1 & ISDA =1 (Stop condition by Master)
+ 107          //
+ 108          //*************************************************************************************
+ 109          void I2C_Stop(void)
+ 110          {
+ 111   1        ISDA = 0;
  112   1        I2C_Wait();
- 113   1        ISDA2 = 1;
- 114   1      }
- 115          //*************************************************************************************
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 3   
+ 113   1        ISCL = 1;
+ 114   1        I2C_Wait();
+ 115   1        ISDA = 1;
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 3   
 
- 116          //
- 117          // I2C_SentByte: clock out by data to Slave (Only operate ISCL H/L and read ISDA)
- 118          //         return ack (make sure Slave receiving correctly)
- 119          //
- 120          //*************************************************************************************
- 121          bit I2C_SentByte(unsigned char bytedata)
- 122          {
- 123   1        unsigned char i;
- 124   1        bit ack;
- 125   1        for (i = 0; i < 8; i++)
- 126   1        {
- 127   2          bytedata = _crol_(bytedata, 1);
- 128   2          if (bytedata & 0x01)
- 129   2          {
- 130   3            ISDA = 1;
- 131   3          }
- 132   2          else
- 133   2          {
- 134   3            ISDA = 0;
- 135   3          }
- 136   2      
- 137   2          ISCL = 1;
- 138   2          I2C_Wait();
- 139   2          ISCL = 0;
- 140   2          I2C_Wait();
- 141   2        }
- 142   1      
- 143   1        //ISDA=1; modified by hayman
- 144   1        I2C_Wait();
- 145   1        ISCL = 1;
- 146   1        I2C_Wait();
- 147   1        ack = ISDA;
- 148   1      
- 149   1        ISCL = 0;
- 150   1      
- 151   1        I2C_Wait();
- 152   1        return ack;
- 153   1      }
- 154          
- 155          bit I2C_SentByte_EEPROM(unsigned char bytedata)
- 156          {
- 157   1        unsigned char i;
- 158   1        bit ack;
- 159   1        for (i = 0; i < 8; i++)
- 160   1        {
- 161   2      
- 162   2          bytedata = _crol_(bytedata, 1);
- 163   2          if (bytedata & 0x01)
- 164   2          {
- 165   3            ISDA2 = 1;
- 166   3          }
- 167   2          else
- 168   2          {
- 169   3            ISDA2 = 0;
- 170   3          }
+ 116   1      }
+ 117          void I2C_Stop_EEPROM(void)
+ 118          {
+ 119   1        ISDA2 = 0;
+ 120   1        I2C_Wait();
+ 121   1        ISCL2 = 1;
+ 122   1        I2C_Wait();
+ 123   1        ISDA2 = 1;
+ 124   1      }
+ 125          //*************************************************************************************
+ 126          //
+ 127          // I2C_SentByte: clock out by data to Slave (Only operate ISCL H/L and read ISDA)
+ 128          //         return ack (make sure Slave receiving correctly)
+ 129          //
+ 130          //*************************************************************************************
+ 131          bit I2C_SentByte(unsigned char bytedata)
+ 132          {
+ 133   1        unsigned char i;
+ 134   1        bit ack;
+ 135   1        for (i = 0; i < 8; i++)
+ 136   1        {
+ 137   2          bytedata = _crol_(bytedata, 1);
+ 138   2          if (bytedata & 0x01)
+ 139   2          {
+ 140   3            ISDA = 1;
+ 141   3          }
+ 142   2          else
+ 143   2          {
+ 144   3            ISDA = 0;
+ 145   3          }
+ 146   2      
+ 147   2          ISCL = 1;
+ 148   2          I2C_Wait();
+ 149   2          ISCL = 0;
+ 150   2          I2C_Wait();
+ 151   2        }
+ 152   1      
+ 153   1        // ISDA=1; modified by hayman
+ 154   1        I2C_Wait();
+ 155   1        ISCL = 1;
+ 156   1        I2C_Wait();
+ 157   1        ack = ISDA;
+ 158   1      
+ 159   1        ISCL = 0;
+ 160   1      
+ 161   1        I2C_Wait();
+ 162   1        return ack;
+ 163   1      }
+ 164          
+ 165          bit I2C_SentByte_EEPROM(unsigned char bytedata)
+ 166          {
+ 167   1        unsigned char i;
+ 168   1        bit ack;
+ 169   1        for (i = 0; i < 8; i++)
+ 170   1        {
  171   2      
- 172   2          ISCL2 = 1;
- 173   2          I2C_Wait();
- 174   2          ISCL2 = 0;
- 175   2          I2C_Wait();
- 176   2        }
- 177   1        ISCL2 = 1;
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 4   
+ 172   2          bytedata = _crol_(bytedata, 1);
+ 173   2          if (bytedata & 0x01)
+ 174   2          {
+ 175   3            ISDA2 = 1;
+ 176   3          }
+ 177   2          else
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 4   
 
- 178   1        I2C_Wait();
- 179   1        ack = ISDA2;
- 180   1        ISCL2 = 0;
- 181   1        _nop_();
- 182   1        return ack;
- 183   1      }
- 184          //*************************************************************************************
- 185          //
- 186          // I2C_ReceiveByte: clock out byte data from Slave (Only operate ISCL H/L and read ISDA)
- 187          //
- 188          //
- 189          //*************************************************************************************
- 190          unsigned char I2C_ReceiveByte(void)
- 191          {
- 192   1        unsigned char i;
- 193   1        unsigned char bytedata = 0x00;
- 194   1        // Receive byte (MSB first)
- 195   1      
- 196   1        for (i = 0; i < 8; i++)
- 197   1        {
- 198   2          ISCL = 1;
- 199   2          I2C_Wait();
- 200   2      
- 201   2          bytedata <<= 1;
- 202   2          if (ISDA)
- 203   2            bytedata |= 0x01;
- 204   2      
- 205   2          ISCL = 0;
- 206   2          I2C_Wait();
- 207   2        }
- 208   1        return bytedata;
- 209   1      }
- 210          
- 211          unsigned char I2C_ReceiveByte_EEPROM(void)
- 212          {
- 213   1        unsigned char i;
- 214   1        unsigned char bytedata = 0x00;
- 215   1        // Receive byte (MSB first)
- 216   1      
- 217   1        for (i = 0; i < 8; i++)
- 218   1        {
- 219   2          ISCL2 = 1;
- 220   2          I2C_Wait();
- 221   2      
- 222   2          bytedata <<= 1;
- 223   2          if (ISDA2)
- 224   2            bytedata |= 0x01;
- 225   2      
- 226   2          ISCL2 = 0;
- 227   2          I2C_Wait();
- 228   2        }
- 229   1        return bytedata;
- 230   1      }
- 231          //*************************************************************************************
- 232          //
- 233          // SendAcknowledge: "NACK"  Master --> Slave (ack==1) for ending
- 234          //
- 235          //*************************************************************************************
- 236          void SendAcknowledge(bit ack)
- 237          {
- 238   1        ISDA = ack;
- 239   1        ISCL = 1;
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 5   
+ 178   2          {
+ 179   3            ISDA2 = 0;
+ 180   3          }
+ 181   2      
+ 182   2          ISCL2 = 1;
+ 183   2          I2C_Wait();
+ 184   2          ISCL2 = 0;
+ 185   2          I2C_Wait();
+ 186   2        }
+ 187   1        ISCL2 = 1;
+ 188   1        I2C_Wait();
+ 189   1        ack = ISDA2;
+ 190   1        ISCL2 = 0;
+ 191   1        _nop_();
+ 192   1        return ack;
+ 193   1      }
+ 194          //*************************************************************************************
+ 195          //
+ 196          // I2C_ReceiveByte: clock out byte data from Slave (Only operate ISCL H/L and read ISDA)
+ 197          //
+ 198          //
+ 199          //*************************************************************************************
+ 200          unsigned char I2C_ReceiveByte(void)
+ 201          {
+ 202   1        unsigned char i;
+ 203   1        unsigned char bytedata = 0x00;
+ 204   1        // Receive byte (MSB first)
+ 205   1      
+ 206   1        for (i = 0; i < 8; i++)
+ 207   1        {
+ 208   2          ISCL = 1;
+ 209   2          I2C_Wait();
+ 210   2      
+ 211   2          bytedata <<= 1;
+ 212   2          if (ISDA)
+ 213   2            bytedata |= 0x01;
+ 214   2      
+ 215   2          ISCL = 0;
+ 216   2          I2C_Wait();
+ 217   2        }
+ 218   1        return bytedata;
+ 219   1      }
+ 220          
+ 221          unsigned char I2C_ReceiveByte_EEPROM(void)
+ 222          {
+ 223   1        unsigned char i;
+ 224   1        unsigned char bytedata = 0x00;
+ 225   1        // Receive byte (MSB first)
+ 226   1      
+ 227   1        for (i = 0; i < 8; i++)
+ 228   1        {
+ 229   2          ISCL2 = 1;
+ 230   2          I2C_Wait();
+ 231   2      
+ 232   2          bytedata <<= 1;
+ 233   2          if (ISDA2)
+ 234   2            bytedata |= 0x01;
+ 235   2      
+ 236   2          ISCL2 = 0;
+ 237   2          I2C_Wait();
+ 238   2        }
+ 239   1        return bytedata;
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 5   
 
- 240   1        I2C_Wait();
- 241   1        ISCL = 0;
- 242   1        ISDA = 1; //Recover ISDA LINE
- 243   1      }
- 244          void SendAcknowledge_EEPROM(bit ack)
- 245          {
- 246   1        ISDA2 = ack;
- 247   1        ISCL2 = 1;
- 248   1        I2C_Wait();
- 249   1        ISCL2 = 0;
- 250   1        ISDA2 = 1; //Recover ISDA LINE
- 251   1      }
- 252          //*************************************************************************************
- 253          //
- 254          // I2C_ByteWrite: Write One Register to a Device
- 255          // I2C_Start--> SentByte(device)-->SentByte(address)--> SentByte(Data)--> Stop
- 256          //
- 257          //*************************************************************************************
- 258          void I2C_ByteWrite(unsigned char device, unsigned char address, unsigned char bytedata)
- 259          {
- 260   1        unsigned char i;
- 261   1        bit ack;
- 262   1      
- 263   1        for (i = 0; i < 10; i++) //time out,retry=10
- 264   1        {
- 265   2          I2C_Start();
- 266   2      
- 267   2          ack = I2C_SentByte(device);
- 268   2          if (ack == 1) //FAIL then STOP
- 269   2          {
- 270   3            I2C_Stop();
- 271   3            continue;
- 272   3          }
- 273   2      
- 274   2          ack = I2C_SentByte(address);
- 275   2          if (ack == 1) //FAIL then STOP
- 276   2          {
- 277   3            I2C_Stop();
- 278   3            continue;
- 279   3          }
- 280   2      
- 281   2          ack = I2C_SentByte(bytedata);
- 282   2          if (ack == 1) //FAIL then STOP
- 283   2          {
- 284   3            I2C_Stop();
- 285   3            continue;
- 286   3          }
- 287   2      
- 288   2          I2C_Stop();
- 289   2      
- 290   2          if (ack == 0) //ACK PASS  Go Out
- 291   2          {
- 292   3            break;
- 293   3          }
- 294   2        }
- 295   1        delay(10);
- 296   1      
- 297   1        I2C_Start();
- 298   1        I2C_SentByte(device);
- 299   1        I2C_SentByte(address);
- 300   1        I2C_SentByte(bytedata);
- 301   1        I2C_Stop();
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 6   
+ 240   1      }
+ 241          //*************************************************************************************
+ 242          //
+ 243          // SendAcknowledge: "NACK"  Master --> Slave (ack==1) for ending
+ 244          //
+ 245          //*************************************************************************************
+ 246          void SendAcknowledge(bit ack)
+ 247          {
+ 248   1        ISDA = ack;
+ 249   1        ISCL = 1;
+ 250   1        I2C_Wait();
+ 251   1        ISCL = 0;
+ 252   1        ISDA = 1; // Recover ISDA LINE
+ 253   1      }
+ 254          void SendAcknowledge_EEPROM(bit ack)
+ 255          {
+ 256   1        ISDA2 = ack;
+ 257   1        ISCL2 = 1;
+ 258   1        I2C_Wait();
+ 259   1        ISCL2 = 0;
+ 260   1        ISDA2 = 1; // Recover ISDA LINE
+ 261   1      }
+ 262          //*************************************************************************************
+ 263          //
+ 264          // I2C_ByteWrite: Write One Register to a Device
+ 265          // I2C_Start--> SentByte(device)-->SentByte(address)--> SentByte(Data)--> Stop
+ 266          //
+ 267          //*************************************************************************************
+ 268          void I2C_ByteWrite(unsigned char device, unsigned char address, unsigned char bytedata)
+ 269          {
+ 270   1        unsigned char i;
+ 271   1        bit ack;
+ 272   1      
+ 273   1        for (i = 0; i < 10; i++) // time out,retry=10
+ 274   1        {
+ 275   2          I2C_Start();
+ 276   2      
+ 277   2          ack = I2C_SentByte(device);
+ 278   2          if (ack == 1) // FAIL then STOP
+ 279   2          {
+ 280   3            I2C_Stop();
+ 281   3            continue;
+ 282   3          }
+ 283   2      
+ 284   2          ack = I2C_SentByte(address);
+ 285   2          if (ack == 1) // FAIL then STOP
+ 286   2          {
+ 287   3            I2C_Stop();
+ 288   3            continue;
+ 289   3          }
+ 290   2      
+ 291   2          ack = I2C_SentByte(bytedata);
+ 292   2          if (ack == 1) // FAIL then STOP
+ 293   2          {
+ 294   3            I2C_Stop();
+ 295   3            continue;
+ 296   3          }
+ 297   2      
+ 298   2          I2C_Stop();
+ 299   2      
+ 300   2          if (ack == 0) // ACK PASS  Go Out
+ 301   2          {
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 6   
 
- 302   1      }
- 303          
- 304          //*************************************************************************************
- 305          //
- 306          //  I2C_ByteRead: Read "One" Register from Slave
- 307          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
- 308          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
- 309          //
- 310          //*************************************************************************************
- 311          unsigned char I2C_ByteRead(unsigned char device, unsigned char address)
- 312          {
- 313   1        unsigned char bytedata = 0x00;
- 314   1      
- 315   1        I2C_Start();
- 316   1      
- 317   1        I2C_SentByte(device);
- 318   1        I2C_SentByte(address);
- 319   1        I2C_Start();
- 320   1        I2C_SentByte(device | 0x01); //Write-->Read
- 321   1        bytedata = I2C_ReceiveByte();
- 322   1        SendAcknowledge(1);
- 323   1      
- 324   1        I2C_Stop();
- 325   1      
- 326   1        return bytedata;
- 327   1      }
- 328          
- 329          //*************************************************************************************
- 330          //
- 331          //  I2C_ByteRead: Read "One" Register from Slave
- 332          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
- 333          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
- 334          //
- 335          //*************************************************************************************
- 336          
- 337          void I2C_M_Data(unsigned char device, unsigned char address, bit ReadHighResolution)
- 338          {
- 339   1        unsigned char bytedata = 0x00;
- 340   1        //unsigned char TempByte[1];
- 341   1        //char* TransformedResult[2];
- 342   1        bit ack;
- 343   1      
- 344   1        I2C_Start();
- 345   1        I2C_SentByte(device);
- 346   1        I2C_SentByte(address);
- 347   1      
- 348   1        I2C_Start();
- 349   1        ack = I2C_SentByte(device | 0x01); //Write-->Read
- 350   1      
- 351   1        /*
- 352   1        if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 353   1        {
- 354   1          X_Data[0] = I2C_ReceiveByte();
- 355   1          SendAcknowledge(0);
- 356   1          X_Data[1] = I2C_ReceiveByte();
- 357   1          SendAcknowledge(0);
- 358   1      
- 359   1          Z_Data[0] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Z, Please note it is for  M_Data[7] not [5
-             -]
- 360   1          SendAcknowledge(0);
- 361   1          Z_Data[1] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Z
- 362   1          SendAcknowledge(0);
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 7   
+ 302   3            break;
+ 303   3          }
+ 304   2        }
+ 305   1        delay(10);
+ 306   1      
+ 307   1        I2C_Start();
+ 308   1        I2C_SentByte(device);
+ 309   1        I2C_SentByte(address);
+ 310   1        I2C_SentByte(bytedata);
+ 311   1        I2C_Stop();
+ 312   1      }
+ 313          
+ 314          //*************************************************************************************
+ 315          //
+ 316          //  I2C_ByteRead: Read "One" Register from Slave
+ 317          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
+ 318          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
+ 319          //
+ 320          //*************************************************************************************
+ 321          unsigned char I2C_ByteRead(unsigned char device, unsigned char address)
+ 322          {
+ 323   1        unsigned char bytedata = 0x00;
+ 324   1      
+ 325   1        I2C_Start();
+ 326   1      
+ 327   1        I2C_SentByte(device);
+ 328   1        I2C_SentByte(address);
+ 329   1        I2C_Start();
+ 330   1        I2C_SentByte(device | 0x01); // Write-->Read
+ 331   1        bytedata = I2C_ReceiveByte();
+ 332   1        SendAcknowledge(1);
+ 333   1      
+ 334   1        I2C_Stop();
+ 335   1      
+ 336   1        return bytedata;
+ 337   1      }
+ 338          
+ 339          //*************************************************************************************
+ 340          //
+ 341          //  I2C_ByteRead: Read "One" Register from Slave
+ 342          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
+ 343          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
+ 344          //
+ 345          //*************************************************************************************
+ 346          
+ 347          void I2C_M_Data(unsigned char device, unsigned char address, bit ReadHighResolution)
+ 348          {
+ 349   1        unsigned char bytedata = 0x00;
+ 350   1        // unsigned char TempByte[1];
+ 351   1        // char* TransformedResult[2];
+ 352   1        bit ack;
+ 353   1      
+ 354   1        I2C_Start();
+ 355   1        I2C_SentByte(device);
+ 356   1        I2C_SentByte(address);
+ 357   1      
+ 358   1        I2C_Start();
+ 359   1        ack = I2C_SentByte(device | 0x01); // Write-->Read
+ 360   1      
+ 361   1        /*
+ 362   1        if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 363   1        {
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 7   
 
- 363   1      
- 364   1          Y_Data[0] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Y
+ 364   1          X_Data[0] = I2C_ReceiveByte();
  365   1          SendAcknowledge(0);
- 366   1          Y_Data[1] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Y
- 367   1          SendAcknowledge(1);
+ 366   1          X_Data[1] = I2C_ReceiveByte();
+ 367   1          SendAcknowledge(0);
  368   1      
- 369   1          //render sign inverse at X and Z data
- 370   1          SignInvertor2SComplement(3);
- 371   1        }
- 372   1        
- 373   1        else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)  
- 374   1        {
- 375   1          X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
- 376   1          SendAcknowledge(0);
- 377   1          X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
- 378   1          SendAcknowledge(0);
- 379   1      
- 380   1          Y_Data[1] = I2C_ReceiveByte();
- 381   1          SendAcknowledge(0);
- 382   1          Y_Data[0] = I2C_ReceiveByte();
- 383   1          SendAcknowledge(0);
- 384   1      
- 385   1          Z_Data[1] = I2C_ReceiveByte();
+ 369   1          Z_Data[0] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Z, Please note it is for  M_Data[7] not [5
+             -]
+ 370   1          SendAcknowledge(0);
+ 371   1          Z_Data[1] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Z
+ 372   1          SendAcknowledge(0);
+ 373   1      
+ 374   1          Y_Data[0] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Y
+ 375   1          SendAcknowledge(0);
+ 376   1          Y_Data[1] = I2C_ReceiveByte(); // DATA SHEET INDICATE THIS IS Y
+ 377   1          SendAcknowledge(1);
+ 378   1      
+ 379   1          //render sign inverse at X and Z data
+ 380   1          SignInvertor2SComplement(3);
+ 381   1        }
+ 382   1      
+ 383   1        else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 384   1        {
+ 385   1          X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
  386   1          SendAcknowledge(0);
- 387   1          Z_Data[0] = I2C_ReceiveByte();
- 388   1          SendAcknowledge(1);
+ 387   1          X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
+ 388   1          SendAcknowledge(0);
  389   1      
- 390   1          if (!ReadHighResolution)
- 391   1          {
- 392   1            //lower the resolution of M-sensor to be in compliance with the old version of software.
- 393   1            LowerResolution2MatchOldSensor(&X_Data);
- 394   1            LowerResolution2MatchOldSensor(&Y_Data);
- 395   1            LowerResolution2MatchOldSensor(&Z_Data);
- 396   1            //render sign inverse at X and Z data
- 397   1            SignInvertor2SComplement(1);
- 398   1          }
- 399   1        }
- 400   1        */
- 401   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 401 OF library\IIC_Function.c: pointer to different objects
- 402   1        {
- 403   2          X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
- 404   2          SendAcknowledge(0);
- 405   2          X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
- 406   2          SendAcknowledge(0);
- 407   2      
- 408   2          Y_Data[1] = I2C_ReceiveByte();
- 409   2          SendAcknowledge(0);
- 410   2          Y_Data[0] = I2C_ReceiveByte();
- 411   2          SendAcknowledge(0);
- 412   2      
- 413   2          Z_Data[1] = I2C_ReceiveByte();
- 414   2          SendAcknowledge(0);
- 415   2          Z_Data[0] = I2C_ReceiveByte();
- 416   2          SendAcknowledge(1); //ending
- 417   2      
- 418   2          if (!ReadHighResolution)
- 419   2          {
- 420   3            //lower the resolution of M-sensor to be in compliance with the old version of software.
- 421   3            LowerResolution2MatchOldSensor(&X_Data);
- 422   3            LowerResolution2MatchOldSensor(&Y_Data);
- 423   3            LowerResolution2MatchOldSensor(&Z_Data);
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 8   
+ 390   1          Y_Data[1] = I2C_ReceiveByte();
+ 391   1          SendAcknowledge(0);
+ 392   1          Y_Data[0] = I2C_ReceiveByte();
+ 393   1          SendAcknowledge(0);
+ 394   1      
+ 395   1          Z_Data[1] = I2C_ReceiveByte();
+ 396   1          SendAcknowledge(0);
+ 397   1          Z_Data[0] = I2C_ReceiveByte();
+ 398   1          SendAcknowledge(1);
+ 399   1      
+ 400   1          if (!ReadHighResolution)
+ 401   1          {
+ 402   1            //lower the resolution of M-sensor to be in compliance with the old version of software.
+ 403   1            LowerResolution2MatchOldSensor(&X_Data);
+ 404   1            LowerResolution2MatchOldSensor(&Y_Data);
+ 405   1            LowerResolution2MatchOldSensor(&Z_Data);
+ 406   1            //render sign inverse at X and Z data
+ 407   1            SignInvertor2SComplement(1);
+ 408   1          }
+ 409   1        }
+ 410   1        */
+ 411   1        X_Data[1] = I2C_ReceiveByte(); // 0xcb; //LSB
+ 412   1        SendAcknowledge(0);
+ 413   1        X_Data[0] = I2C_ReceiveByte(); // 0x7c; //MSB
+ 414   1        SendAcknowledge(0);
+ 415   1      
+ 416   1        Y_Data[1] = I2C_ReceiveByte();
+ 417   1        SendAcknowledge(0);
+ 418   1        Y_Data[0] = I2C_ReceiveByte();
+ 419   1        SendAcknowledge(0);
+ 420   1      
+ 421   1        Z_Data[1] = I2C_ReceiveByte();
+ 422   1        SendAcknowledge(0);
+ 423   1        Z_Data[0] = I2C_ReceiveByte();
+ 424   1        SendAcknowledge(1); // ending
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 8   
 
- 424   3            //render sign inverse at X and Z data
- 425   3            SignInvertor2SComplement(3);
- 426   3          }
- 427   2        }
- 428   1      
- 429   1        I2C_Stop();
- 430   1      
- 431   1        //putline(M_Data,9);
- 432   1        putline("X", 1);
- 433   1        putline(X_Data, 2);
- 434   1        putline("Y", 1);
- 435   1        putline(Y_Data, 2);
- 436   1        putline("Z", 1);
- 437   1        putline(Z_Data, 2);
- 438   1      }
- 439          
- 440          //*************************************************************************************
- 441          //
- 442          //  I2C_ByteRead: Read "One" Register from Slave
- 443          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
- 444          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
- 445          //
- 446          //*************************************************************************************
- 447          void I2C_T_Data(unsigned char device, unsigned char address)
- 448          {
+ 425   1      
+ 426   1        CalibrationCaculate(&X_Data, &Y_Data, &Z_Data, &GainMatrix_M);
+ 427   1      
+ 428   1        if (!ReadHighResolution)
+ 429   1        {
+ 430   2          // lower the resolution of M-sensor to be in compliance with the old version of software.
+ 431   2          LowerResolution2MatchOldSensor(&X_Data);
+ 432   2          LowerResolution2MatchOldSensor(&Y_Data);
+ 433   2          LowerResolution2MatchOldSensor(&Z_Data);
+ 434   2          // render sign inverse at X and Z data
+ 435   2          SignInvertor2SComplement(3);
+ 436   2        }
+ 437   1      
+ 438   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 439   1        // {
+ 440   1        //  X_Data[1] = I2C_ReceiveByte(); //0xcb; //LSB
+ 441   1        //  SendAcknowledge(0);
+ 442   1        //  X_Data[0] = I2C_ReceiveByte(); //0x7c; //MSB
+ 443   1        //  SendAcknowledge(0);
+ 444   1      
+ 445   1        //  Y_Data[1] = I2C_ReceiveByte();
+ 446   1        //  SendAcknowledge(0);
+ 447   1        //  Y_Data[0] = I2C_ReceiveByte();
+ 448   1        //  SendAcknowledge(0);
  449   1      
- 450   1        unsigned char bytedata = 0x00;
- 451   1      
- 452   1        I2C_Start();
- 453   1        I2C_SentByte(device);
- 454   1        I2C_SentByte(address);
- 455   1      
- 456   1        I2C_Start();
- 457   1        I2C_SentByte(device | 0x01); //Write-->Read
- 458   1      
- 459   1        /*
- 460   1        if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
- 461   1        {
- 462   1          T_Data[1] = I2C_ReceiveByte();
- 463   1          SendAcknowledge(0);
- 464   1          T_Data[2] = I2C_ReceiveByte();
- 465   1          SendAcknowledge(1);
- 466   1        }
- 467   1        else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 468   1        {
- 469   1          T_Data[1] = 0x00;
- 470   1          T_Data[2] = I2C_ReceiveByte();
- 471   1          SendAcknowledge(1);
- 472   1        }
- 473   1        */
- 474   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 474 OF library\IIC_Function.c: pointer to different objects
- 475   1        {
- 476   2          T_Data[2] = I2C_ReceiveByte(); //LSB
- 477   2          SendAcknowledge(0);
- 478   2          T_Data[1] = I2C_ReceiveByte(); //MSB
- 479   2          SendAcknowledge(1);
- 480   2        }
- 481   1      
- 482   1        I2C_Stop();
- 483   1      
- 484   1        putline(T_Data, 3);
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 9   
+ 450   1        //  Z_Data[1] = I2C_ReceiveByte();
+ 451   1        //  SendAcknowledge(0);
+ 452   1        //  Z_Data[0] = I2C_ReceiveByte();
+ 453   1        //  SendAcknowledge(1); //ending
+ 454   1      
+ 455   1        //  if (!ReadHighResolution)
+ 456   1        //  {
+ 457   1        //    //lower the resolution of M-sensor to be in compliance with the old version of software.
+ 458   1        //    LowerResolution2MatchOldSensor(&X_Data);
+ 459   1        //    LowerResolution2MatchOldSensor(&Y_Data);
+ 460   1        //    LowerResolution2MatchOldSensor(&Z_Data);
+ 461   1        //    //render sign inverse at X and Z data
+ 462   1        //    SignInvertor2SComplement(3);
+ 463   1        //  }
+ 464   1        // }
+ 465   1      
+ 466   1        I2C_Stop();
+ 467   1      
+ 468   1        // putline(M_Data,9);
+ 469   1        putline("X", 1);
+ 470   1        putline(X_Data, 2);
+ 471   1        putline("Y", 1);
+ 472   1        putline(Y_Data, 2);
+ 473   1        putline("Z", 1);
+ 474   1        putline(Z_Data, 2);
+ 475   1      }
+ 476          
+ 477          //*************************************************************************************
+ 478          //
+ 479          //  I2C_ByteRead: Read "One" Register from Slave
+ 480          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
+ 481          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
+ 482          //
+ 483          //*************************************************************************************
+ 484          void I2C_T_Data(unsigned char device, unsigned char address)
+ 485          {
+ 486   1      
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 9   
 
- 485   1        putline(Ending, 2);
- 486   1      }
- 487          //*************************************************************************************
- 488          //
- 489          //  I2C_ByteRead: Read "One" Register from Slave
- 490          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
- 491          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
- 492          //
- 493          //*************************************************************************************
- 494          
- 495          void I2C_Gyro_Data(unsigned char device, unsigned char address)
- 496          {
- 497   1        unsigned char bytedata = 0x00;
- 498   1        //unsigned char TempByte[1];
- 499   1        //char* TransformedResult[2];
- 500   1        bit ack;
- 501   1      
- 502   1        I2C_Start();
- 503   1        I2C_SentByte(device);
- 504   1        I2C_SentByte(address);
- 505   1      
- 506   1        I2C_Start();
- 507   1        ack = I2C_SentByte(device | 0x01); //Write-->Read
- 508   1      
- 509   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 509 OF library\IIC_Function.c: pointer to different objects
- 510   1        {
- 511   2          GyroX_Data[1] = I2C_ReceiveByte(); //LSB
- 512   2          SendAcknowledge(0);
- 513   2          GyroX_Data[0] = I2C_ReceiveByte(); //MSB
- 514   2          SendAcknowledge(0);
- 515   2      
- 516   2          GyroY_Data[1] = I2C_ReceiveByte();
- 517   2          SendAcknowledge(0);
- 518   2          GyroY_Data[0] = I2C_ReceiveByte();
- 519   2          SendAcknowledge(0);
- 520   2      
- 521   2          GyroZ_Data[1] = I2C_ReceiveByte();
- 522   2          SendAcknowledge(0);
- 523   2          GyroZ_Data[0] = I2C_ReceiveByte();
- 524   2          SendAcknowledge(1); //ending
- 525   2      
- 526   2          //SignInvertor2SComplement(1);
- 527   2        }
- 528   1      
- 529   1        I2C_Stop();
- 530   1      
- 531   1        //putline(M_Data,9);
- 532   1        putline("X", 1);
- 533   1        putline(GyroX_Data, 2);
- 534   1        putline("Y", 1);
- 535   1        putline(GyroY_Data, 2);
- 536   1        putline("Z", 1);
- 537   1        putline(GyroZ_Data, 2);
- 538   1      }
- 539          //*************************************************************************************
- 540          //
- 541          //  I2C_ByteRead: Read "One" Register from Slave
- 542          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
- 543          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
- 544          //
- 545          //*************************************************************************************
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 10  
+ 487   1        unsigned char bytedata = 0x00;
+ 488   1      
+ 489   1        I2C_Start();
+ 490   1        I2C_SentByte(device);
+ 491   1        I2C_SentByte(address);
+ 492   1      
+ 493   1        I2C_Start();
+ 494   1        I2C_SentByte(device | 0x01); // Write-->Read
+ 495   1      
+ 496   1        /*
+ 497   1        if (StringCompare(sensor_type_name, "HMC5983", 7) == 1)
+ 498   1        {
+ 499   1          T_Data[1] = I2C_ReceiveByte();
+ 500   1          SendAcknowledge(0);
+ 501   1          T_Data[2] = I2C_ReceiveByte();
+ 502   1          SendAcknowledge(1);
+ 503   1        }
+ 504   1        else if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 505   1        {
+ 506   1          T_Data[1] = 0x00;
+ 507   1          T_Data[2] = I2C_ReceiveByte();
+ 508   1          SendAcknowledge(1);
+ 509   1        }
+ 510   1        */
+ 511   1        T_Data[2] = I2C_ReceiveByte(); // LSB
+ 512   1        SendAcknowledge(0);
+ 513   1        T_Data[1] = I2C_ReceiveByte(); // MSB
+ 514   1        SendAcknowledge(1);
+ 515   1        
+ 516   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 517   1        // {
+ 518   1        //  T_Data[2] = I2C_ReceiveByte(); //LSB
+ 519   1        //  SendAcknowledge(0);
+ 520   1        //  T_Data[1] = I2C_ReceiveByte(); //MSB
+ 521   1        //  SendAcknowledge(1);
+ 522   1        // }
+ 523   1      
+ 524   1        I2C_Stop();
+ 525   1      
+ 526   1        putline(T_Data, 3);
+ 527   1        putline(Ending, 2);
+ 528   1      }
+ 529          //*************************************************************************************
+ 530          //
+ 531          //  I2C_ByteRead: Read "One" Register from Slave
+ 532          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
+ 533          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
+ 534          //
+ 535          //*************************************************************************************
+ 536          
+ 537          void I2C_Gyro_Data(unsigned char device, unsigned char address)
+ 538          {
+ 539   1        unsigned char bytedata = 0x00;
+ 540   1        // unsigned char TempByte[1];
+ 541   1        // char* TransformedResult[2];
+ 542   1        bit ack;
+ 543   1      
+ 544   1        I2C_Start();
+ 545   1        I2C_SentByte(device);
+ 546   1        I2C_SentByte(address);
+ 547   1      
+ 548   1        I2C_Start();
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 10  
 
- 546          
- 547          void I2C_Acc_Data(unsigned char device, unsigned char address)
- 548          {
- 549   1        unsigned char bytedata = 0x00;
- 550   1        //unsigned char TempByte[1];
- 551   1        //char* TransformedResult[2];
- 552   1        bit ack;
- 553   1      
- 554   1        I2C_Start();
- 555   1        I2C_SentByte(device);
- 556   1        I2C_SentByte(address);
- 557   1      
- 558   1        I2C_Start();
- 559   1        ack = I2C_SentByte(device | 0x01); //Write-->Read
+ 549   1        ack = I2C_SentByte(device | 0x01); // Write-->Read
+ 550   1      
+ 551   1        GyroX_Data[1] = I2C_ReceiveByte(); // LSB
+ 552   1        SendAcknowledge(0);
+ 553   1        GyroX_Data[0] = I2C_ReceiveByte(); // MSB
+ 554   1        SendAcknowledge(0);
+ 555   1      
+ 556   1        GyroY_Data[1] = I2C_ReceiveByte();
+ 557   1        SendAcknowledge(0);
+ 558   1        GyroY_Data[0] = I2C_ReceiveByte();
+ 559   1        SendAcknowledge(0);
  560   1      
- 561   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 561 OF library\IIC_Function.c: pointer to different objects
- 562   1        {
- 563   2          AccX_Data[1] = I2C_ReceiveByte(); //LSB
- 564   2          SendAcknowledge(0);
- 565   2          AccX_Data[0] = I2C_ReceiveByte(); //MSB
- 566   2          SendAcknowledge(0);
- 567   2      
- 568   2          AccY_Data[1] = I2C_ReceiveByte();
- 569   2          SendAcknowledge(0);
- 570   2          AccY_Data[0] = I2C_ReceiveByte();
- 571   2          SendAcknowledge(0);
- 572   2      
- 573   2          AccZ_Data[1] = I2C_ReceiveByte();
- 574   2          SendAcknowledge(0);
- 575   2          AccZ_Data[0] = I2C_ReceiveByte();
- 576   2          SendAcknowledge(1); //ending
- 577   2      
- 578   2          SignInvertor2SComplement(2);
- 579   2        }
- 580   1      
- 581   1        I2C_Stop();
- 582   1      
- 583   1        //putline(M_Data,9);
- 584   1        putline("X", 1);
- 585   1        putline(AccX_Data, 2);
- 586   1        putline("Y", 1);
- 587   1        putline(AccY_Data, 2);
- 588   1        putline("Z", 1);
- 589   1        putline(AccZ_Data, 2);
- 590   1      }
- 591          //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
- 592          /*
- 593          unsigned char I2cReadTrm2(signed char device,unsigned char address) //KEY FUNCTION in MAIN
- 594          {
- 595              unsigned char bytedata=0x00;
- 596          
- 597              I2C_Start( );
- 598              I2C_SentByte(device);
- 599              I2C_SentByte(address);
- 600              I2C_Start( );
- 601              I2C_SentByte(device|0x01);
- 602              bytedata=I2C_ReceiveByte( );
- 603              SendAcknowledge(1);
- 604              I2C_Stop( );
- 605              return bytedata;  
- 606          }
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 11  
+ 561   1        GyroZ_Data[1] = I2C_ReceiveByte();
+ 562   1        SendAcknowledge(0);
+ 563   1        GyroZ_Data[0] = I2C_ReceiveByte();
+ 564   1        SendAcknowledge(1); // ending
+ 565   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 566   1        // {
+ 567   1        //  GyroX_Data[1] = I2C_ReceiveByte(); //LSB
+ 568   1        //  SendAcknowledge(0);
+ 569   1        //  GyroX_Data[0] = I2C_ReceiveByte(); //MSB
+ 570   1        //  SendAcknowledge(0);
+ 571   1      
+ 572   1        //  GyroY_Data[1] = I2C_ReceiveByte();
+ 573   1        //  SendAcknowledge(0);
+ 574   1        //  GyroY_Data[0] = I2C_ReceiveByte();
+ 575   1        //  SendAcknowledge(0);
+ 576   1      
+ 577   1        //  GyroZ_Data[1] = I2C_ReceiveByte();
+ 578   1        //  SendAcknowledge(0);
+ 579   1        //  GyroZ_Data[0] = I2C_ReceiveByte();
+ 580   1        //  SendAcknowledge(1); //ending
+ 581   1      
+ 582   1        //  //SignInvertor2SComplement(1);
+ 583   1        // }
+ 584   1      
+ 585   1        I2C_Stop();
+ 586   1      
+ 587   1        // putline(M_Data,9);
+ 588   1        putline("X", 1);
+ 589   1        putline(GyroX_Data, 2);
+ 590   1        putline("Y", 1);
+ 591   1        putline(GyroY_Data, 2);
+ 592   1        putline("Z", 1);
+ 593   1        putline(GyroZ_Data, 2);
+ 594   1      }
+ 595          //*************************************************************************************
+ 596          //
+ 597          //  I2C_ByteRead: Read "One" Register from Slave
+ 598          //    I2C_Start --> I2C_SentByte(device) --> I2C_SentByte(address)
+ 599          //--> I2C_Start --> I2C_SentByte(device|0x01, read)--> I2C_ReceiveByte --> NACK --> Stop
+ 600          //
+ 601          //*************************************************************************************
+ 602          
+ 603          void I2C_Acc_Data(unsigned char device, unsigned char address)
+ 604          {
+ 605   1        unsigned char bytedata = 0x00;
+ 606   1        // unsigned char TempByte[1];
+ 607   1        // char* TransformedResult[2];
+ 608   1        bit ack;
+ 609   1      
+ 610   1        I2C_Start();
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 11  
 
- 607          */
- 608          void I2CReadMultiBytes(signed char device, unsigned char address, unsigned char *_data, char amount)
- 609          {
- 610   1        char _i;
- 611   1      
- 612   1        for (_i = 0; _i < amount; _i++)
- 613   1        {
- 614   2          _data[_i] = I2C_ByteRead(device, address + _i);
- 615   2        }
- 616   1      }
- 617          
- 618          unsigned short TwoBytes2Int(unsigned char HighByte, unsigned char LowByte)
- 619          {
- 620   1        return (LowByte | (unsigned int)HighByte << 8);
- 621   1      }
- 622          
- 623          void LowerResolution2MatchOldSensor(unsigned char *DataArray)
- 624          {
- 625   1      
- 626   1        unsigned short TwoBytesInt = TwoBytes2Int(DataArray[0], DataArray[1]);
- 627   1        short SignedTwoBytesInt;
- 628   1        float TransFactor;
- 629   1        short TransformedSignedTwoBytesInt;
- 630   1      
- 631   1        /*
- 632   1        if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
- 633   1        {
- 634   1          SignedTwoBytesInt = TwoBytesInt - 32768;  //origin LSB range 0 ~ 65535 >>-32768~32767
- 635   1          TransFactor =  1370.0 / 4096.0;       //MMC resolution:4096LSB/gauss
- 636   1        }
- 637   1        */
- 638   1        if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
-*** WARNING C182 IN LINE 638 OF library\IIC_Function.c: pointer to different objects
- 639   1        {
- 640   2          SignedTwoBytesInt = TwoBytesInt; //origin LSB range -32768 ~ 32767
- 641   2          TransFactor = 1370.0 / 3448.0;   //LSM resolution: 0.29 mgauss/LSB >> 3448 LSB/gauss
- 642   2        }
- 643   1      
- 644   1        TransformedSignedTwoBytesInt = (short)((float)SignedTwoBytesInt * TransFactor);
- 645   1        DataArray[1] = (char)(TransformedSignedTwoBytesInt);    //Low byte
- 646   1        DataArray[0] = (char)(TransformedSignedTwoBytesInt >> 8); //High byte
- 647   1      }
- 648          
- 649          void CalibrationCaculate(unsigned char *Xorigin, unsigned char *Yorigin, unsigned char *Zorigin,
- 650                       unsigned char *Xcal, unsigned char *Ycal, unsigned char *Zcal)
- 651          {
+ 611   1        I2C_SentByte(device);
+ 612   1        I2C_SentByte(address);
+ 613   1      
+ 614   1        I2C_Start();
+ 615   1        ack = I2C_SentByte(device | 0x01); // Write-->Read
+ 616   1      
+ 617   1        AccX_Data[1] = I2C_ReceiveByte(); // LSB
+ 618   1        SendAcknowledge(0);
+ 619   1        AccX_Data[0] = I2C_ReceiveByte(); // MSB
+ 620   1        SendAcknowledge(0);
+ 621   1      
+ 622   1        AccY_Data[1] = I2C_ReceiveByte();
+ 623   1        SendAcknowledge(0);
+ 624   1        AccY_Data[0] = I2C_ReceiveByte();
+ 625   1        SendAcknowledge(0);
+ 626   1      
+ 627   1        AccZ_Data[1] = I2C_ReceiveByte();
+ 628   1        SendAcknowledge(0);
+ 629   1        AccZ_Data[0] = I2C_ReceiveByte();
+ 630   1        SendAcknowledge(1); // ending
+ 631   1      
+ 632   1        SignInvertor2SComplement(2);
+ 633   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 634   1        // {
+ 635   1        //  AccX_Data[1] = I2C_ReceiveByte(); //LSB
+ 636   1        //  SendAcknowledge(0);
+ 637   1        //  AccX_Data[0] = I2C_ReceiveByte(); //MSB
+ 638   1        //  SendAcknowledge(0);
+ 639   1      
+ 640   1        //  AccY_Data[1] = I2C_ReceiveByte();
+ 641   1        //  SendAcknowledge(0);
+ 642   1        //  AccY_Data[0] = I2C_ReceiveByte();
+ 643   1        //  SendAcknowledge(0);
+ 644   1      
+ 645   1        //  AccZ_Data[1] = I2C_ReceiveByte();
+ 646   1        //  SendAcknowledge(0);
+ 647   1        //  AccZ_Data[0] = I2C_ReceiveByte();
+ 648   1        //  SendAcknowledge(1); //ending
+ 649   1      
+ 650   1        //  SignInvertor2SComplement(2);
+ 651   1        // }
  652   1      
- 653   1      
- 654   1        // unsigned short TwoBytesIntX = TwoBytes2Int(Xorigin[0], Xorigin[1]);
- 655   1        unsigned short TwoBytesIntY = TwoBytes2Int(Yorigin[0], Yorigin[1]);
- 656   1        unsigned short TwoBytesIntZ = TwoBytes2Int(Zorigin[0], Zorigin[1]);
- 657   1      
- 658   1        short SignedTwoBytesIntX, SignedTwoBytesIntY, SignedTwoBytesIntZ;
- 659   1        short TransformedSignedTwoBytesIntX, TransformedSignedTwoBytesIntY, TransformedSignedTwoBytesIntZ;
- 660   1      
- 661   1        SignedTwoBytesIntX = (short)TwoBytes2Int(Xorigin[0], Xorigin[1]);
- 662   1        SignedTwoBytesIntY = TwoBytesIntY;
- 663   1        SignedTwoBytesIntZ = TwoBytesIntZ;
- 664   1      
- 665   1        TransformedSignedTwoBytesIntX = (short)((float)SignedTwoBytesIntX * R1[0] +
- 666   1                            SignedTwoBytesIntY * R2[0] + SignedTwoBytesIntZ * R3[0] + R4[0]);
- 667   1      
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 12  
+ 653   1        I2C_Stop();
+ 654   1      
+ 655   1        // putline(M_Data,9);
+ 656   1        putline("X", 1);
+ 657   1        putline(AccX_Data, 2);
+ 658   1        putline("Y", 1);
+ 659   1        putline(AccY_Data, 2);
+ 660   1        putline("Z", 1);
+ 661   1        putline(AccZ_Data, 2);
+ 662   1      }
+ 663          //+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+ 664          /*
+ 665          unsigned char I2cReadTrm2(signed char device,unsigned char address) //KEY FUNCTION in MAIN
+ 666          {
+ 667            unsigned char bytedata=0x00;
+ 668          
+ 669            I2C_Start( );
+ 670            I2C_SentByte(device);
+ 671            I2C_SentByte(address);
+ 672            I2C_Start( );
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 12  
 
- 668   1        TransformedSignedTwoBytesIntY = (short)((float)SignedTwoBytesIntX * R1[1] +
- 669   1                            SignedTwoBytesIntY * R2[1] + SignedTwoBytesIntZ * R3[1] + R4[1]);
- 670   1      
- 671   1        TransformedSignedTwoBytesIntZ = (short)((float)SignedTwoBytesIntX * R1[2] +
- 672   1                            SignedTwoBytesIntY * R2[2] + SignedTwoBytesIntZ * R3[2] + R4[2]);
- 673   1      
- 674   1        Xcal[1] = (char)(TransformedSignedTwoBytesIntX);    //Low byte
- 675   1        Xcal[0] = (char)(TransformedSignedTwoBytesIntX >> 8); //High byte
- 676   1        Ycal[1] = (char)(TransformedSignedTwoBytesIntY);    //Low byte
- 677   1        Ycal[0] = (char)(TransformedSignedTwoBytesIntY >> 8); //High byte
- 678   1        Zcal[1] = (char)(TransformedSignedTwoBytesIntZ);    //Low byte
- 679   1        Zcal[0] = (char)(TransformedSignedTwoBytesIntZ >> 8); //High byte
- 680   1      }
- 681          
- 682          void SignInvertor2SComplement(char axis)
- 683          {
- 684   1        // Argument 'axis' specifies which axis is going to be inverted the +/- sign,
- 685   1        // where axis=1 for X, axis=2 for Z, and axis=3 for both.
- 686   1        unsigned char carry;
- 687   1        //------------------------------------------Sign Invert
- 688   1        if (axis == 1 || axis == 3)
- 689   1        {
- 690   2          if (X_Data[1] == 0x00) //LSB
- 691   2          {
- 692   3            carry = 0x01;
- 693   3          }
- 694   2          else
- 695   2          {
- 696   3            X_Data[1] = ~X_Data[1] + 0x01;
- 697   3            carry = 0x00;
- 698   3          }
- 699   2          X_Data[0] = ~X_Data[0] + carry;
- 700   2        }
- 701   1        //------------------------------------------Sign Invert
- 702   1        if (axis == 2 || axis == 3)
- 703   1        {
- 704   2          if (Z_Data[1] == 0x00) //LSB
- 705   2          {
- 706   3            carry = 0x01;
- 707   3          }
- 708   2          else
- 709   2          {
- 710   3            Z_Data[1] = ~Z_Data[1] + 0x01;
- 711   3            carry = 0x00;
- 712   3          }
- 713   2      
- 714   2          Z_Data[0] = ~Z_Data[0] + carry;
- 715   2        }
- 716   1      }
- 717          
- 718          // where axis=1 for X, axis=2 for Z, and axis=3 for Y.
- 719          /*
- 720          float Gauss_Data(unsigned char *DataArray)
- 721          {
- 722            short MinData = -10960;
- 723            float resolu = 1 / 1370; // >> gauss/LSB
- 724          
- 725            unsigned short GaussTwoBytesInt = TwoBytes2Int(DataArray[0], DataArray[1]);
- 726            short GaussSignedTwoBytesInt = GaussTwoBytesInt;
- 727            float gauss = -8 + (GaussSignedTwoBytesInt - MinData) * resolu;
- 728          
- 729            return gauss;
-C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/18/2021 12:40:52 PAGE 13  
+ 673            I2C_SentByte(device|0x01);
+ 674            bytedata=I2C_ReceiveByte( );
+ 675            SendAcknowledge(1);
+ 676            I2C_Stop( );
+ 677            return bytedata;
+ 678          }
+ 679          */
+ 680          void I2CReadMultiBytes(signed char device, unsigned char address, unsigned char *_data, char amount)
+ 681          {
+ 682   1        char _i;
+ 683   1      
+ 684   1        for (_i = 0; _i < amount; _i++)
+ 685   1        {
+ 686   2          _data[_i] = I2C_ByteRead(device, address + _i);
+ 687   2        }
+ 688   1      }
+ 689          
+ 690          unsigned short TwoBytes2Int(unsigned char HighByte, unsigned char LowByte)
+ 691          {
+ 692   1        return (LowByte | (unsigned int)HighByte << 8);
+ 693   1      }
+ 694          
+ 695          void LowerResolution2MatchOldSensor(unsigned char *DataArray)
+ 696          {
+ 697   1      
+ 698   1        unsigned short TwoBytesInt = TwoBytes2Int(DataArray[0], DataArray[1]);
+ 699   1        short SignedTwoBytesInt;
+ 700   1        float TransFactor;
+ 701   1        short TransformedSignedTwoBytesInt;
+ 702   1      
+ 703   1        SignedTwoBytesInt = TwoBytesInt; // origin LSB range -32768 ~ 32767
+ 704   1        TransFactor = 1370.0 / 3448.0;   // LSM resolution: 0.29 mgauss/LSB >> 3448 LSB/gauss
+ 705   1        /*
+ 706   1        if (StringCompare(sensor_type_name, "MMC5883MA", 9) == 1)
+ 707   1        {
+ 708   1          SignedTwoBytesInt = TwoBytesInt - 32768;  //origin LSB range 0 ~ 65535 >>-32768~32767
+ 709   1          TransFactor =  1370.0 / 4096.0;       //MMC resolution:4096LSB/gauss
+ 710   1        }
+ 711   1        */
+ 712   1        // if (StringCompare(sensor_type_name, "LSM9DS1", 7) == 1)
+ 713   1        // {
+ 714   1        //  SignedTwoBytesInt = TwoBytesInt; //origin LSB range -32768 ~ 32767
+ 715   1        //  TransFactor = 1370.0 / 3448.0;   //LSM resolution: 0.29 mgauss/LSB >> 3448 LSB/gauss
+ 716   1        // }
+ 717   1      
+ 718   1        TransformedSignedTwoBytesInt = (short)((float)SignedTwoBytesInt * TransFactor);
+ 719   1        DataArray[1] = (char)(TransformedSignedTwoBytesInt);    // Low byte
+ 720   1        DataArray[0] = (char)(TransformedSignedTwoBytesInt >> 8); // High byte
+ 721   1      }
+ 722          
+ 723          void CalibrationCaculate(unsigned char *Xorigin, unsigned char *Yorigin, unsigned char *Zorigin,
+ 724                       short *GainMatrix)
+ 725          {
+ 726   1      
+ 727   1        // unsigned short TwoBytesIntX = TwoBytes2Int(Xorigin[0], Xorigin[1]);
+ 728   1        // unsigned short TwoBytesIntY = TwoBytes2Int(Yorigin[0], Yorigin[1]);
+ 729   1        // unsigned short TwoBytesIntZ = TwoBytes2Int(Zorigin[0], Zorigin[1]);
+ 730   1      
+ 731   1        short SignedTwoBytesIntX, SignedTwoBytesIntY, SignedTwoBytesIntZ;
+ 732   1        short TransformedSignedTwoBytesIntX, TransformedSignedTwoBytesIntY, TransformedSignedTwoBytesIntZ;
+ 733   1      
+ 734   1        SignedTwoBytesIntX = (short)TwoBytes2Int(Xorigin[0], Xorigin[1]);
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 13  
 
- 730          }
- 731          */
+ 735   1        SignedTwoBytesIntY = (short)TwoBytes2Int(Yorigin[0], Yorigin[1]);
+ 736   1        SignedTwoBytesIntZ = (short)TwoBytes2Int(Zorigin[0], Zorigin[1]);
+ 737   1      
+ 738   1        TransformedSignedTwoBytesIntX = (SignedTwoBytesIntX * GainMatrix[0] +
+ 739   1                         SignedTwoBytesIntY * GainMatrix[1] + SignedTwoBytesIntZ * GainMatrix[2] + GainMatrix[3]) /
+ 740   1                        100;
+ 741   1      
+ 742   1        TransformedSignedTwoBytesIntY = (SignedTwoBytesIntX * GainMatrix[4] +
+ 743   1                         SignedTwoBytesIntY * GainMatrix[5] + SignedTwoBytesIntZ * GainMatrix[6] + GainMatrix[7]) /
+ 744   1                        100;
+ 745   1      
+ 746   1        TransformedSignedTwoBytesIntZ = (SignedTwoBytesIntX * GainMatrix[8] +
+ 747   1                         SignedTwoBytesIntY * GainMatrix[9] + SignedTwoBytesIntZ * GainMatrix[10] + GainMatrix[11]) /
+ 748   1                        100;
+ 749   1      
+ 750   1        Xorigin[1] = (char)(TransformedSignedTwoBytesIntX);   // Low byte
+ 751   1        Xorigin[0] = (char)(TransformedSignedTwoBytesIntX >> 8); // High byte
+ 752   1        Yorigin[1] = (char)(TransformedSignedTwoBytesIntY);   // Low byte
+ 753   1        Yorigin[0] = (char)(TransformedSignedTwoBytesIntY >> 8); // High byte
+ 754   1        Zorigin[1] = (char)(TransformedSignedTwoBytesIntZ);   // Low byte
+ 755   1        Zorigin[0] = (char)(TransformedSignedTwoBytesIntZ >> 8); // High byte
+ 756   1      }
+ 757          
+ 758          void SignInvertor2SComplement(char axis)
+ 759          {
+ 760   1        // Argument 'axis' specifies which axis is going to be inverted the +/- sign,
+ 761   1        // where axis=1 for X, axis=2 for Z, and axis=3 for both.
+ 762   1        unsigned char carry;
+ 763   1        //------------------------------------------Sign Invert
+ 764   1        if (axis == 1 || axis == 3)
+ 765   1        {
+ 766   2          if (X_Data[1] == 0x00) // LSB
+ 767   2          {
+ 768   3            carry = 0x01;
+ 769   3          }
+ 770   2          else
+ 771   2          {
+ 772   3            X_Data[1] = ~X_Data[1] + 0x01;
+ 773   3            carry = 0x00;
+ 774   3          }
+ 775   2          X_Data[0] = ~X_Data[0] + carry;
+ 776   2        }
+ 777   1        //------------------------------------------Sign Invert
+ 778   1        if (axis == 2 || axis == 3)
+ 779   1        {
+ 780   2          if (Z_Data[1] == 0x00) // LSB
+ 781   2          {
+ 782   3            carry = 0x01;
+ 783   3          }
+ 784   2          else
+ 785   2          {
+ 786   3            Z_Data[1] = ~Z_Data[1] + 0x01;
+ 787   3            carry = 0x00;
+ 788   3          }
+ 789   2      
+ 790   2          Z_Data[0] = ~Z_Data[0] + carry;
+ 791   2        }
+ 792   1      }
+ 793          
+ 794          // where axis=1 for X, axis=2 for Z, and axis=3 for Y.
+ 795          /*
+ 796          float Gauss_Data(unsigned char *DataArray)
+C51 COMPILER V9.60.0.0   IIC_FUNCTION                                                      10/24/2021 23:25:51 PAGE 14  
+
+ 797          {
+ 798            short MinData = -10960;
+ 799            float resolu = 1 / 1370; // >> gauss/LSB
+ 800          
+ 801            unsigned short GaussTwoBytesInt = TwoBytes2Int(DataArray[0], DataArray[1]);
+ 802            short GaussSignedTwoBytesInt = GaussTwoBytesInt;
+ 803            float gauss = -8 + (GaussSignedTwoBytesInt - MinData) * resolu;
+ 804          
+ 805            return gauss;
+ 806          }
+ 807          */
 
 
 MODULE INFORMATION:   STATIC OVERLAYABLE
-   CODE SIZE        =   1827    ----
-   CONSTANT SIZE    =     14    ----
+   CODE SIZE        =   1673    ----
+   CONSTANT SIZE    =      6    ----
    XDATA SIZE       =   ----    ----
    PDATA SIZE       =   ----    ----
-   DATA SIZE        =     51      57
+   DATA SIZE        =   ----      43
    IDATA SIZE       =   ----    ----
    BIT SIZE         =   ----       9
 END OF MODULE INFORMATION.
 
 
-C51 COMPILATION COMPLETE.  5 WARNING(S),  0 ERROR(S)
+C51 COMPILATION COMPLETE.  0 WARNING(S),  0 ERROR(S)
